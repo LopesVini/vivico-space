@@ -1,4 +1,6 @@
 "use client";
+/* The terminal reveals a static local photograph as part of the easter egg. */
+/* eslint-disable @next/next/no-img-element */
 import { FormEvent, useEffect, useRef, useState } from "react";
 import type { Lang } from "../../lib/i18n";
 import { randomInteligencia } from "../../lib/inteligencias";
@@ -37,11 +39,11 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
   const pt = lang === "pt";
   const [lines, setLines] = useState<Line[]>([{ kind: "accent", text: "VL/OS 0.1 — connection established" }, { kind: "output", text: pt ? "Este sistema recompensa curiosidade. Digite help." : "This system rewards curiosity. Type help." }]);
   const [value, setValue] = useState(""); const [history, setHistory] = useState<string[]>([]); const [cursor, setCursor] = useState(0);
-  const [identity] = useState<Identity | null>(() => { try { const stored = typeof window === "undefined" ? null : window.localStorage.getItem("vl-visitor"); return stored ? JSON.parse(stored) as Identity : null; } catch { return null; } }); const [coin, setCoin] = useState<"idle" | "flipping" | "heads">("idle"); const [matrix, setMatrix] = useState(false);
+  const [identity] = useState<Identity | null>(() => { try { const stored = typeof window === "undefined" ? null : window.localStorage.getItem("vl-visitor"); return stored ? JSON.parse(stored) as Identity : null; } catch { return null; } }); const [coin, setCoin] = useState<"idle" | "flipping" | "heads">("idle"); const [matrix, setMatrix] = useState(false); const [easterEggOpen, setEasterEggOpen] = useState(false);
   const input = useRef<HTMLInputElement>(null); const body = useRef<HTMLDivElement>(null); const coinTimer = useRef<number | null>(null); const coinHideTimer = useRef<number | null>(null); const matrixTimer = useRef<number | null>(null);
   useEffect(() => input.current?.focus(), []);
   useEffect(() => () => { if (coinTimer.current) window.clearTimeout(coinTimer.current); if (coinHideTimer.current) window.clearTimeout(coinHideTimer.current); if (matrixTimer.current) window.clearTimeout(matrixTimer.current); }, []);
-  useEffect(() => body.current?.scrollTo({ top: body.current.scrollHeight, behavior: "smooth" }), [lines, coin]);
+  useEffect(() => body.current?.scrollTo({ top: body.current.scrollHeight, behavior: "smooth" }), [lines, coin, easterEggOpen]);
 
   const output = (text: string, kind: Line["kind"] = "output") => setLines((old) => [...old, { kind, text }]);
   const showRegistry = async () => {
@@ -72,7 +74,7 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
     if (cmd !== "coinflip" && cmd !== "moeda") { if (coinTimer.current) window.clearTimeout(coinTimer.current); if (coinHideTimer.current) window.clearTimeout(coinHideTimer.current); setCoin("idle"); }
     const messageCommand = raw.trim().match(/^msg:\s*"([\s\S]*)"$/i);
     if (messageCommand) { await saveMessage(messageCommand[1]); return; }
-    if (cmd === "clear" || cmd === "limpar") { setLines([]); setMatrix(false); return; }
+    if (cmd === "clear" || cmd === "limpar") { setLines([]); setMatrix(false); setEasterEggOpen(false); return; }
     if (cmd === "exit" || cmd === "sair") { onNavigate("about"); return; }
     if (cmd === "help" || cmd === "ajuda") output(pt ? "signal  entropy  rabbit-hole  registro  coinflip  matrix  horoscopo  oraculo  sonho  verdade  inteligencias  vico  easteregg  clear  exit\n\nAlguns comandos não estão documentados." : "signal  entropy  rabbit-hole  registry  coinflip  matrix  horoscope  oracle  dream  truth  intelligences  vico  easteregg  clear  exit\n\nSome commands are undocumented.");
     else if (cmd === "signal" || cmd === "sinal") { const list = signals[lang]; output(`SIGNAL ${String(Math.floor(Math.random() * 9999)).padStart(4, "0")}\norigin: belo horizonte\n\n“${list[Math.floor(Math.random() * list.length)]}”`, "accent"); }
@@ -87,9 +89,13 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
     else if (cmd === "verdade" || cmd === "truth") output("Cruzeiro é o maior de Minas.", "accent");
     else if (cmd === "inteligencias" || cmd === "inteligências" || cmd === "intelligences") { const song = randomInteligencia(); output(`INTELIGÊNCIAS\n${song.title} — ${song.artist}${song.note ? ` (${song.note})` : ""}`, "accent"); }
     else if (cmd === "vico") output(vicoAbout[lang], "accent");
-    else if (cmd === "easteregg") output(pt ? "NÃO É ASSIM QUE SE ACHA UM EASTER EGG.\n\nSe estivesse no help, seria só um ovo de Páscoa com assessoria de imprensa." : "THAT IS NOT HOW YOU FIND AN EASTER EGG.\n\nIf it were listed in help, it would just be an Easter egg with a press agent.", "accent");
-    else if (cmd === "vivico.exe --sem-contexto") output("🥚 EASTER EGG FOUND\n( •_•)>⌐■-■\n(⌐■_■)", "accent");
-    else if (cmd === "404") output(pt ? "404\nNada foi encontrado. Talvez fosse essa a ideia." : "404\nNothing was found. Maybe that was the point.", "accent");
+    else if (cmd === "easteregg") output(pt ? "NÃO É ASSIM QUE FUNCIONA UM EASTER EGG.\n\nDigite: 404" : "THAT IS NOT HOW AN EASTER EGG WORKS.\n\nType: 404", "accent");
+    else if (cmd === "404") output(pt ? "404 — A PÁGINA NÃO EXISTE.\nMas alguma coisa ficou para trás.\n\nDigite: ls" : "404 — THE PAGE DOES NOT EXIST.\nBut something was left behind.\n\nType: ls", "accent");
+    else if (cmd === "ls") output(pt ? "memorias/  sistema/  .nao-toque\n\nUm arquivo começa com ponto porque prefere não ser visto.\nDigite: cat .nao-toque" : "memories/  system/  .nao-toque\n\nA file begins with a dot because it would rather not be seen.\nType: cat .nao-toque", "accent");
+    else if (cmd === "cat .nao-toque") output(pt ? "Você ignorou o nome do arquivo. Bom sinal.\nA próxima pista desceu um andar.\n\nDigite: cd porao" : "You ignored the file name. Good sign.\nThe next clue went down one floor.\n\nType: cd porao", "accent");
+    else if (cmd === "cd porao") output(pt ? "Você entrou no porão.\nHá uma porta sem maçaneta.\n\nDigite: sudo abrir porta" : "You entered the basement.\nThere is a door without a handle.\n\nType: sudo abrir porta", "accent");
+    else if (cmd === "sudo abrir porta") output(pt ? "[sudo] permissão emocional concedida.\nA porta abriu um centímetro.\n\nDigite: abra" : "[sudo] emotional permission granted.\nThe door opened one centimetre.\n\nType: abra", "accent");
+    else if (cmd === "abra") { output(pt ? "EASTER EGG ENCONTRADO." : "EASTER EGG FOUND.", "accent"); setEasterEggOpen(true); }
     else if (cmd === "whoami" || cmd === "quem-sou") output(pt ? "Esse comando normalmente retorna um usuário. Você provavelmente esperava pouco demais dele." : "That command usually returns a username. You probably expected too little from it.");
     else if (cmd === "sudo") output(pt ? "Permissão negada. Você já tem controle suficiente." : "Permission denied. You already have enough control.");
     else if (cmd.includes("rm -rf")) output(pt ? "dúvida: não pode ser removida\ndúvida é necessária por 14 processos criativos" : "doubt: cannot be removed\ndoubt is required by 14 creative processes");
@@ -100,6 +106,7 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
   return <div className="contentPage terminalPanel" aria-label="VL/OS terminal" onClick={() => input.current?.focus()}>
     <div className="terminalBody" ref={body}>
       {lines.map((line, i) => <pre className={line.kind} key={i}>{line.text}</pre>)}
+      {easterEggOpen && <figure className="terminalEasterEgg"><img src="/easteregg.jpg" alt={pt ? "Easter egg encontrado" : "Easter egg found"} /><figcaption>VIVICO.EXE</figcaption></figure>}
       {coin !== "idle" && <div className={`coinMachine ${coin}`} aria-live="polite"><span>{coin === "flipping" ? "?" : "CARA"}</span></div>}
       <form onSubmit={submit}><label htmlFor="terminal-input">visitor@vl:~ $</label><input id="terminal-input" ref={input} value={value} autoComplete="off" spellCheck={false} onChange={(e) => setValue(e.target.value)} onKeyDown={(e) => { if (e.key === "ArrowUp" && history.length) { e.preventDefault(); const next = Math.max(0, cursor - 1); setCursor(next); setValue(history[next] ?? ""); } if (e.key === "ArrowDown") { e.preventDefault(); const next = Math.min(history.length, cursor + 1); setCursor(next); setValue(history[next] ?? ""); } if (e.key === "Tab") { e.preventDefault(); const commands = ["help", "signal", "entropy", "rabbit-hole", "registro", "coinflip", "matrix", "horoscopo", "oraculo", "sonho", "verdade", "inteligencias", "vico", "easteregg", "clear", "exit"]; const match = commands.find((c) => c.startsWith(value.toLowerCase())); if (match) setValue(match); } if (e.key === "c" && e.ctrlKey) { e.preventDefault(); output("^C"); setValue(""); } }} /></form>
     </div>
