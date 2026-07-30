@@ -59,12 +59,10 @@ h1 { grid-column: 1 / -1; margin: 52px 0 38px; font-size: clamp(62px, 10.2vw, 15
 .rowMain em { font-style: normal; color: var(--muted); font-size: 14px; }
 .arrow { font-size: 22px; text-align: right; }
 .placeholderNote { max-width: 670px; margin: 18px 0 0 70px; font: 500 10px/1.5 var(--font-geist-mono), monospace; color: var(--signal); letter-spacing: .04em; }
-.profileSection { padding-bottom: 84px; }
-.profileRows { border-top: 1px solid var(--ink); }
-.profileRow { display: grid; grid-template-columns: 70px minmax(150px, .7fr) 1fr 34px; align-items: center; min-height: 92px; border-bottom: 1px solid var(--line); transition: padding .18s ease, background .18s ease; }
-.profileRow:hover, .profileRow:focus-visible { padding: 0 14px; background: #e4e2da; outline: none; }
-.profilePlatform { color: var(--muted); font: 600 10px var(--font-geist-mono), monospace; letter-spacing: .08em; }
-.profileRow strong { font-size: clamp(19px, 2.2vw, 29px); font-weight: 520; letter-spacing: -.04em; }
+.socialDock { display: flex; align-items: center; border-bottom: 1px solid var(--ink); }
+.socialDock a { width: 72px; height: 72px; display: grid; place-items: center; border-right: 1px solid var(--line); transition: background .18s ease; }
+.socialDock a:hover, .socialDock a:focus-visible { background: var(--signal); outline: none; }
+.socialDock img { display: block; width: 25px; height: 25px; }
 
 .thingsGrid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
 .thing { min-height: 280px; padding: 20px; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); display: flex; flex-direction: column; transition: background .18s ease; }
@@ -247,7 +245,7 @@ footer a { color: var(--ink); }
   .sectionHead { align-items: flex-end; margin-bottom: 28px; }
   .sectionHead span { max-width: 110px; text-align: right; line-height: 1.4; }
   .projectRow { grid-template-columns: 40px 1fr 24px; min-height: 112px; }
-  .profileRow { grid-template-columns: 40px minmax(84px, .55fr) 1fr 24px; min-height: 82px; }
+  .socialDock a { width: 62px; height: 62px; }
   .rowMain { display: block; }
   .rowMain strong { display: block; min-width: 0; }
   .rowMain em { display: block; margin-top: 8px; line-height: 1.35; }

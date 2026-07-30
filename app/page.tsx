@@ -19,7 +19,6 @@ const copy = {
     status: "online · bh, br", system: "2026", age: "AGE", years: "YEARS",
     location: "Belo Horizonte",
     lede: "This is a small index of what I make, what I return to, and where I am now. More logbook than portfolio.",
-    links: "Elsewhere", online: "DIRECT LINKS", github: "GitHub", linkedin: "LinkedIn", instagram: "Instagram",
     projects: "Projects / Work", selected: "SELECTED", project1: "VEBRAM", project2: "Prossigo",
     note1: "If you are an architect, call me on Instagram.", note2: "SDR, closer, support.",
     things: "Suggestions", incomplete: "THREE LINKS", read: "READ", listen: "LISTEN", watch: "WATCH",
@@ -30,7 +29,6 @@ const copy = {
     status: "online · bh, br", system: "2026", age: "IDADE", years: "ANOS",
     location: "Belo Horizonte",
     lede: "Este é um pequeno índice do que eu faço, ao que retorno e de onde estou agora. Mais registro do que portfólio.",
-    links: "Onde me achar", online: "LINKS DIRETOS", github: "GitHub", linkedin: "LinkedIn", instagram: "Instagram",
     projects: "Projetos / Trampo", selected: "SELECIONADOS", project1: "VEBRAM", project2: "Prossigo",
     note1: "Se você for arquiteto, me chama no Insta.", note2: "SDR, closer, suporte.",
     things: "Sugestões", incomplete: "TRÊS LINKS", read: "LER", listen: "OUVIR", watch: "ASSISTIR",
@@ -89,14 +87,11 @@ export default function Home() {
           <p className="lede">{t.lede}</p>
         </section>
 
-        <section className="section profileSection" aria-labelledby="profiles-title">
-          <div className="sectionHead"><h2 id="profiles-title">{t.links}</h2><span>{t.online}</span></div>
-          <div className="profileRows">
-            <a className="profileRow" href="https://github.com/LopesVini" target="_blank" rel="noreferrer"><span className="rowIndex">01</span><span className="profilePlatform">{t.github}</span><strong>LopesVini</strong><span className="arrow">↗</span></a>
-            <a className="profileRow" href="https://www.linkedin.com/in/vin%C3%ADcius-lacerda-405a72396" target="_blank" rel="noreferrer"><span className="rowIndex">02</span><span className="profilePlatform">{t.linkedin}</span><strong>Vinícius Lacerda</strong><span className="arrow">↗</span></a>
-            <a className="profileRow" href="https://instagram.com/vllc.hub" target="_blank" rel="noreferrer"><span className="rowIndex">03</span><span className="profilePlatform">{t.instagram}</span><strong>@vllc.hub</strong><span className="arrow">↗</span></a>
-          </div>
-        </section>
+        <nav className="socialDock" aria-label={lang === "pt" ? "Links externos" : "External links"}>
+          <a href="https://github.com/LopesVini" target="_blank" rel="noreferrer" aria-label="GitHub"><img src="https://cdn.simpleicons.org/github/11110f" alt="" /></a>
+          <a href="https://www.linkedin.com/in/vin%C3%ADcius-lacerda-405a72396" target="_blank" rel="noreferrer" aria-label="LinkedIn"><img src="https://cdn.simpleicons.org/linkedin/11110f" alt="" /></a>
+          <a href="https://instagram.com/vllc.hub" target="_blank" rel="noreferrer" aria-label="Instagram"><img src="https://cdn.simpleicons.org/instagram/11110f" alt="" /></a>
+        </nav>
 
         <section className="section" aria-labelledby="projects-title">
           <div className="sectionHead"><h2 id="projects-title">{t.projects}</h2><span>{t.selected}</span></div>
