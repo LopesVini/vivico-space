@@ -35,7 +35,6 @@ export default function EntryGate({ lang, setLang, onEnter }: { lang: Lang; setL
     <header><span>VIVICO</span><button onClick={() => setLang(pt ? "en" : "pt")}><span className={pt ? "active" : ""}>PT</span>/<span className={!pt ? "active" : ""}>EN</span></button></header>
     <main>
       <section className="gateCopy">
-        <p>ACCESS / 001</p>
         <div className="terminalGreeting"><span aria-hidden="true">$</span> <span>{typedLine}</span><i aria-hidden="true" /></div>
       </section>
       <section className="gateFormWrap">

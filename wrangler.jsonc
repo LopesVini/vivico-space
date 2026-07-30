@@ -6,6 +6,12 @@
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
   "preview_urls": false,
+  "routes": [
+    {
+      "pattern": "vivico.space",
+      "custom_domain": true
+    }
+  ],
   "no_bundle": true,
   "rules": [
     {
