@@ -59,10 +59,10 @@ h1 { grid-column: 1 / -1; margin: 52px 0 38px; font-size: clamp(62px, 10.2vw, 15
 .rowMain em { font-style: normal; color: var(--muted); font-size: 14px; }
 .arrow { font-size: 22px; text-align: right; }
 .placeholderNote { max-width: 670px; margin: 18px 0 0 70px; font: 500 10px/1.5 var(--font-geist-mono), monospace; color: var(--signal); letter-spacing: .04em; }
-.socialDock { display: flex; align-items: center; border-bottom: 1px solid var(--ink); }
-.socialDock a { width: 72px; height: 72px; display: grid; place-items: center; border-right: 1px solid var(--line); transition: background .18s ease; }
-.socialDock a:hover, .socialDock a:focus-visible { background: var(--signal); outline: none; }
-.socialDock img { display: block; width: 25px; height: 25px; }
+.socialDock { display: flex; align-items: center; justify-content: center; flex-wrap: nowrap; gap: clamp(48px, 8vw, 112px); padding: 52px 24px; border-bottom: 1px solid var(--ink); }
+.socialDock a { flex: 0 0 auto; width: 88px; height: 88px; display: grid; place-items: center; border: 1px solid var(--ink); color: var(--ink); background: var(--paper); transition: color .18s ease, background .18s ease, transform .18s ease; }
+.socialDock a:hover, .socialDock a:focus-visible { color: var(--paper); background: var(--ink); transform: translateY(-3px); outline: none; }
+.socialDock svg { display: block; width: 39px; height: 39px; }
 
 .thingsGrid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
 .thing { min-height: 280px; padding: 20px; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); display: flex; flex-direction: column; transition: background .18s ease; }
@@ -245,7 +245,9 @@ footer a { color: var(--ink); }
   .sectionHead { align-items: flex-end; margin-bottom: 28px; }
   .sectionHead span { max-width: 110px; text-align: right; line-height: 1.4; }
   .projectRow { grid-template-columns: 40px 1fr 24px; min-height: 112px; }
-  .socialDock a { width: 62px; height: 62px; }
+  .socialDock { gap: clamp(14px, 5vw, 24px); padding: 34px 0; }
+  .socialDock a { width: clamp(58px, 20vw, 70px); height: clamp(58px, 20vw, 70px); }
+  .socialDock svg { width: 31px; height: 31px; }
   .rowMain { display: block; }
   .rowMain strong { display: block; min-width: 0; }
   .rowMain em { display: block; margin-top: 8px; line-height: 1.35; }

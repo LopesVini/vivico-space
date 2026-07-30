@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { useEffect, useState } from "react";
+import { SiGithub, SiInstagram, SiLinkedin } from "react-icons/si";
 import EntryGate from "./components/entry/EntryGate";
 import Gallery from "./components/Gallery";
 import SystemLog from "./components/overlays/SystemLog";
@@ -88,9 +89,9 @@ export default function Home() {
         </section>
 
         <nav className="socialDock" aria-label={lang === "pt" ? "Links externos" : "External links"}>
-          <a href="https://github.com/LopesVini" target="_blank" rel="noreferrer" aria-label="GitHub"><img src="https://cdn.simpleicons.org/github/11110f" alt="" /></a>
-          <a href="https://www.linkedin.com/in/vin%C3%ADcius-lacerda-405a72396" target="_blank" rel="noreferrer" aria-label="LinkedIn"><img src="https://cdn.simpleicons.org/linkedin/11110f" alt="" /></a>
-          <a href="https://instagram.com/vllc.hub" target="_blank" rel="noreferrer" aria-label="Instagram"><img src="https://cdn.simpleicons.org/instagram/11110f" alt="" /></a>
+          <a href="https://github.com/LopesVini" target="_blank" rel="noreferrer" aria-label="GitHub"><SiGithub aria-hidden="true" /></a>
+          <a href="https://www.linkedin.com/in/vin%C3%ADcius-lacerda-405a72396" target="_blank" rel="noreferrer" aria-label="LinkedIn"><SiLinkedin aria-hidden="true" /></a>
+          <a href="https://instagram.com/vllc.hub" target="_blank" rel="noreferrer" aria-label="Instagram"><SiInstagram aria-hidden="true" /></a>
         </nav>
 
         <section className="section" aria-labelledby="projects-title">
