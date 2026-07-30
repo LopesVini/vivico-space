@@ -141,7 +141,7 @@ export default function Gallery({ lang }: { lang: Lang }) {
       {photos.length === 0 && !status && <p className="emptyWall">{pt ? "O MURO ESTÁ LIMPO." : "THE WALL IS CLEAN."}</p>}
       {photos.map((photo) => <figure key={photo.id}>
         <button type="button" onClick={() => setActive(photo)}><img src={photo.src} alt={`Foto de @${photo.instagram}`} loading="lazy" /></button>
-        <figcaption><span className="gallerySignature" title={pt ? "Assinatura declarada; identidade não verificada" : "Declared signature; identity not verified"}>{pt ? "ASSINADO" : "SIGNED"} @{photo.instagram}</span>{photo.removalVotes > 0 && <span className="removalCount">{photo.removalVotes}/15 {pt ? "PARA APAGAR" : "TO REMOVE"}</span>}<time>{new Intl.DateTimeFormat(pt ? "pt-BR" : "en-GB", { dateStyle: "medium", timeZone: "America/Sao_Paulo" }).format(new Date(photo.createdAt))}</time></figcaption>
+        <figcaption><a className="gallerySignature" href={`https://instagram.com/${photo.instagram}`} target="_blank" rel="noreferrer" title={pt ? "Assinatura declarada; identidade não verificada" : "Declared signature; identity not verified"}>{pt ? "ASSINADO" : "SIGNED"} @{photo.instagram} ↗</a>{photo.removalVotes > 0 && <span className="removalCount">{photo.removalVotes}/15 {pt ? "PARA APAGAR" : "TO REMOVE"}</span>}<time>{new Intl.DateTimeFormat(pt ? "pt-BR" : "en-GB", { dateStyle: "medium", timeZone: "America/Sao_Paulo" }).format(new Date(photo.createdAt))}</time></figcaption>
       </figure>)}
     </div>
     {active && <div className="galleryLightbox" role="dialog" aria-modal="true" aria-label={pt ? "Foto aberta" : "Open photo"} onClick={(event) => { if (event.target === event.currentTarget) setActive(null); }}>
