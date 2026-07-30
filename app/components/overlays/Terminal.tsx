@@ -87,7 +87,7 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
     else if (cmd === "verdade" || cmd === "truth") output("Cruzeiro é o maior de Minas.", "accent");
     else if (cmd === "inteligencias" || cmd === "inteligências" || cmd === "intelligences") { const song = randomInteligencia(); output(`INTELIGÊNCIAS\n${song.title} — ${song.artist}${song.note ? ` (${song.note})` : ""}`, "accent"); }
     else if (cmd === "vico") output(vicoAbout[lang], "accent");
-    else if (cmd === "easteregg") output("🥚 EASTER EGG FOUND\n( •_•)>⌐■-■\n(⌐■_■)", "accent");
+    else if (cmd === "easteregg") output(pt ? "NÃO É ASSIM QUE SE ACHA UM EASTER EGG.\n\nSe estivesse no help, seria só um ovo de Páscoa com assessoria de imprensa." : "THAT IS NOT HOW YOU FIND AN EASTER EGG.\n\nIf it were listed in help, it would just be an Easter egg with a press agent.", "accent");
     else if (cmd === "vivico.exe --sem-contexto") output("🥚 EASTER EGG FOUND\n( •_•)>⌐■-■\n(⌐■_■)", "accent");
     else if (cmd === "404") output(pt ? "404\nNada foi encontrado. Talvez fosse essa a ideia." : "404\nNothing was found. Maybe that was the point.", "accent");
     else if (cmd === "whoami" || cmd === "quem-sou") output(pt ? "Esse comando normalmente retorna um usuário. Você provavelmente esperava pouco demais dele." : "That command usually returns a username. You probably expected too little from it.");
