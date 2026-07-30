@@ -35,7 +35,7 @@ button { color: inherit; }
 .statusDot { width: 6px; height: 6px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 3px #ff4f1f22; }
 
 .shell { width: min(1180px, calc(100% - 44px)); margin: 0 auto; padding-top: 54px; }
-.intro { min-height: 720px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto 1fr; padding: 54px 0 46px; border-bottom: 1px solid var(--ink); }
+.intro { min-height: 720px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto 1fr; padding: 54px 0 46px; }
 .eyebrow { grid-column: 1 / -1; margin: 0; font: 600 11px/1 var(--font-geist-mono), monospace; letter-spacing: .12em; color: var(--muted); }
 h1 { grid-column: 1 / -1; margin: 52px 0 38px; font-size: clamp(62px, 10.2vw, 152px); line-height: .82; letter-spacing: -.085em; font-weight: 570; white-space: nowrap; text-align: left; }
 .facts { display: flex; flex-direction: column; gap: 15px; align-self: start; grid-column: 1; }
@@ -59,7 +59,7 @@ h1 { grid-column: 1 / -1; margin: 52px 0 38px; font-size: clamp(62px, 10.2vw, 15
 .rowMain em { font-style: normal; color: var(--muted); font-size: 14px; }
 .arrow { font-size: 22px; text-align: right; }
 .placeholderNote { max-width: 670px; margin: 18px 0 0 70px; font: 500 10px/1.5 var(--font-geist-mono), monospace; color: var(--signal); letter-spacing: .04em; }
-.socialDock { display: flex; align-items: center; justify-content: center; flex-wrap: nowrap; gap: clamp(48px, 8vw, 112px); padding: 52px 24px; border-bottom: 1px solid var(--ink); }
+.socialDock { display: flex; align-items: center; justify-content: center; flex-wrap: nowrap; gap: clamp(48px, 8vw, 112px); padding: 52px 24px; }
 .socialDock a { flex: 0 0 auto; width: 88px; height: 88px; display: grid; place-items: center; border: 1px solid var(--ink); color: var(--ink); background: var(--paper); transition: color .18s ease, background .18s ease, transform .18s ease; }
 .socialDock a:hover, .socialDock a:focus-visible { color: var(--paper); background: var(--ink); transform: translateY(-3px); outline: none; }
 .socialDock svg { display: block; width: 39px; height: 39px; }
