@@ -22,7 +22,7 @@ const copy = {
     projects: "Projects / Work", selected: "SELECTED", project1: "VEBRAM", project2: "Prossigo",
     note1: "If you are an architect, call me on Instagram.", note2: "SDR, closer, support.",
     things: "Suggestions", incomplete: "THREE LINKS", read: "READ", listen: "LISTEN", watch: "WATCH",
-    music: "Living in the Material World", video: "Matsuoka Shuzo — NEVER GIVE UP!!", needed: "George Harrison · 1973", open: "OPEN ↗",
+    video: "Matsuoka Shuzo — NEVER GIVE UP!!", open: "OPEN ↗",
     local: "LOCAL TIME", back: "BACK TO TOP ↑", gallery: "GALLERY", terminal: "TERMINAL", changelog: "SYSTEM LOG",
   },
   pt: {
@@ -32,7 +32,7 @@ const copy = {
     projects: "Projetos / Trampo", selected: "SELECIONADOS", project1: "VEBRAM", project2: "Prossigo",
     note1: "Se você for arquiteto, me chama no Insta.", note2: "SDR, closer, suporte.",
     things: "Sugestões", incomplete: "TRÊS LINKS", read: "LER", listen: "OUVIR", watch: "ASSISTIR",
-    music: "Living in the Material World", video: "Matsuoka Shuzo — NEVER GIVE UP!!", needed: "George Harrison · 1973", open: "ABRIR ↗",
+    video: "Matsuoka Shuzo — NEVER GIVE UP!!", open: "ABRIR ↗",
     local: "HORA LOCAL", back: "VOLTAR AO TOPO ↑", gallery: "GALERIA", terminal: "TERMINAL", changelog: "SYSTEM LOG",
   },
 };
@@ -99,7 +99,7 @@ export default function Home() {
           <div className="sectionHead"><h2 id="things-title">{t.things}</h2><span>{t.incomplete}</span></div>
           <div className="thingsGrid">
             <a className="thing ready" href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noreferrer"><span className="thingCode">{t.read}</span><strong>Bitcoin: White Paper</strong><span>Satoshi Nakamoto · 2008</span><span className="thingArrow">{t.open}</span></a>
-            <MusicCarousel lang={lang} listen={t.listen} open={t.open} />
+            <MusicSuggestion lang={lang} listen={t.listen} open={t.open} />
             <a className="thing mediaThing" href="https://www.youtube.com/watch?v=KxGRhd_iWuE" target="_blank" rel="noreferrer"><span className="thingCode">{t.watch}</span><img src="https://i.ytimg.com/vi/KxGRhd_iWuE/hqdefault.jpg" alt="Miniatura do vídeo Matsuoka Shuzo — NEVER GIVE UP!!" /><strong>{t.video}</strong><span>YouTube</span><span className="thingArrow">{t.open}</span></a>
           </div>
         </section>
@@ -116,33 +116,15 @@ export default function Home() {
   );
 }
 
-const musicSuggestions = [
-  { title: "Living in the Material World", artist: "George Harrison · 1973", href: "https://open.spotify.com/album/5ED4E3BlDWkR97deGiqxTM", image: "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02e5677e43b2eba10ba762d616" },
-  { title: "doom", artist: "Steve Lacy · 2026", href: "https://open.spotify.com/track/3kKPZFQse4LtbnMRhnAlEO", image: "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e024ea9ba86cd9506a004bab042" },
-];
+const musicSuggestion = { title: "doom", artist: "Steve Lacy", href: "https://open.spotify.com/track/3kKPZFQse4LtbnMRhnAlEO", image: "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e024ea9ba86cd9506a004bab042" };
 
-function MusicCarousel({ lang, listen, open }: { lang: Lang; listen: string; open: string }) {
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const music = musicSuggestions[index];
-  const change = (next: number) => setIndex((next + musicSuggestions.length) % musicSuggestions.length);
-  useEffect(() => {
-    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = window.setInterval(() => setIndex((current) => (current + 1) % musicSuggestions.length), 5000);
-    return () => window.clearInterval(timer);
-  }, [paused]);
-  return <div className="thing mediaThing musicCarousel" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}>
-    <a key={music.href} className="musicSlide" href={music.href} target="_blank" rel="noreferrer" aria-label={`${open}: ${music.title}, ${music.artist}`}>
-      <span className="thingCode">{listen}</span>
-      <img src={music.image} alt={`${lang === "pt" ? "Capa de" : "Cover of"} ${music.title}, ${music.artist}`} />
-      <strong>{music.title}</strong><span>{music.artist}</span><span className="thingArrow">{open}</span>
-    </a>
-    <div className="musicControls" aria-label={lang === "pt" ? "Escolher música" : "Choose music"}>
-      <button type="button" onClick={() => change(index - 1)} aria-label={lang === "pt" ? "Música anterior" : "Previous song"}>←</button>
-      <span>{index + 1}/{musicSuggestions.length}</span>
-      <button type="button" onClick={() => change(index + 1)} aria-label={lang === "pt" ? "Próxima música" : "Next song"}>→</button>
-    </div>
-  </div>;
+function MusicSuggestion({ lang, listen, open }: { lang: Lang; listen: string; open: string }) {
+  const music = musicSuggestion;
+  return <a className="thing mediaThing" href={music.href} target="_blank" rel="noreferrer" aria-label={`${open}: ${music.title}, ${music.artist}`}>
+    <span className="thingCode">{listen}</span>
+    <img src={music.image} alt={`${lang === "pt" ? "Capa de" : "Cover of"} ${music.title}, ${music.artist}`} />
+    <strong>{music.title}</strong><span>{music.artist}</span><span className="thingArrow">{open}</span>
+  </a>;
 }
 
 function LocalTime() {
