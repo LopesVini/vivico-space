@@ -179,9 +179,7 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
     } catch { output(pt ? "Não encontrei esse @. Entre pelo acesso inicial antes de deixar uma mensagem." : "I could not find that @. Enter through the initial access before leaving a message."); }
   };
   const showCv = () => {
-    const heading = pt
-      ? "CV / VINÍCIUS LACERDA\nBelo Horizonte, MG\nSDR · closer · suporte\nTentando aprender matemática. Linux e Mac.\n\nPROJETOS\nVEBRAM — arquitetura e presença digital\nProssigo — SDR, closer e suporte\n\nLINKS"
-      : "CV / VINÍCIUS LACERDA\nBelo Horizonte, Brazil\nSDR · closer · support\nTrying to learn mathematics. Linux and Mac.\n\nPROJECTS\nVEBRAM — architecture and digital presence\nProssigo — SDR, closer and support\n\nLINKS";
+    const heading = "VINÍCIUS LACERDA";
     setLines((old) => [...old,
       { kind: "accent", text: heading },
       { kind: "link", text: "GitHub ↗", href: "https://github.com/LopesVini" },
