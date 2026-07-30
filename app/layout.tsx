@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://vivico-mural.viniciuslacerdalc.chatgpt.site"),
   title: "Vinícius Lacerda — Vivico",
   description: "Site pessoal de Vinícius Lacerda: projetos, referências, terminal e mural público.",
-  icons: { icon: "/favicon.svg?v=2", shortcut: "/favicon.svg?v=2" },
+  icons: { icon: "/favicon-v.svg", shortcut: "/favicon-v.svg" },
   openGraph: {
     title: "Vivico — Mural público",
     description: "Um mural público: uma pessoa, uma foto.",
