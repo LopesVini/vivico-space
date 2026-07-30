@@ -1,4 +1,6 @@
 "use client";
+/* Remote editorial artwork intentionally uses its original providers. */
+/* eslint-disable @next/next/no-img-element */
 
 import { useEffect, useState } from "react";
 import EntryGate from "./components/entry/EntryGate";

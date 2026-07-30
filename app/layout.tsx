@@ -1,20 +1,30 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
-
 export const metadata: Metadata = {
-  title: "Vinícius Lacerda — About",
-  description: "A small personal index of what Vinícius Lacerda makes and likes.",
+  metadataBase: new URL("https://vivico-mural.viniciuslacerdalc.chatgpt.site"),
+  title: "Vinícius Lacerda — Vivico",
+  description: "Site pessoal de Vinícius Lacerda: projetos, referências, terminal e mural público.",
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
+  openGraph: {
+    title: "Vivico — Mural público",
+    description: "Um mural público: uma pessoa, uma foto.",
+    type: "website",
+    locale: "pt_BR",
+    images: [{ url: "/og.png", width: 1734, height: 907, alt: "Vivico — Mural público — 1 pessoa, 1 foto" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vivico — Mural público",
+    description: "Um mural público: uma pessoa, uma foto.",
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
+    <html lang="pt-BR">
+      <body>{children}</body>
     </html>
   );
 }

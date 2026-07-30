@@ -1,4 +1,6 @@
 "use client";
+/* User-uploaded image URLs are dynamic API resources, not build-time assets. */
+/* eslint-disable @next/next/no-img-element */
 
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import type { Lang } from "../lib/i18n";
@@ -31,6 +33,8 @@ async function preparePhoto(file: File) {
     canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
     const context = canvas.getContext("2d");
     if (!context) throw new Error("Canvas unavailable");
+    context.fillStyle = "#f0efe9";
+    context.fillRect(0, 0, canvas.width, canvas.height);
     context.drawImage(image, 0, 0, canvas.width, canvas.height);
     const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/jpeg", .86));
     if (!blob) throw new Error("Photo conversion failed");
@@ -38,8 +42,8 @@ async function preparePhoto(file: File) {
   } finally { URL.revokeObjectURL(source); }
 }
 
-async function responseMessage(response: Response, fallback: string) {
-  try { return ((await response.json()) as { error?: string }).error ?? fallback; }
+async function responseMessage(response: Response, fallback: string, useServerMessage: boolean) {
+  try { return useServerMessage ? ((await response.json()) as { error?: string }).error ?? fallback : fallback; }
   catch { return fallback; }
 }
 
@@ -50,6 +54,7 @@ export default function Gallery({ lang }: { lang: Lang }) {
   const [active, setActive] = useState<Photo | null>(null);
   const [busy, setBusy] = useState(false);
   const input = useRef<HTMLInputElement>(null);
+  const closeButton = useRef<HTMLButtonElement>(null);
 
   const load = async () => {
     try {
@@ -69,6 +74,16 @@ export default function Gallery({ lang }: { lang: Lang }) {
     return () => { current = false; };
   }, [lang]);
 
+  useEffect(() => {
+    if (!active) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeButton.current?.focus();
+    const closeOnEscape = (event: KeyboardEvent) => { if (event.key === "Escape") setActive(null); };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => { document.body.style.overflow = previousOverflow; window.removeEventListener("keydown", closeOnEscape); };
+  }, [active]);
+
   const upload = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     event.target.value = "";
@@ -85,7 +100,7 @@ export default function Gallery({ lang }: { lang: Lang }) {
       form.set("visitorToken", identity.token);
       form.set("photo", photo, photo.name);
       const response = await fetch("/api/gallery", { method: "POST", body: form });
-      if (!response.ok) throw new Error(await responseMessage(response, pt ? "A FOTO NÃO COLOU." : "THE PHOTO DIDN'T STICK."));
+      if (!response.ok) throw new Error(await responseMessage(response, pt ? "A FOTO NÃO COLOU." : response.status === 429 ? "TOO MANY ATTEMPTS. WAIT BEFORE POSTING AGAIN." : response.status === 403 ? "THIS SIGNATURE IS ALREADY IN USE." : "THE PHOTO DIDN'T STICK.", pt));
       await load();
       setStatus(pt ? "FOTO NO MURO." : "PHOTO ON THE WALL.");
     } catch (error) {
@@ -102,7 +117,7 @@ export default function Gallery({ lang }: { lang: Lang }) {
     try {
       const response = await fetch(`/api/gallery/${active.id}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ instagram: identity.instagram, visitorToken: identity.token }) });
       const data = await response.json() as { error?: string; disappeared?: boolean; removalVotes?: number };
-      if (!response.ok) throw new Error(data.error);
+      if (!response.ok) throw new Error(pt ? data.error : response.status === 429 ? "WAIT BEFORE TRYING AGAIN." : response.status === 409 ? "THIS ACTION IS NOT AVAILABLE." : "COULDN'T MARK IT.");
       if (data.disappeared) { setActive(null); await load(); }
       else {
         const removalVotes = data.removalVotes ?? active.removalVotes;
@@ -126,11 +141,11 @@ export default function Gallery({ lang }: { lang: Lang }) {
       {photos.length === 0 && !status && <p className="emptyWall">{pt ? "O MURO ESTÁ LIMPO." : "THE WALL IS CLEAN."}</p>}
       {photos.map((photo) => <figure key={photo.id}>
         <button type="button" onClick={() => setActive(photo)}><img src={photo.src} alt={`Foto de @${photo.instagram}`} loading="lazy" /></button>
-        <figcaption><a href={`https://instagram.com/${photo.instagram}`} target="_blank" rel="noreferrer">@{photo.instagram}</a>{photo.removalVotes > 0 && <span className="removalCount">{photo.removalVotes}/15 {pt ? "PARA APAGAR" : "TO REMOVE"}</span>}<time>{new Intl.DateTimeFormat(pt ? "pt-BR" : "en-GB", { dateStyle: "medium", timeZone: "America/Sao_Paulo" }).format(new Date(photo.createdAt))}</time></figcaption>
+        <figcaption><span className="gallerySignature" title={pt ? "Assinatura declarada; identidade não verificada" : "Declared signature; identity not verified"}>{pt ? "ASSINADO" : "SIGNED"} @{photo.instagram}</span>{photo.removalVotes > 0 && <span className="removalCount">{photo.removalVotes}/15 {pt ? "PARA APAGAR" : "TO REMOVE"}</span>}<time>{new Intl.DateTimeFormat(pt ? "pt-BR" : "en-GB", { dateStyle: "medium", timeZone: "America/Sao_Paulo" }).format(new Date(photo.createdAt))}</time></figcaption>
       </figure>)}
     </div>
     {active && <div className="galleryLightbox" role="dialog" aria-modal="true" aria-label={pt ? "Foto aberta" : "Open photo"} onClick={(event) => { if (event.target === event.currentTarget) setActive(null); }}>
-      <button className="lightboxClose" type="button" onClick={() => setActive(null)} aria-label={pt ? "Fechar foto" : "Close photo"}>×</button>
+      <button ref={closeButton} className="lightboxClose" type="button" onClick={() => setActive(null)} aria-label={pt ? "Fechar foto" : "Close photo"}>×</button>
       <img src={active.src} alt={`Foto de @${active.instagram}`} />
       <button className="disappearButton" type="button" disabled={busy} onClick={markToDisappear}>{active.removalVotes > 0 && `${active.removalVotes}/15 · `}{pt ? "APAGAR" : "REMOVE"}</button>
     </div>}

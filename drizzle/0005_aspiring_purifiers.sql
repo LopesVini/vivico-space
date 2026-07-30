@@ -1,0 +1,1 @@
+CREATE INDEX `abuse_events_created_at_idx` ON `abuse_events` (`created_at`);
