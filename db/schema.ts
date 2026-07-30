@@ -48,3 +48,8 @@ export const abuseEvents = sqliteTable("abuse_events", {
   index("abuse_events_lookup_idx").on(table.kind, table.fingerprint, table.createdAt),
   index("abuse_events_created_at_idx").on(table.createdAt),
 ]);
+
+export const terminalPulse = sqliteTable("terminal_pulse", {
+  id: integer("id").primaryKey(),
+  lastAt: text("last_at").notNull(),
+});

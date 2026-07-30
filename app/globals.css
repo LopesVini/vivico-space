@@ -118,6 +118,39 @@ h1 { grid-column: 1 / -1; margin: 52px 0 38px; font-size: clamp(62px, 10.2vw, 15
 .matrixRain span { position: absolute; top: -260px; white-space: pre; font: 500 14px/1.55 var(--font-geist-mono), monospace; text-shadow: 0 0 6px currentColor, 0 0 12px #00ff6699; animation: matrixFall 1.05s linear infinite; }
 .matrixRain span:nth-child(3n) { animation-duration: 1.45s; opacity: .72; }
 .matrixRain span:nth-child(4n) { animation-duration: .8s; font-weight: 700; }
+.museumMode { position: fixed; inset: 0; z-index: 90; padding: 28px; color: #000; background: #008080; font-family: Tahoma, Arial, sans-serif; }
+.museumWindow { width: min(920px, 100%); height: calc(100dvh - 98px); margin: 0 auto; border: 2px outset #d4d0c8; background: #d4d0c8; box-shadow: 12px 12px 0 #0005; display: flex; flex-direction: column; }
+.museumTitlebar { min-height: 28px; padding: 3px 4px 3px 7px; color: white; background: linear-gradient(90deg, #000080, #1084d0); display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-weight: 700; }
+.museumTitlebar div { display: flex; gap: 2px; }
+.museumTitlebar i { width: 20px; height: 19px; border: 2px outset #d4d0c8; color: #000; background: #d4d0c8; display: grid; place-items: center; font-style: normal; line-height: 1; }
+.museumMenu { min-height: 24px; padding: 5px 8px; font-size: 11px; }
+.museumToolbar { min-height: 48px; padding: 4px 10px; border-top: 1px solid #fff; border-bottom: 1px solid #888; display: flex; gap: 26px; }
+.museumToolbar > span { min-width: 34px; display: grid; place-items: center; font: 700 21px/1 Times New Roman, serif; }
+.museumToolbar small { margin-top: 3px; font: 10px Tahoma, Arial, sans-serif; }
+.museumAddress { padding: 4px 6px; border-bottom: 2px groove #fff; display: flex; align-items: center; gap: 8px; font-size: 10px; }
+.museumAddress span { flex: 1; padding: 4px 6px; border: 2px inset #fff; background: white; font-family: Arial, sans-serif; }
+.museumPage { flex: 1; min-height: 0; overflow: auto; padding: 12px; background-color: white; background-image: linear-gradient(45deg, #ececec 25%, transparent 25%), linear-gradient(-45deg, #ececec 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ececec 75%), linear-gradient(-45deg, transparent 75%, #ececec 75%); background-size: 18px 18px; background-position: 0 0, 0 9px, 9px -9px, -9px 0; }
+.museumTicker { overflow: hidden; padding: 6px 0; border: 2px ridge #fff; color: #ff0; background: #000080; white-space: nowrap; font: 700 13px "Comic Sans MS", cursive; }
+.museumTicker span { display: inline-block; padding-left: 100%; animation: museumTicker 13s linear infinite; }
+.museumLayout { display: grid; grid-template-columns: 150px 1fr; gap: 12px; margin-top: 12px; }
+.museumLayout aside { align-self: start; padding: 8px; border: 3px ridge #d4d0c8; background: #c0c0c0; display: flex; flex-direction: column; gap: 7px; font-size: 11px; }
+.museumLayout aside strong { padding: 5px; color: white; background: #000080; text-align: center; }
+.museumLayout aside a { color: #0000ee; text-decoration: underline; }
+.museumNew { align-self: center; margin-top: 8px; padding: 3px 6px; color: #fff; background: #f00; font-weight: 700; animation: museumBlink .7s steps(1) infinite; }
+.museumLayout > section { padding: 18px; border: 4px ridge #fffe; background: #ffffe9; text-align: center; }
+.museumLayout h1 { margin: 0 0 18px; color: #000080; font: 700 clamp(44px, 8vw, 82px)/.78 "Comic Sans MS", cursive; letter-spacing: -.07em; text-align: center; text-shadow: 3px 3px 0 #0ff, 5px 5px 0 #f0f; white-space: normal; }
+.museumWelcome { color: #800080; font: 700 17px/1.3 "Comic Sans MS", cursive; }
+.museumConstruction { margin: 18px 0; padding: 7px; color: #ff0; background: repeating-linear-gradient(135deg, #000 0 12px, #f00 12px 24px); border: 3px outset #ddd; font-size: 11px; font-weight: 700; text-shadow: 1px 1px #000; }
+.museumCards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left; }
+.museumCards article { min-height: 112px; padding: 10px; border: 2px dashed #000080; background: #fff; font: 12px/1.45 "Times New Roman", serif; }
+.museumCards b { color: #f00; font-family: "Comic Sans MS", cursive; }
+.museumCounter { margin: 20px auto 8px; display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 10px; }
+.museumCounter strong { padding: 4px 8px; color: #0f0; background: #000; font: 700 22px/1 "Courier New", monospace; letter-spacing: .15em; }
+.museumBest { margin: 12px 0 0; color: #555; font-size: 9px; }
+.museumPage footer { min-height: 0; margin-top: 12px; padding: 8px; border: 2px groove #fff; color: white; background: #000080; justify-content: center; text-align: center; font: 10px Tahoma, Arial, sans-serif; letter-spacing: 0; }
+.museumStatus { min-height: 24px; padding: 4px 7px; border-top: 2px groove white; display: flex; justify-content: space-between; font-size: 10px; }
+.museumExit { position: fixed; right: 28px; bottom: 16px; padding: 9px 12px; border: 2px outset #d4d0c8; color: #000; background: #d4d0c8; cursor: pointer; font: 700 10px Tahoma, Arial, sans-serif; }
+.museumExit:active { border-style: inset; }
 .terminalHint { position: fixed; z-index: 20; inset: auto 0 0; min-height: calc(32px + env(safe-area-inset-bottom)); padding: 9px 22px calc(9px + env(safe-area-inset-bottom)); color: var(--muted); background: #e5e3da; border-top: 1px solid var(--line); font: 500 9px var(--font-geist-mono), monospace; letter-spacing: .07em; }
 
 .logShell, .visitorShell { width: min(1050px, calc(100% - 44px)); margin: 0 auto; padding-bottom: 100px; }
@@ -259,6 +292,16 @@ footer a { color: var(--ink); }
   .accessStrip button, .accessStrip button:nth-child(2), .accessStrip button:last-child { min-height: 100px; padding: 16px 0; border-right: 0; border-bottom: 1px solid var(--line); }
   .panelBar { padding: 0 14px; }
   .terminalBody { padding: 28px 14px 52px; }
+  .museumMode { padding: 8px; }
+  .museumWindow { height: calc(100dvh - 62px); }
+  .museumToolbar { gap: 13px; }
+  .museumLayout { grid-template-columns: 1fr; }
+  .museumLayout aside { display: grid; grid-template-columns: repeat(2, 1fr); }
+  .museumLayout aside strong, .museumNew { grid-column: 1 / -1; }
+  .museumLayout h1 { font-size: clamp(42px, 15vw, 68px); }
+  .museumLayout > section { padding: 14px 8px; }
+  .museumCards { grid-template-columns: 1fr; }
+  .museumExit { right: 8px; bottom: 5px; }
   .logShell, .visitorShell { width: calc(100% - 28px); }
   .galleryPage { width: calc(100% - 28px); }
   .galleryHeader { min-height: 265px; padding: 36px 0 30px; }
@@ -298,5 +341,7 @@ footer a { color: var(--ink); }
 @keyframes computationalCoin { 0% { transform: rotateY(0) scale(1); } 45% { transform: rotateY(900deg) scale(1.15); } 100% { transform: rotateY(1800deg) scale(1); } }
 @keyframes matrixFall { from { transform: translateY(-20%); opacity: 0; } 12% { opacity: 1; } to { transform: translateY(calc(100vh + 260px)); opacity: .25; } }
 @keyframes musicSlideIn { from { opacity: 0; transform: translateX(12px); filter: blur(3px); } to { opacity: 1; transform: translateX(0); filter: blur(0); } }
+@keyframes museumTicker { to { transform: translateX(-100%); } }
+@keyframes museumBlink { 50% { visibility: hidden; } }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } .musicSlide { animation: none; } }

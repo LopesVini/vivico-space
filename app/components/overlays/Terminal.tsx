@@ -16,10 +16,6 @@ const oracles = {
   pt: ["Você já decidiu; está procurando permissão.", "Espere até amanhã, mas não muito além disso.", "A resposta curta é não. A interessante é talvez.", "Faça a pergunta novamente sem medo dentro dela.", "O risco parece maior porque você está parado.", "Não procure um sinal se você já reconhece a porta.", "A versão mais simples da resposta ainda é uma resposta.", "O que você chama de atraso talvez esteja protegendo alguma coisa.", "Volte ao começo, mas leve a pessoa que você é agora.", "Você não precisa explicar tudo para seguir em frente.", "A escolha certa raramente chega fazendo barulho.", "A dúvida não está pedindo solução; está pedindo companhia."],
   en: ["You have already decided; you are looking for permission.", "Wait until tomorrow, but not much longer.", "The short answer is no. The interesting one is maybe.", "Ask again without fear inside the question.", "The risk looks bigger because you are standing still.", "Do not look for a sign if you already recognize the door.", "The simplest version of the answer is still an answer.", "What you call delay may be protecting something.", "Return to the beginning, but bring who you are now.", "You do not need to explain everything to move forward.", "The right choice rarely arrives making noise.", "Doubt is not asking for a solution; it is asking for company."],
 };
-const dreams = {
-  pt: ["Você sonhou com uma estação onde nenhum trem parava.", "Uma porta conhecida abriu para uma casa que nunca existiu.", "Seu telefone tocava debaixo d’água. Você atendeu.", "Belo Horizonte estava vazia, exceto por uma luz acesa.", "Alguém devolveu uma memória que não era sua.", "Você encontrou uma rua que só aparecia quando chovia.", "No sonho, todas as placas apontavam para ontem.", "Uma música tocava de outro cômodo, mas o apartamento era seu.", "Você guardou uma chave no bolso e acordou procurando a fechadura.", "O elevador parou entre dois andares e alguém disse seu nome.", "Você viu seu reflexo chegando alguns segundos atrasado.", "Havia um mapa dobrado dentro de um livro que você nunca leu."],
-  en: ["You dreamed of a station where no train stopped.", "A familiar door opened into a house that never existed.", "Your phone rang underwater. You answered.", "Belo Horizonte was empty except for one light.", "Someone returned a memory that was not yours.", "You found a street that only appeared when it rained.", "In the dream, every sign pointed to yesterday.", "Music played from another room, but the apartment was yours.", "You put a key in your pocket and woke up looking for its lock.", "The elevator stopped between floors and someone said your name.", "You saw your reflection arriving a few seconds late.", "There was a folded map inside a book you had never read."],
-};
 const vicoAbout = {
   pt: "VICO / ABOUT ME\nminha vó me chama de vivico\ntentando aprender matemática.\nlinux e mac.\n\nlista de presentes:\ncaixa de Stella (latão)\ntwix\nkfc\ngoiaba",
   en: "VICO / ABOUT ME\nmy grandma calls me vivico\ntrying to learn mathematics.\nlinux and mac.\n\ngift list:\na case of Stella cans\ntwix\nkfc\nguava",
@@ -125,17 +121,40 @@ Pento, pento, pento, pento
 Nas miras do meu estilo
 
 Pento, pento, pento, pento`;
+const siteLaunch = new Date("2026-07-30T06:09:41.592Z").getTime();
 const matrixColumns = ["ﾊ\nﾐ\nﾋ\nｰ\nｳ\nｼ\nﾅ\nﾓ\nﾆ\nｻ", "0\n1\nｱ\nｷ\n7\nﾎ\nﾗ\n9\nﾏ\n3", "ﾇ\nﾌ\n2\nｵ\nﾔ\n5\nｾ\nﾜ\n8\nｶ", "1\nﾘ\nﾈ\n4\nﾃ\nｸ\n0\nﾑ\nｿ\n6", "ｴ\n3\nﾁ\nﾄ\n9\nｹ\nﾒ\n1\nﾕ\nﾍ", "7\nﾊ\n0\nｼ\nﾝ\n4\nﾆ\nﾐ\n2\nｱ", "ﾎ\n5\nﾜ\nﾅ\n8\nｻ\nﾌ\n0\nﾓ\nｷ", "2\nﾔ\nﾃ\n6\nｸ\nﾏ\n1\nﾇ\nｵ\n9", "ｾ\n4\nﾘ\nﾑ\n0\nﾁ\n7\nﾈ\nｶ\nﾄ", "8\nﾕ\nｴ\n3\nﾍ\nﾗ\n5\nｹ\nﾒ\n1", "ﾝ\n6\nﾐ\nﾆ\n2\nﾊ\nｼ\n0\nﾎ\nﾜ", "1\nｷ\nﾌ\n7\nﾓ\nﾅ\n4\nｱ\nｻ\n9"];
+
+function elapsedLabel(milliseconds: number, pt: boolean) {
+  const seconds = Math.max(0, Math.floor(milliseconds / 1000));
+  const units = [
+    { size: 86400, one: pt ? "dia" : "day", many: pt ? "dias" : "days" },
+    { size: 3600, one: pt ? "hora" : "hour", many: pt ? "horas" : "hours" },
+    { size: 60, one: pt ? "minuto" : "minute", many: pt ? "minutos" : "minutes" },
+    { size: 1, one: pt ? "segundo" : "second", many: pt ? "segundos" : "seconds" },
+  ];
+  const unit = units.find((candidate) => seconds >= candidate.size) ?? units[units.length - 1];
+  const value = Math.floor(seconds / unit.size);
+  return `${value} ${value === 1 ? unit.one : unit.many}`;
+}
+
+function erodeEcho(text: string, intensity: number) {
+  const noise = "░▒·/\\01aeiou";
+  return Array.from(text, (character) => {
+    if (/\s/.test(character) || Math.random() >= intensity) return character;
+    return noise[Math.floor(Math.random() * noise.length)];
+  }).join("");
+}
 
 export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate: (page: "about") => void }) {
   const pt = lang === "pt";
   const [lines, setLines] = useState<Line[]>([{ kind: "accent", text: "VL/OS 0.1 — connection established" }, { kind: "output", text: pt ? "Este sistema recompensa curiosidade. Digite help." : "This system rewards curiosity. Type help." }]);
   const [value, setValue] = useState(""); const [history, setHistory] = useState<string[]>([]); const [cursor, setCursor] = useState(0);
-  const [identity] = useState<Identity | null>(() => { try { const stored = typeof window === "undefined" ? null : window.localStorage.getItem("vl-visitor"); return stored ? JSON.parse(stored) as Identity : null; } catch { return null; } }); const [coin, setCoin] = useState<"idle" | "flipping" | "heads">("idle"); const [matrix, setMatrix] = useState(false); const [easterEggOpen, setEasterEggOpen] = useState(false);
+  const [identity] = useState<Identity | null>(() => { try { const stored = typeof window === "undefined" ? null : window.localStorage.getItem("vl-visitor"); return stored ? JSON.parse(stored) as Identity : null; } catch { return null; } }); const [coin, setCoin] = useState<"idle" | "flipping" | "heads">("idle"); const [matrix, setMatrix] = useState(false); const [easterEggOpen, setEasterEggOpen] = useState(false); const [museum, setMuseum] = useState(false);
   const input = useRef<HTMLInputElement>(null); const body = useRef<HTMLDivElement>(null); const coinTimer = useRef<number | null>(null); const coinHideTimer = useRef<number | null>(null); const matrixTimer = useRef<number | null>(null); const lastJokeNumber = useRef<number | null>(null);
   useEffect(() => input.current?.focus(), []);
   useEffect(() => () => { if (coinTimer.current) window.clearTimeout(coinTimer.current); if (coinHideTimer.current) window.clearTimeout(coinHideTimer.current); if (matrixTimer.current) window.clearTimeout(matrixTimer.current); }, []);
   useEffect(() => body.current?.scrollTo({ top: body.current.scrollHeight, behavior: "smooth" }), [lines, coin, easterEggOpen]);
+  useEffect(() => { if (!museum) return; const close = (event: KeyboardEvent) => { if (event.key === "Escape") setMuseum(false); }; window.addEventListener("keydown", close); return () => window.removeEventListener("keydown", close); }, [museum]);
 
   const output = (text: string, kind: Line["kind"] = "output") => setLines((old) => [...old, { kind, text }]);
   const showRegistry = async () => {
@@ -159,6 +178,63 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
       output(pt ? "Mensagem registrada. ✦" : "Message recorded. ✦", "accent");
     } catch { output(pt ? "Não encontrei esse @. Entre pelo acesso inicial antes de deixar uma mensagem." : "I could not find that @. Enter through the initial access before leaving a message."); }
   };
+  const showCv = () => {
+    const heading = pt
+      ? "CV / VINÍCIUS LACERDA\nBelo Horizonte, MG\nSDR · closer · suporte\nTentando aprender matemática. Linux e Mac.\n\nPROJETOS\nVEBRAM — arquitetura e presença digital\nProssigo — SDR, closer e suporte\n\nLINKS"
+      : "CV / VINÍCIUS LACERDA\nBelo Horizonte, Brazil\nSDR · closer · support\nTrying to learn mathematics. Linux and Mac.\n\nPROJECTS\nVEBRAM — architecture and digital presence\nProssigo — SDR, closer and support\n\nLINKS";
+    setLines((old) => [...old,
+      { kind: "accent", text: heading },
+      { kind: "link", text: "GitHub ↗", href: "https://github.com/LopesVini" },
+      { kind: "link", text: "LinkedIn ↗", href: "https://www.linkedin.com/in/vin%C3%ADcius-lacerda-405a72396" },
+      { kind: "link", text: "Instagram ↗", href: "https://instagram.com/vllc.hub" },
+    ]);
+  };
+  const showUptime = () => {
+    const elapsed = Math.max(0, Date.now() - siteLaunch);
+    const totalSeconds = Math.floor(elapsed / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    output(`${pt ? "VIVICO.SPACE NO AR" : "VIVICO.SPACE UPTIME"}\n${days}d ${String(hours).padStart(2, "0")}h ${String(minutes).padStart(2, "0")}m ${String(seconds).padStart(2, "0")}s\n${pt ? "desde 30.07.2026" : "since 30.07.2026"}`, "accent");
+  };
+  const showStats = async () => {
+    try {
+      const [visitorsResponse, galleryResponse] = await Promise.all([fetch("/api/visitors", { cache: "no-store" }), fetch("/api/gallery", { cache: "no-store" })]);
+      if (!visitorsResponse.ok || !galleryResponse.ok) throw new Error();
+      const visitorsData = await visitorsResponse.json() as { entries?: Visitor[] };
+      const galleryData = await galleryResponse.json() as { photos?: Array<{ removalVotes?: number }> };
+      const entries = visitorsData.entries ?? [];
+      const photos = galleryData.photos ?? [];
+      const votes = photos.reduce((total, photo) => total + Number(photo.removalVotes ?? 0), 0);
+      output(`${pt ? "STATS / AGORA" : "STATS / NOW"}\n${pt ? "pessoas registradas" : "registered people"}: ${entries.length}\n${pt ? "fotos no mural" : "photos on the wall"}: ${photos.length}\n${pt ? "marcas para apagar" : "removal marks"}: ${votes}`, "accent");
+    } catch { output(pt ? "As estatísticas se recusaram a virar estatística." : "The statistics refused to become statistics."); }
+  };
+  const showLatency = async () => {
+    const started = performance.now();
+    try {
+      const response = await fetch(`/api/visitors?latency=${Date.now()}`, { cache: "no-store" });
+      if (!response.ok) throw new Error();
+      const milliseconds = Math.max(1, Math.round(performance.now() - started));
+      const reading = milliseconds < 80 ? (pt ? "perto o bastante para ouvir o servidor respirar." : "close enough to hear the server breathe.") : milliseconds < 200 ? (pt ? "a internet está pensando." : "the internet is thinking.") : (pt ? "alguma coisa se perdeu no caminho e voltou." : "something got lost on the way and came back.");
+      output(`LATÊNCIA\n${milliseconds} ms\n${reading}`, "accent");
+    } catch { output(pt ? "LATÊNCIA\nsem resposta. talvez este terminal esteja sozinho." : "LATENCY\nno response. perhaps this terminal is alone."); }
+  };
+  const sendPulse = async () => {
+    try {
+      const response = await fetch("/api/pulse", { method: "POST" });
+      const data = await response.json() as { previousAt?: string | null; error?: string };
+      if (!response.ok) throw new Error(data.error);
+      if (!data.previousAt) { output(pt ? "PULSO GLOBAL\nnenhum pulso anterior.\nagora existe um." : "GLOBAL PULSE\nno previous pulse.\nnow there is one.", "accent"); return; }
+      const distance = elapsedLabel(Date.now() - new Date(data.previousAt).getTime(), pt);
+      output(`${pt ? "PULSO GLOBAL" : "GLOBAL PULSE"}\n${distance} ${pt ? "desde o último pulso." : "since the last pulse."}\n${pt ? "agora: você." : "now: you."}`, "accent");
+    } catch (error) { output(error instanceof Error && error.message ? error.message : (pt ? "Não foi possível sentir o pulso." : "Could not feel the pulse.")); }
+  };
+  const echo = (text: string) => {
+    const trace = text.trim().slice(0, 160);
+    if (!trace) { output(pt ? "uso: eco alguma coisa" : "usage: echo something"); return; }
+    output(`ECO 01  ${trace}\nECO 02  ${erodeEcho(trace, .12)}\nECO 03  ${erodeEcho(trace, .28)}\nECO 04  ${erodeEcho(trace, .52)}`, "accent");
+  };
   const execute = async (raw: string) => {
     const cmd = raw.trim().toLowerCase();
     setLines((old) => [...old, { kind: "input", text: `visitor@vl:~ $ ${raw}` }]);
@@ -166,16 +242,23 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
     if (cmd !== "coinflip" && cmd !== "moeda") { if (coinTimer.current) window.clearTimeout(coinTimer.current); if (coinHideTimer.current) window.clearTimeout(coinHideTimer.current); setCoin("idle"); }
     const messageCommand = raw.trim().match(/^msg:\s*"([\s\S]*)"$/i);
     if (messageCommand) { await saveMessage(messageCommand[1]); return; }
-    if (cmd === "clear" || cmd === "limpar") { setLines([]); setMatrix(false); setEasterEggOpen(false); return; }
+    const echoCommand = raw.trim().match(/^(?:eco|echo)(?:\s+([\s\S]*))?$/i);
+    if (echoCommand) { echo(echoCommand[1] ?? ""); return; }
+    if (cmd === "clear" || cmd === "limpar") { setLines([]); setMatrix(false); setEasterEggOpen(false); setMuseum(false); return; }
     if (cmd === "exit" || cmd === "sair") { onNavigate("about"); return; }
-    if (cmd === "help" || cmd === "ajuda") output(pt ? "entropy  registro  coinflip  matrix  horoscopo  oraculo  sonho  verdade  inteligencias  piada  vico  camaco  easteregg  clear  exit\n\nAlguns comandos não estão documentados." : "entropy  registry  coinflip  matrix  horoscope  oracle  dream  truth  intelligences  joke  vico  camaco  easteregg  clear  exit\n\nSome commands are undocumented.");
+    if (cmd === "help" || cmd === "ajuda") output(pt ? "cv  uptime  stats  latencia  museu  pulso  eco  entropy  registro  coinflip  matrix  horoscopo  oraculo  verdade  inteligencias  piada  vico  camaco  easteregg  clear  exit\n\nAlguns comandos não estão documentados." : "cv  uptime  stats  latency  museum  pulse  echo  entropy  registry  coinflip  matrix  horoscope  oracle  truth  intelligences  joke  vico  camaco  easteregg  clear  exit\n\nSome commands are undocumented.");
+    else if (cmd === "cv") showCv();
+    else if (cmd === "uptime") showUptime();
+    else if (cmd === "stats" || cmd === "estatisticas" || cmd === "estatísticas") await showStats();
+    else if (["latencia", "latência", "latencias", "latências", "latency"].includes(cmd)) await showLatency();
+    else if (cmd === "museu" || cmd === "museum") { output(pt ? "Abrindo uma versão da internet que se recusou a morrer…" : "Opening a version of the internet that refused to die…", "accent"); setMuseum(true); }
+    else if (cmd === "pulso" || cmd === "pulse") await sendPulse();
     else if (cmd === "entropy" || cmd === "entropia") { const entropy = (crypto.getRandomValues(new Uint32Array(1))[0] / 4294967295 * 100).toFixed(6); output(`${pt ? "entropia da sessão" : "session entropy"}: ${entropy}%\nseed: ${Date.now().toString(36).toUpperCase()}\n${pt ? "Esta saída nunca existirá exatamente assim outra vez." : "This exact output will never exist again."}`, "accent"); }
     else if (cmd === "registro" || cmd === "registry" || cmd === "visitors" || cmd === "visitantes") await showRegistry();
     else if (cmd === "coinflip" || cmd === "moeda") { if (coinTimer.current) window.clearTimeout(coinTimer.current); if (coinHideTimer.current) window.clearTimeout(coinHideTimer.current); setCoin("flipping"); output(pt ? "Lançando moeda…" : "Flipping coin…"); coinTimer.current = window.setTimeout(() => { setCoin("heads"); output(pt ? "CARA." : "HEADS.", "accent"); coinHideTimer.current = window.setTimeout(() => setCoin("idle"), 1100); }, 900); }
     else if (cmd === "matrix") { if (matrixTimer.current) window.clearTimeout(matrixTimer.current); setMatrix(true); output(pt ? "Acordando a matriz…" : "Waking the matrix…", "accent"); matrixTimer.current = window.setTimeout(() => { setMatrix(false); output(pt ? "Você continua aqui." : "You are still here."); }, 3000); }
     else if (cmd === "horoscopo" || cmd === "horoscope") { const list = horoscopes[lang]; output(`${pt ? "HORÓSCOPO COMPUTACIONAL" : "COMPUTATIONAL HOROSCOPE"}\n${list[Math.floor(Math.random() * list.length)]}`, "accent"); }
     else if (cmd === "oraculo" || cmd === "oracle" || cmd.startsWith("oraculo ") || cmd.startsWith("oracle ")) { const list = oracles[lang]; output(`${pt ? "ORÁCULO" : "ORACLE"}\n${list[Math.floor(Math.random() * list.length)]}`, "accent"); }
-    else if (cmd === "sonho" || cmd === "dream") { const list = dreams[lang]; output(`${pt ? "SONHO RECUPERADO" : "RECOVERED DREAM"}\n${list[Math.floor(Math.random() * list.length)]}`, "accent"); }
     else if (cmd === "verdade" || cmd === "truth") output("Cruzeiro é o maior de Minas.", "accent");
     else if (cmd === "inteligencias" || cmd === "inteligências" || cmd === "intelligences") { const song = randomInteligencia(); output(`INTELIGÊNCIAS\n${song.title} — ${song.artist}${song.note ? ` (${song.note})` : ""}`, "accent"); }
     else if (cmd === "piada" || cmd === "joke") { let number = crypto.getRandomValues(new Uint32Array(1))[0] % 100; while (number === lastJokeNumber.current) number = crypto.getRandomValues(new Uint32Array(1))[0] % 100; lastJokeNumber.current = number; output(`${number}\nKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK`, "accent"); }
@@ -200,9 +283,35 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
       {lines.map((line, i) => line.kind === "link" ? <a className="terminalRegistryLink" href={line.href} target="_blank" rel="noreferrer" key={i}>{line.text}</a> : <pre className={line.kind} key={i}>{line.text}</pre>)}
       {easterEggOpen && <figure className="terminalEasterEgg"><img src="/easteregg.jpg" alt={pt ? "Easter egg encontrado" : "Easter egg found"} /><figcaption>VIVICO.EXE</figcaption></figure>}
       {coin !== "idle" && <div className={`coinMachine ${coin}`} aria-live="polite"><span>{coin === "flipping" ? "?" : "CARA"}</span></div>}
-      <form onSubmit={submit}><label htmlFor="terminal-input">visitor@vl:~ $</label><input id="terminal-input" ref={input} value={value} autoComplete="off" spellCheck={false} onChange={(e) => setValue(e.target.value)} onKeyDown={(e) => { if (e.key === "ArrowUp" && history.length) { e.preventDefault(); const next = Math.max(0, cursor - 1); setCursor(next); setValue(history[next] ?? ""); } if (e.key === "ArrowDown") { e.preventDefault(); const next = Math.min(history.length, cursor + 1); setCursor(next); setValue(history[next] ?? ""); } if (e.key === "Tab") { e.preventDefault(); const commands = ["help", "entropy", "registro", "coinflip", "matrix", "horoscopo", "oraculo", "sonho", "verdade", "inteligencias", "piada", "vico", "camaco", "oçarao-ao-pento", "easteregg", "clear", "exit"]; const match = commands.find((c) => c.startsWith(value.toLowerCase())); if (match) setValue(match); } if (e.key === "c" && e.ctrlKey) { e.preventDefault(); output("^C"); setValue(""); } }} /></form>
+      <form onSubmit={submit}><label htmlFor="terminal-input">visitor@vl:~ $</label><input id="terminal-input" ref={input} value={value} autoComplete="off" spellCheck={false} onChange={(e) => setValue(e.target.value)} onKeyDown={(e) => { if (e.key === "ArrowUp" && history.length) { e.preventDefault(); const next = Math.max(0, cursor - 1); setCursor(next); setValue(history[next] ?? ""); } if (e.key === "ArrowDown") { e.preventDefault(); const next = Math.min(history.length, cursor + 1); setCursor(next); setValue(history[next] ?? ""); } if (e.key === "Tab") { e.preventDefault(); const commands = ["help", "cv", "uptime", "stats", "latencia", "museu", "pulso", "eco", "entropy", "registro", "coinflip", "matrix", "horoscopo", "oraculo", "verdade", "inteligencias", "piada", "vico", "camaco", "oçarao-ao-pento", "easteregg", "clear", "exit"]; const match = commands.find((c) => c.startsWith(value.toLowerCase())); if (match) setValue(match); } if (e.key === "c" && e.ctrlKey) { e.preventDefault(); output("^C"); setValue(""); } }} /></form>
     </div>
     {matrix && <div className="matrixRain" aria-hidden="true">{matrixColumns.map((column, index) => <span key={index} style={{ left: `${index * 8.5}%`, animationDelay: `${-((index % 5) * .38)}s` }}>{column}</span>)}</div>}
+    {museum && <div className="museumMode" role="dialog" aria-modal="true" aria-label={pt ? "Museu da internet" : "Internet museum"} onClick={(event) => event.stopPropagation()}>
+      <div className="museumWindow">
+        <header className="museumTitlebar"><span>Microsoft Internet Explorer</span><div aria-hidden="true"><i>_</i><i>□</i><i>×</i></div></header>
+        <div className="museumMenu">File&nbsp;&nbsp; Edit&nbsp;&nbsp; View&nbsp;&nbsp; Favorites&nbsp;&nbsp; Help</div>
+        <div className="museumToolbar" aria-hidden="true"><span>←<small>Back</small></span><span>→<small>Forward</small></span><span>×<small>Stop</small></span><span>⌂<small>Home</small></span></div>
+        <div className="museumAddress"><b>Address</b><span>http://www.vivico.homepage.com/index.html</span></div>
+        <main className="museumPage">
+          <div className="museumTicker"><span>★★★ BEM-VINDO À HOME PAGE DO VIVICO ★★★ VOCÊ ENTROU NA INTERNET ★★★</span></div>
+          <div className="museumLayout">
+            <aside><strong>MENU</strong><a href="#museum-home">HOME</a><a href="#museum-eu">SOBRE MIM</a><a href="#museum-links">MEUS LINKS</a><a href="#museum-book">LIVRO DE VISITAS</a><span className="museumNew">NOVO!</span></aside>
+            <section id="museum-home">
+              <h1>VIVICO&apos;S<br />HOME PAGE</h1>
+              <p className="museumWelcome">Seja bem-vindo ao meu pequeno espaço na World Wide Web.</p>
+              <hr />
+              <div className="museumConstruction"><span>▲</span> SITE ETERNAMENTE EM CONSTRUÇÃO <span>▲</span></div>
+              <div className="museumCards" id="museum-eu"><article><b>QUEM SOU EU?</b><p>Vinícius. Belo Horizonte. Linux, Mac e páginas que carregam devagar.</p></article><article id="museum-links"><b>LINKS LEGAIS</b><p>internet.zip<br />mural.html<br />nao_clique.exe</p></article></div>
+              <div className="museumCounter"><span>VOCÊ É O VISITANTE Nº</span><strong>000001</strong></div>
+              <p className="museumBest">Esta página é melhor visualizada em 800 × 600<br />com Internet Explorer 6.0</p>
+            </section>
+          </div>
+          <footer id="museum-book">© 2007 VIVICO HOME PAGE · FEITO À MÃO · ÚLTIMA ATUALIZAÇÃO: AGORA</footer>
+        </main>
+        <div className="museumStatus">Done <span>Internet</span></div>
+      </div>
+      <button className="museumExit" type="button" onClick={() => setMuseum(false)}>{pt ? "VOLTAR PARA 2026" : "BACK TO 2026"} ×</button>
+    </div>}
     <div className="terminalHint">TAB: autocomplete · ↑↓: history · CTRL+C: interrupt</div>
   </div>;
 }
