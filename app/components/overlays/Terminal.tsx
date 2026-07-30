@@ -5,7 +5,7 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 import type { Lang } from "../../lib/i18n";
 import { randomInteligencia } from "../../lib/inteligencias";
 
-type Line = { kind: "input" | "output" | "accent"; text: string };
+type Line = { kind: "input" | "output" | "accent" | "link"; text: string; href?: string };
 type Visitor = { instagram: string; firstSeenAt: string; message: string | null };
 type Identity = { instagram: string; token: string };
 const signals = {
@@ -52,11 +52,11 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
       const entries = data.entries ?? [];
       const instruction = pt ? "Para deixar sua mensagem:\nmsg: \"sua mensagem ✨\"" : "To leave your message:\nmsg: \"your message ✨\"";
       if (!entries.length) { output(`${pt ? "REGISTRO VAZIO\nNinguém deixou um sinal ainda." : "EMPTY REGISTRY\nNo one has left a signal yet."}\n\n${instruction}`); return; }
-      const text = entries.map((entry) => {
+      const registryLines: Line[] = entries.map((entry) => {
         const date = new Intl.DateTimeFormat(pt ? "pt-BR" : "en-GB", { dateStyle: "medium", timeZone: "America/Sao_Paulo" }).format(new Date(entry.firstSeenAt));
-        return `@${entry.instagram}  ·  ${date}${entry.message ? `  ·  “${entry.message}”` : ""}`;
-      }).join("\n");
-      output(`${pt ? "REGISTRO / PRIMEIRAS VISITAS" : "REGISTRY / FIRST VISITS"}\n\n${text}\n\n${instruction}`, "accent");
+        return { kind: "link", text: `@${entry.instagram}  ·  ${date}${entry.message ? `  ·  “${entry.message}”` : ""}  ↗`, href: `https://instagram.com/${entry.instagram}` };
+      });
+      setLines((old) => [...old, { kind: "accent", text: `${pt ? "REGISTRO / PRIMEIRAS VISITAS" : "REGISTRY / FIRST VISITS"}\n` }, ...registryLines, { kind: "output", text: `\n${instruction}` }]);
     } catch { output(pt ? "Não foi possível abrir o registro." : "Could not open the registry."); }
   };
   const saveMessage = async (message: string) => {
@@ -105,7 +105,7 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
   const submit = (e: FormEvent) => { e.preventDefault(); void execute(value); if (value.trim()) { setHistory((h) => [...h, value]); setCursor(history.length + 1); } setValue(""); };
   return <div className="contentPage terminalPanel" aria-label="VL/OS terminal" onClick={() => input.current?.focus()}>
     <div className="terminalBody" ref={body}>
-      {lines.map((line, i) => <pre className={line.kind} key={i}>{line.text}</pre>)}
+      {lines.map((line, i) => line.kind === "link" ? <a className="terminalRegistryLink" href={line.href} target="_blank" rel="noreferrer" key={i}>{line.text}</a> : <pre className={line.kind} key={i}>{line.text}</pre>)}
       {easterEggOpen && <figure className="terminalEasterEgg"><img src="/easteregg.jpg" alt={pt ? "Easter egg encontrado" : "Easter egg found"} /><figcaption>VIVICO.EXE</figcaption></figure>}
       {coin !== "idle" && <div className={`coinMachine ${coin}`} aria-live="polite"><span>{coin === "flipping" ? "?" : "CARA"}</span></div>}
       <form onSubmit={submit}><label htmlFor="terminal-input">visitor@vl:~ $</label><input id="terminal-input" ref={input} value={value} autoComplete="off" spellCheck={false} onChange={(e) => setValue(e.target.value)} onKeyDown={(e) => { if (e.key === "ArrowUp" && history.length) { e.preventDefault(); const next = Math.max(0, cursor - 1); setCursor(next); setValue(history[next] ?? ""); } if (e.key === "ArrowDown") { e.preventDefault(); const next = Math.min(history.length, cursor + 1); setCursor(next); setValue(history[next] ?? ""); } if (e.key === "Tab") { e.preventDefault(); const commands = ["help", "signal", "entropy", "rabbit-hole", "registro", "coinflip", "matrix", "horoscopo", "oraculo", "sonho", "verdade", "inteligencias", "vico", "easteregg", "clear", "exit"]; const match = commands.find((c) => c.startsWith(value.toLowerCase())); if (match) setValue(match); } if (e.key === "c" && e.ctrlKey) { e.preventDefault(); output("^C"); setValue(""); } }} /></form>

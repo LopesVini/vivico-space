@@ -98,6 +98,8 @@ h1 { grid-column: 1 / -1; margin: 52px 0 38px; font-size: clamp(62px, 10.2vw, 15
 .terminalBody pre { margin: 0 0 18px; white-space: pre-wrap; font: 400 clamp(12px, 1.2vw, 15px)/1.65 var(--font-geist-mono), monospace; }
 .terminalBody .input { color: var(--muted); }
 .terminalBody .accent { color: var(--signal); }
+.terminalRegistryLink { display: block; width: fit-content; margin: 0 0 10px; color: var(--signal); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; font: 400 clamp(12px, 1.2vw, 15px)/1.65 var(--font-geist-mono), monospace; }
+.terminalRegistryLink:hover { color: var(--ink); }
 .terminalBody form { display: flex; align-items: center; gap: 9px; font-size: clamp(12px, 1.2vw, 15px); }
 .terminalBody form label { color: var(--signal); white-space: nowrap; }
 .terminalBody input { width: 100%; border: 0; outline: 0; color: var(--ink); caret-color: var(--signal); background: transparent; font-family: inherit; }
