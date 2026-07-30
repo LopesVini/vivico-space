@@ -194,6 +194,7 @@ h1 { grid-column: 1 / -1; margin: 52px 0 38px; font-size: clamp(62px, 10.2vw, 15
 .terminalGreeting { max-width: 620px; margin: auto 0; color: var(--ink); font: 500 clamp(25px, 3.4vw, 52px)/1.04 var(--font-geist-mono), monospace; letter-spacing: -.065em; }
 .terminalGreeting > span { color: var(--ink); }
 .terminalGreeting > span:first-child { color: var(--signal); }
+.terminalGreeting > span:nth-child(2) { white-space: pre-line; }
 .terminalGreeting i { display: inline-block; width: .42em; height: .9em; margin-left: .1em; vertical-align: -.1em; background: var(--signal); animation: terminalBlink .9s steps(1, end) infinite; }
 .gateFormWrap { padding: 58px 0 58px 58px; display: flex; flex-direction: column; justify-content: center; }
 .gateFormWrap form { display: flex; flex-direction: column; gap: 28px; }

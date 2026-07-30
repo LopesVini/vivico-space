@@ -4,7 +4,7 @@ import type { Lang } from "../../lib/i18n";
 
 export default function EntryGate({ lang, setLang, onEnter }: { lang: Lang; setLang: (lang: Lang) => void; onEnter: () => void }) {
   const pt = lang === "pt"; const [instagram, setInstagram] = useState(""); const [status, setStatus] = useState(""); const [submitting, setSubmitting] = useState(false);
-  const terminalLine = pt ? "Oi. Isso não é um login. Digite seu @ do Instagram." : "Hi. This is not a login. Enter your Instagram @.";
+  const terminalLine = pt ? "Oi.\nIsso não é um login.\nDigite seu @ do Instagram." : "Hi.\nThis is not a login.\nEnter your Instagram @.";
   const [typedLine, setTypedLine] = useState("");
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function EntryGate({ lang, setLang, onEnter }: { lang: Lang; setL
     } catch (error) { setStatus(error instanceof Error && error.message ? error.message : (pt ? "Confira seu @ do Instagram." : "Check your Instagram handle.")); setSubmitting(false); }
   };
   return <div className="entryGate">
-    <header><span>VL/ACCESS</span><button onClick={() => setLang(pt ? "en" : "pt")}><span className={pt ? "active" : ""}>PT</span>/<span className={!pt ? "active" : ""}>EN</span></button></header>
+    <header><span>VIVICO</span><button onClick={() => setLang(pt ? "en" : "pt")}><span className={pt ? "active" : ""}>PT</span>/<span className={!pt ? "active" : ""}>EN</span></button></header>
     <main>
       <section className="gateCopy">
         <p>ACCESS / 001</p>
