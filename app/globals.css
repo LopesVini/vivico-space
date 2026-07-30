@@ -70,6 +70,12 @@ h1 { grid-column: 1 / -1; margin: 52px 0 38px; font-size: clamp(62px, 10.2vw, 15
 .mediaThing img { width: 100%; aspect-ratio: 16 / 9; margin: 18px 0 auto; object-fit: cover; object-position: center; filter: saturate(.9); transition: transform .25s ease, filter .25s ease; }
 .mediaThing:hover img, .mediaThing:focus-visible img { transform: scale(1.025); filter: saturate(1); }
 .mediaThing strong { margin-top: 18px; }
+.musicCarousel { padding: 0; }
+.musicCarousel > a { min-height: 280px; padding: 20px 20px 14px; display: flex; flex-direction: column; }
+.musicCarousel > a > span:nth-of-type(2) { margin-top: 10px; color: var(--muted); font-size: 12px; }
+.musicControls { height: 42px; padding: 0 14px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; font: 600 9px var(--font-geist-mono), monospace; }
+.musicControls button { width: 36px; height: 28px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.musicControls button:hover, .musicControls button:focus-visible { color: var(--signal); outline: 0; }
 .placeholder { background-image: repeating-linear-gradient(135deg, transparent 0, transparent 11px, #11110f0b 11px, #11110f0b 12px); }
 .anchorTargets { height: 0; overflow: hidden; }
 

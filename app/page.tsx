@@ -97,7 +97,7 @@ export default function Home() {
           <div className="sectionHead"><h2 id="things-title">{t.things}</h2><span>{t.incomplete}</span></div>
           <div className="thingsGrid">
             <a className="thing ready" href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noreferrer"><span className="thingCode">{t.read}</span><strong>Bitcoin: A Peer-to-Peer Electronic Cash System</strong><span>Satoshi Nakamoto · 2008</span><span className="thingArrow">{t.open}</span></a>
-            <a className="thing mediaThing" href="https://open.spotify.com/album/5ED4E3BlDWkR97deGiqxTM" target="_blank" rel="noreferrer"><span className="thingCode">{t.listen}</span><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02e5677e43b2eba10ba762d616" alt="Capa do álbum Living in the Material World, de George Harrison" /><strong>{t.music}</strong><span>{t.needed}</span><span className="thingArrow">{t.open}</span></a>
+            <MusicCarousel lang={lang} listen={t.listen} open={t.open} />
             <a className="thing mediaThing" href="https://www.youtube.com/watch?v=KxGRhd_iWuE" target="_blank" rel="noreferrer"><span className="thingCode">{t.watch}</span><img src="https://i.ytimg.com/vi/KxGRhd_iWuE/hqdefault.jpg" alt="Miniatura do vídeo Matsuoka Shuzo — NEVER GIVE UP!!" /><strong>{t.video}</strong><span>YouTube</span><span className="thingArrow">{t.open}</span></a>
           </div>
         </section>
@@ -112,6 +112,29 @@ export default function Home() {
         : <div className="pageShell">{page === "gallery" && <Gallery lang={lang} />}{page === "terminal" && <Terminal lang={lang} onNavigate={navigate} />}{page === "changelog" && <SystemLog lang={lang} />}</div>}
     </main>
   );
+}
+
+const musicSuggestions = [
+  { title: "Living in the Material World", artist: "George Harrison · 1973", href: "https://open.spotify.com/album/5ED4E3BlDWkR97deGiqxTM", image: "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02e5677e43b2eba10ba762d616" },
+  { title: "doom", artist: "Steve Lacy · 2026", href: "https://open.spotify.com/track/3kKPZFQse4LtbnMRhnAlEO", image: "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e024ea9ba86cd9506a004bab042" },
+];
+
+function MusicCarousel({ lang, listen, open }: { lang: Lang; listen: string; open: string }) {
+  const [index, setIndex] = useState(0);
+  const music = musicSuggestions[index];
+  const change = (next: number) => setIndex((next + musicSuggestions.length) % musicSuggestions.length);
+  return <div className="thing mediaThing musicCarousel">
+    <a href={music.href} target="_blank" rel="noreferrer" aria-label={`${open}: ${music.title}, ${music.artist}`}>
+      <span className="thingCode">{listen}</span>
+      <img src={music.image} alt={`${lang === "pt" ? "Capa de" : "Cover of"} ${music.title}, ${music.artist}`} />
+      <strong>{music.title}</strong><span>{music.artist}</span><span className="thingArrow">{open}</span>
+    </a>
+    <div className="musicControls" aria-label={lang === "pt" ? "Escolher música" : "Choose music"}>
+      <button type="button" onClick={() => change(index - 1)} aria-label={lang === "pt" ? "Música anterior" : "Previous song"}>←</button>
+      <span>{index + 1}/{musicSuggestions.length}</span>
+      <button type="button" onClick={() => change(index + 1)} aria-label={lang === "pt" ? "Próxima música" : "Next song"}>→</button>
+    </div>
+  </div>;
 }
 
 function LocalTime() {
