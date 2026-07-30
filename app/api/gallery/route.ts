@@ -2,7 +2,7 @@ import { env } from "cloudflare:workers";
 
 type GalleryEnv = { DB: D1Database; PHOTOS?: R2Bucket };
 type VisitorRow = { visitor_token: string | null };
-type PhotoRow = { id: string; instagram: string; created_at: string };
+type PhotoRow = { id: string; instagram: string; created_at: string; removal_votes: number };
 
 const galleryTable = `CREATE TABLE IF NOT EXISTS gallery_photos (
   id TEXT PRIMARY KEY,
@@ -10,19 +10,33 @@ const galleryTable = `CREATE TABLE IF NOT EXISTS gallery_photos (
   object_key TEXT NOT NULL,
   created_at TEXT NOT NULL DEFAULT (datetime('now'))
 )`;
+const votesTable = `CREATE TABLE IF NOT EXISTS gallery_removal_votes (
+  photo_id TEXT NOT NULL,
+  instagram TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  PRIMARY KEY (photo_id, instagram),
+  FOREIGN KEY (photo_id) REFERENCES gallery_photos(id) ON DELETE CASCADE
+)`;
 
 async function setup() {
   const bindings = env as unknown as GalleryEnv;
   if (!bindings.DB) throw new Error("Database unavailable");
-  await bindings.DB.prepare(galleryTable).run();
+  await bindings.DB.batch([
+    bindings.DB.prepare(galleryTable),
+    bindings.DB.prepare(votesTable),
+  ]);
   return bindings;
 }
 
 export async function GET() {
   try {
     const bindings = await setup();
-    const rows = await bindings.DB.prepare("SELECT id, instagram, created_at FROM gallery_photos ORDER BY created_at DESC LIMIT 200").all<PhotoRow>();
-    return Response.json({ photos: rows.results.map((row) => ({ id: row.id, instagram: row.instagram, createdAt: `${row.created_at.replace(" ", "T")}Z`, src: `/api/gallery/${row.id}` })) }, { headers: { "cache-control": "no-store" } });
+    const rows = await bindings.DB.prepare(`SELECT p.id, p.instagram, p.created_at, COUNT(v.instagram) AS removal_votes
+      FROM gallery_photos p
+      LEFT JOIN gallery_removal_votes v ON v.photo_id = p.id
+      GROUP BY p.id, p.instagram, p.created_at
+      ORDER BY p.created_at DESC LIMIT 200`).all<PhotoRow>();
+    return Response.json({ photos: rows.results.map((row) => ({ id: row.id, instagram: row.instagram, createdAt: `${row.created_at.replace(" ", "T")}Z`, src: `/api/gallery/${row.id}`, removalVotes: Number(row.removal_votes) || 0 })) }, { headers: { "cache-control": "no-store" } });
   } catch (error) {
     console.error("Gallery list failed", error);
     return Response.json({ error: "Mural unavailable", photos: [] }, { status: 503 });

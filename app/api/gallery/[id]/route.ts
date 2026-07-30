@@ -49,9 +49,9 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
         bindings.DB.prepare("DELETE FROM gallery_removal_votes WHERE photo_id = ?").bind(id),
         bindings.DB.prepare("DELETE FROM gallery_photos WHERE id = ?").bind(id),
       ]);
-      return Response.json({ disappeared: true });
+      return Response.json({ disappeared: true, removalVotes: count?.total ?? 15 });
     }
-    return Response.json({ marked: true });
+    return Response.json({ marked: true, removalVotes: count?.total ?? 0 });
   } catch (error) {
     console.error("Gallery removal vote failed", error);
     return Response.json({ error: "Não foi possível marcar a foto." }, { status: 500 });
