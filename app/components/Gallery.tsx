@@ -131,7 +131,7 @@ export default function Gallery({ lang }: { lang: Lang }) {
 
   return <section className="contentPage galleryPage" aria-labelledby="gallery-title">
     <header className="galleryHeader">
-      <p className="wallPhrase">{pt ? "TRATE COMO UM PIXADOR OLHANDO PARA UM MURO BRANCO." : "TREAT IT LIKE A TAGGER LOOKING AT A BLANK WALL."}</p>
+      <p className="wallPhrase">{pt ? "TRATE O MURAL COMO UM PIXADOR TRATA UM MURO BRANCO." : "TREAT THE MURAL THE WAY A GRAFFITI ARTIST TREATS A BLANK WALL."}</p>
       <div className="galleryHeading"><h1 id="gallery-title">{pt ? "Mural" : "Wall"}</h1><span>{pt ? "1 PESSOA — 1 FOTO" : "1 PERSON — 1 PHOTO"}</span></div>
       <button className="cameraButton" type="button" disabled={busy} onClick={() => input.current?.click()} aria-label={pt ? "Colar uma foto no mural" : "Post a photo on the wall"}><span className="cameraGlyph" aria-hidden="true" /></button>
       <input ref={input} className="cameraInput" type="file" accept="image/jpeg,image/png,image/webp,image/gif" onChange={upload} />
