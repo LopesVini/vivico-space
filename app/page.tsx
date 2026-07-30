@@ -121,9 +121,15 @@ const musicSuggestions = [
 
 function MusicCarousel({ lang, listen, open }: { lang: Lang; listen: string; open: string }) {
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
   const music = musicSuggestions[index];
   const change = (next: number) => setIndex((next + musicSuggestions.length) % musicSuggestions.length);
-  return <div className="thing mediaThing musicCarousel">
+  useEffect(() => {
+    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = window.setInterval(() => setIndex((current) => (current + 1) % musicSuggestions.length), 3000);
+    return () => window.clearInterval(timer);
+  }, [paused]);
+  return <div className="thing mediaThing musicCarousel" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}>
     <a href={music.href} target="_blank" rel="noreferrer" aria-label={`${open}: ${music.title}, ${music.artist}`}>
       <span className="thingCode">{listen}</span>
       <img src={music.image} alt={`${lang === "pt" ? "Capa de" : "Cover of"} ${music.title}, ${music.artist}`} />
