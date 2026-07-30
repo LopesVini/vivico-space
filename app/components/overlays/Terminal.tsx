@@ -28,8 +28,8 @@ const dreams = {
   en: ["You dreamed of a station where no train stopped.", "A familiar door opened into a house that never existed.", "Your phone rang underwater. You answered.", "Belo Horizonte was empty except for one light.", "Someone returned a memory that was not yours.", "You found a street that only appeared when it rained.", "In the dream, every sign pointed to yesterday.", "Music played from another room, but the apartment was yours.", "You put a key in your pocket and woke up looking for its lock.", "The elevator stopped between floors and someone said your name.", "You saw your reflection arriving a few seconds late.", "There was a folded map inside a book you had never read."],
 };
 const vicoAbout = {
-  pt: "VICO / ABOUT ME\nminha vo me chama de vivico\ntentando aprender matemática.\nlinux.\n\nlista de presentes:\ncaixa de Stella (latão)\ntwix\nkfc\ngoiaba",
-  en: "VICO / ABOUT ME\n\ntrying to learn mathematics.\nlinux.\n\ngift list:\na case of Stella cans\ntwix\nkfc\nguava",
+  pt: "VICO / ABOUT ME\nminha vó me chama de vivico\ntentando aprender matemática.\nlinux e mac.\n\nlista de presentes:\ncaixa de Stella (latão)\ntwix\nkfc\ngoiaba",
+  en: "VICO / ABOUT ME\nmy grandma calls me vivico\ntrying to learn mathematics.\nlinux and mac.\n\ngift list:\na case of Stella cans\ntwix\nkfc\nguava",
 };
 const matrixColumns = ["ﾊ\nﾐ\nﾋ\nｰ\nｳ\nｼ\nﾅ\nﾓ\nﾆ\nｻ", "0\n1\nｱ\nｷ\n7\nﾎ\nﾗ\n9\nﾏ\n3", "ﾇ\nﾌ\n2\nｵ\nﾔ\n5\nｾ\nﾜ\n8\nｶ", "1\nﾘ\nﾈ\n4\nﾃ\nｸ\n0\nﾑ\nｿ\n6", "ｴ\n3\nﾁ\nﾄ\n9\nｹ\nﾒ\n1\nﾕ\nﾍ", "7\nﾊ\n0\nｼ\nﾝ\n4\nﾆ\nﾐ\n2\nｱ", "ﾎ\n5\nﾜ\nﾅ\n8\nｻ\nﾌ\n0\nﾓ\nｷ", "2\nﾔ\nﾃ\n6\nｸ\nﾏ\n1\nﾇ\nｵ\n9", "ｾ\n4\nﾘ\nﾑ\n0\nﾁ\n7\nﾈ\nｶ\nﾄ", "8\nﾕ\nｴ\n3\nﾍ\nﾗ\n5\nｹ\nﾒ\n1", "ﾝ\n6\nﾐ\nﾆ\n2\nﾊ\nｼ\n0\nﾎ\nﾜ", "1\nｷ\nﾌ\n7\nﾓ\nﾅ\n4\nｱ\nｻ\n9"];
 
