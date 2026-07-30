@@ -41,6 +41,7 @@ export default function EntryGate({ lang, setLang, onEnter }: { lang: Lang; setL
         <form onSubmit={submit}>
           <label>INSTAGRAM<div className="handleInput"><span>@</span><input required minLength={1} maxLength={30} pattern="[A-Za-z0-9._]+" value={instagram} onChange={(e) => setInstagram(e.target.value.replace(/^@/, ""))} autoCapitalize="none" autoCorrect="off" autoComplete="username" placeholder="username" /></div></label>
           <button type="submit" disabled={submitting}>{pt ? "CONTINUAR →" : "CONTINUE →"}</button>
+          <button className="guestEnter" type="button" disabled={submitting} onClick={onEnter}>{pt ? "ENTRAR SEM @" : "ENTER WITHOUT @"}</button>
         </form>
         {status && <strong className="gateStatus" role="status">{status}</strong>}
       </section>

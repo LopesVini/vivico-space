@@ -205,6 +205,8 @@ h1 { grid-column: 1 / -1; margin: 52px 0 38px; font-size: clamp(62px, 10.2vw, 15
 .gateFormWrap form > button { margin-top: 8px; padding: 17px; border: 1px solid var(--ink); color: var(--paper); background: var(--ink); cursor: pointer; text-align: left; font: 600 10px var(--font-geist-mono), monospace; letter-spacing: .08em; }
 .gateFormWrap form > button:hover { color: var(--ink); background: var(--signal); }
 .gateFormWrap form > button:disabled { opacity: .55; cursor: wait; }
+.gateFormWrap form > .guestEnter { margin-top: -18px; color: var(--ink); background: transparent; }
+.gateFormWrap form > .guestEnter:hover { color: var(--paper); background: var(--ink); }
 .gateStatus { margin-top: 18px; color: var(--signal); font: 600 10px var(--font-geist-mono), monospace; letter-spacing: .07em; }
 
 .peopleBook { display: grid; grid-template-columns: repeat(3, 1fr); border-left: 1px solid var(--ink); }
