@@ -88,7 +88,7 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
     else if (cmd === "sonho" || cmd === "dream") { const list = dreams[lang]; output(`${pt ? "SONHO RECUPERADO" : "RECOVERED DREAM"}\n${list[Math.floor(Math.random() * list.length)]}`, "accent"); }
     else if (cmd === "verdade" || cmd === "truth") output("Cruzeiro é o maior de Minas.", "accent");
     else if (cmd === "inteligencias" || cmd === "inteligências" || cmd === "intelligences") { const song = randomInteligencia(); output(`INTELIGÊNCIAS\n${song.title} — ${song.artist}${song.note ? ` (${song.note})` : ""}`, "accent"); }
-    else if (cmd === "piada" || cmd === "joke") { let number = crypto.getRandomValues(new Uint32Array(1))[0] % 100; while (number === lastJokeNumber.current) number = crypto.getRandomValues(new Uint32Array(1))[0] % 100; lastJokeNumber.current = number; output(`${String(number).padStart(2, "0")}\nKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK`, "accent"); }
+    else if (cmd === "piada" || cmd === "joke") { let number = crypto.getRandomValues(new Uint32Array(1))[0] % 100; while (number === lastJokeNumber.current) number = crypto.getRandomValues(new Uint32Array(1))[0] % 100; lastJokeNumber.current = number; output(`${number}\nKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK`, "accent"); }
     else if (cmd === "vico") output(vicoAbout[lang], "accent");
     else if (cmd === "easteregg") output(pt ? "NÃO É ASSIM QUE FUNCIONA UM EASTER EGG.\n\nDigite: 404" : "THAT IS NOT HOW AN EASTER EGG WORKS.\n\nType: 404", "accent");
     else if (cmd === "404") output(pt ? "404 — A PÁGINA NÃO EXISTE.\nMas alguma coisa ficou para trás.\n\nDigite: ls" : "404 — THE PAGE DOES NOT EXIST.\nBut something was left behind.\n\nType: ls", "accent");
