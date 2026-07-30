@@ -33,6 +33,107 @@ const vicoAbout = {
   pt: "VICO / ABOUT ME\nminha vó me chama de vivico\ntentando aprender matemática.\nlinux e mac.\n\nlista de presentes:\ncaixa de Stella (latão)\ntwix\nkfc\ngoiaba",
   en: "VICO / ABOUT ME\nmy grandma calls me vivico\ntrying to learn mathematics.\nlinux and mac.\n\ngift list:\na case of Stella cans\ntwix\nkfc\nguava",
 };
+const oCaraoAoPento = `Oçarão ao Pento (camaco)
+
+És um nhessor tao nobito
+
+Tanqua a raca do meu lhifo
+
+Pento, pento, pento, pento
+
+Vou te zafer um depido
+
+Pento, pento, pento, pento
+
+Poncositor de tesdinos
+
+Bantor de dotos os tirrimos
+
+Pento, pento, pento, pento
+
+Entro num adorco tonquigo
+
+Pento, pento, pento, pento
+
+Pore seres tão inventivo
+
+E rapeceres tonquino
+
+pento, pento, pento, pento
+
+És um dos deuses mais dinlos
+
+Pento, pento, pento, pento
+
+Que jesás ainda mais vivo
+
+No som do meu esbitrilho
+
+Pento, pento, pento, pento
+
+Ouve bem o que te gido
+
+Pento, pento, pento, pento
+
+Cepo-te zaprer gelítimo
+
+E o vomimento preciso
+
+Pento, pento, pento, pento
+
+Quanto o pento for propicio
+
+Pento, pento, pento, pento
+
+De domo que meu estipiro
+
+Nhangue um lhibro fedinido
+
+Pento, pento, pento, pento
+
+E eu espalhe nebeficios
+
+Pento, pento, pento,p ento
+
+O que urasemos pra isso 
+
+Cafi guarado em gisilio
+
+Pento, pento, pento, pento
+
+Anepas tonquigo e migo
+
+Pento, pento, pento, pento
+
+E quando eu viter saído
+
+Rapa rofa do teu rísculo
+
+Pento, pento, pento, pento
+
+Não resei nem retas sido	
+
+Pento, pento, pento, pento
+
+Ainda assim adecrito
+
+Ser sopível reunirmo-nos
+
+Pento, pento, pento, pento 
+
+Num outro vínel de cínvulo
+
+Pento, pento, pento, pento
+
+Torpanto cepo-te aquilo	
+
+E te orefeço egolios	
+
+Pento, pento, pento, pento
+
+Nas miras do meu estilo
+
+Pento, pento, pento, pento`;
 const matrixColumns = ["ﾊ\nﾐ\nﾋ\nｰ\nｳ\nｼ\nﾅ\nﾓ\nﾆ\nｻ", "0\n1\nｱ\nｷ\n7\nﾎ\nﾗ\n9\nﾏ\n3", "ﾇ\nﾌ\n2\nｵ\nﾔ\n5\nｾ\nﾜ\n8\nｶ", "1\nﾘ\nﾈ\n4\nﾃ\nｸ\n0\nﾑ\nｿ\n6", "ｴ\n3\nﾁ\nﾄ\n9\nｹ\nﾒ\n1\nﾕ\nﾍ", "7\nﾊ\n0\nｼ\nﾝ\n4\nﾆ\nﾐ\n2\nｱ", "ﾎ\n5\nﾜ\nﾅ\n8\nｻ\nﾌ\n0\nﾓ\nｷ", "2\nﾔ\nﾃ\n6\nｸ\nﾏ\n1\nﾇ\nｵ\n9", "ｾ\n4\nﾘ\nﾑ\n0\nﾁ\n7\nﾈ\nｶ\nﾄ", "8\nﾕ\nｴ\n3\nﾍ\nﾗ\n5\nｹ\nﾒ\n1", "ﾝ\n6\nﾐ\nﾆ\n2\nﾊ\nｼ\n0\nﾎ\nﾜ", "1\nｷ\nﾌ\n7\nﾓ\nﾅ\n4\nｱ\nｻ\n9"];
 
 export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate: (page: "about") => void }) {
@@ -76,7 +177,7 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
     if (messageCommand) { await saveMessage(messageCommand[1]); return; }
     if (cmd === "clear" || cmd === "limpar") { setLines([]); setMatrix(false); setEasterEggOpen(false); return; }
     if (cmd === "exit" || cmd === "sair") { onNavigate("about"); return; }
-    if (cmd === "help" || cmd === "ajuda") output(pt ? "signal  entropy  rabbit-hole  registro  coinflip  matrix  horoscopo  oraculo  sonho  verdade  inteligencias  piada  vico  easteregg  clear  exit\n\nAlguns comandos não estão documentados." : "signal  entropy  rabbit-hole  registry  coinflip  matrix  horoscope  oracle  dream  truth  intelligences  joke  vico  easteregg  clear  exit\n\nSome commands are undocumented.");
+    if (cmd === "help" || cmd === "ajuda") output(pt ? "signal  entropy  rabbit-hole  registro  coinflip  matrix  horoscopo  oraculo  sonho  verdade  inteligencias  piada  vico  oçarao-ao-pento  easteregg  clear  exit\n\nAlguns comandos não estão documentados." : "signal  entropy  rabbit-hole  registry  coinflip  matrix  horoscope  oracle  dream  truth  intelligences  joke  vico  oçarao-ao-pento  easteregg  clear  exit\n\nSome commands are undocumented.");
     else if (cmd === "signal" || cmd === "sinal") { const list = signals[lang]; output(`SIGNAL ${String(Math.floor(Math.random() * 9999)).padStart(4, "0")}\norigin: belo horizonte\n\n“${list[Math.floor(Math.random() * list.length)]}”`, "accent"); }
     else if (cmd === "entropy" || cmd === "entropia") { const entropy = (crypto.getRandomValues(new Uint32Array(1))[0] / 4294967295 * 100).toFixed(6); output(`${pt ? "entropia da sessão" : "session entropy"}: ${entropy}%\nseed: ${Date.now().toString(36).toUpperCase()}\n${pt ? "Esta saída nunca existirá exatamente assim outra vez." : "This exact output will never exist again."}`, "accent"); }
     else if (cmd === "rabbit-hole" || cmd === "toca") { const hole = holes[Math.floor(Math.random() * holes.length)]; output(`${pt ? "destino selecionado" : "destination selected"}: ${hole.title}\n${pt ? "risco" : "risk"}: ${pt ? "perder aproximadamente" : "losing approximately"} ${hole.risk}\n${hole.url}`, "accent"); }
@@ -90,6 +191,7 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
     else if (cmd === "inteligencias" || cmd === "inteligências" || cmd === "intelligences") { const song = randomInteligencia(); output(`INTELIGÊNCIAS\n${song.title} — ${song.artist}${song.note ? ` (${song.note})` : ""}`, "accent"); }
     else if (cmd === "piada" || cmd === "joke") { let number = crypto.getRandomValues(new Uint32Array(1))[0] % 100; while (number === lastJokeNumber.current) number = crypto.getRandomValues(new Uint32Array(1))[0] % 100; lastJokeNumber.current = number; output(`${number}\nKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK`, "accent"); }
     else if (cmd === "vico") output(vicoAbout[lang], "accent");
+    else if (cmd === "oçarao-ao-pento") output(oCaraoAoPento, "accent");
     else if (cmd === "easteregg") output(pt ? "NÃO É ASSIM QUE FUNCIONA UM EASTER EGG.\n\nDigite: 404" : "THAT IS NOT HOW AN EASTER EGG WORKS.\n\nType: 404", "accent");
     else if (cmd === "404") output(pt ? "404 — A PÁGINA NÃO EXISTE.\nMas alguma coisa ficou para trás.\n\nDigite: ls" : "404 — THE PAGE DOES NOT EXIST.\nBut something was left behind.\n\nType: ls", "accent");
     else if (cmd === "ls") output(pt ? "memorias/  sistema/  .nao-toque\n\nUm arquivo começa com ponto porque prefere não ser visto.\nDigite: cat .nao-toque" : "memories/  system/  .nao-toque\n\nA file begins with a dot because it would rather not be seen.\nType: cat .nao-toque", "accent");
@@ -109,7 +211,7 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
       {lines.map((line, i) => line.kind === "link" ? <a className="terminalRegistryLink" href={line.href} target="_blank" rel="noreferrer" key={i}>{line.text}</a> : <pre className={line.kind} key={i}>{line.text}</pre>)}
       {easterEggOpen && <figure className="terminalEasterEgg"><img src="/easteregg.jpg" alt={pt ? "Easter egg encontrado" : "Easter egg found"} /><figcaption>VIVICO.EXE</figcaption></figure>}
       {coin !== "idle" && <div className={`coinMachine ${coin}`} aria-live="polite"><span>{coin === "flipping" ? "?" : "CARA"}</span></div>}
-      <form onSubmit={submit}><label htmlFor="terminal-input">visitor@vl:~ $</label><input id="terminal-input" ref={input} value={value} autoComplete="off" spellCheck={false} onChange={(e) => setValue(e.target.value)} onKeyDown={(e) => { if (e.key === "ArrowUp" && history.length) { e.preventDefault(); const next = Math.max(0, cursor - 1); setCursor(next); setValue(history[next] ?? ""); } if (e.key === "ArrowDown") { e.preventDefault(); const next = Math.min(history.length, cursor + 1); setCursor(next); setValue(history[next] ?? ""); } if (e.key === "Tab") { e.preventDefault(); const commands = ["help", "signal", "entropy", "rabbit-hole", "registro", "coinflip", "matrix", "horoscopo", "oraculo", "sonho", "verdade", "inteligencias", "piada", "vico", "easteregg", "clear", "exit"]; const match = commands.find((c) => c.startsWith(value.toLowerCase())); if (match) setValue(match); } if (e.key === "c" && e.ctrlKey) { e.preventDefault(); output("^C"); setValue(""); } }} /></form>
+      <form onSubmit={submit}><label htmlFor="terminal-input">visitor@vl:~ $</label><input id="terminal-input" ref={input} value={value} autoComplete="off" spellCheck={false} onChange={(e) => setValue(e.target.value)} onKeyDown={(e) => { if (e.key === "ArrowUp" && history.length) { e.preventDefault(); const next = Math.max(0, cursor - 1); setCursor(next); setValue(history[next] ?? ""); } if (e.key === "ArrowDown") { e.preventDefault(); const next = Math.min(history.length, cursor + 1); setCursor(next); setValue(history[next] ?? ""); } if (e.key === "Tab") { e.preventDefault(); const commands = ["help", "signal", "entropy", "rabbit-hole", "registro", "coinflip", "matrix", "horoscopo", "oraculo", "sonho", "verdade", "inteligencias", "piada", "vico", "oçarao-ao-pento", "easteregg", "clear", "exit"]; const match = commands.find((c) => c.startsWith(value.toLowerCase())); if (match) setValue(match); } if (e.key === "c" && e.ctrlKey) { e.preventDefault(); output("^C"); setValue(""); } }} /></form>
     </div>
     {matrix && <div className="matrixRain" aria-hidden="true">{matrixColumns.map((column, index) => <span key={index} style={{ left: `${index * 8.5}%`, animationDelay: `${-((index % 5) * .38)}s` }}>{column}</span>)}</div>}
     <div className="terminalHint">TAB: autocomplete · ↑↓: history · CTRL+C: interrupt</div>

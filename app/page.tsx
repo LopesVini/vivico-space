@@ -98,7 +98,7 @@ export default function Home() {
         <section className="section" aria-labelledby="things-title">
           <div className="sectionHead"><h2 id="things-title">{t.things}</h2><span>{t.incomplete}</span></div>
           <div className="thingsGrid">
-            <a className="thing ready" href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noreferrer"><span className="thingCode">{t.read}</span><strong>Bitcoin: A Peer-to-Peer Electronic Cash System</strong><span>Satoshi Nakamoto · 2008</span><span className="thingArrow">{t.open}</span></a>
+            <a className="thing ready" href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noreferrer"><span className="thingCode">{t.read}</span><strong>Bitcoin: White Paper</strong><span>Satoshi Nakamoto · 2008</span><span className="thingArrow">{t.open}</span></a>
             <MusicCarousel lang={lang} listen={t.listen} open={t.open} />
             <a className="thing mediaThing" href="https://www.youtube.com/watch?v=KxGRhd_iWuE" target="_blank" rel="noreferrer"><span className="thingCode">{t.watch}</span><img src="https://i.ytimg.com/vi/KxGRhd_iWuE/hqdefault.jpg" alt="Miniatura do vídeo Matsuoka Shuzo — NEVER GIVE UP!!" /><strong>{t.video}</strong><span>YouTube</span><span className="thingArrow">{t.open}</span></a>
           </div>
