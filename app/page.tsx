@@ -2,7 +2,7 @@
 /* Remote editorial artwork intentionally uses its original providers. */
 /* eslint-disable @next/next/no-img-element */
 
-import { useEffect, useState } from "react";
+import { type CSSProperties, useEffect, useState } from "react";
 import { SiGithub, SiInstagram, SiLinkedin } from "react-icons/si";
 import EntryGate from "./components/entry/EntryGate";
 import Gallery from "./components/Gallery";
@@ -44,12 +44,7 @@ export default function Home() {
   const [lang, setLang] = useState<Lang>("pt");
   const [page, setPage] = useState<Page>("about");
   const [entered, setEntered] = useState(false);
-  const [marginNote, setMarginNote] = useState(0);
-  const [foundNote, setFoundNote] = useState(false);
   const t = copy[lang];
-  const marginalia = lang === "pt"
-    ? ["feito à mão, mais ou menos.", "não é um portfólio.", "ainda está em construção.", "volte quando quiser."]
-    : ["made by hand, more or less.", "not a portfolio.", "still under construction.", "come back whenever."];
 
   useEffect(() => {
     const update = () => setAge((Date.now() - birthDate) / tropicalYearMs);
@@ -74,7 +69,7 @@ export default function Home() {
   if (!entered) return <EntryGate lang={lang} setLang={setLang} onEnter={() => setEntered(true)} />;
 
   return (
-    <main>
+    <main className={page === "about" ? "siteMain homeMode" : "siteMain"}>
       <header className="topbar" aria-label={lang === "pt" ? "Navegação do site" : "Site navigation"}>
         <button className="wordmark" onClick={() => navigate("about")}>VIVICO</button>
         <nav className="systemNav">
@@ -88,7 +83,9 @@ export default function Home() {
         <div className="status"><span className="statusDot" /> {t.status}</div>
       </header>
 
-      {page === "about" ? <div id="top" className="shell">
+      {page === "about" && <BackgroundField lang={lang} />}
+
+      {page === "about" ? <div id="top" className="shell homeSurface">
         <section className="intro" aria-labelledby="name">
           <p className="eyebrow">{t.system}</p>
           <h1 id="name">Vinícius (Vivico)</h1>
@@ -97,17 +94,7 @@ export default function Home() {
             <div className="fact"><span className="value">{t.location}</span></div>
             <div className="fact"><span className="label">{t.local}</span><span className="value age"><LocalTime /></span></div>
           </div>
-          <div className="introSide">
-            <p className="lede">{t.lede}</p>
-            <button className="marginNote" type="button" onClick={() => setMarginNote((note) => (note + 1) % marginalia.length)} aria-label={lang === "pt" ? "Trocar anotação" : "Change note"}>
-              <span>↳</span> {marginalia[marginNote]}
-            </button>
-          </div>
-          <span className="heroScribble" aria-hidden="true">↝</span>
-          <button className="looseStamp" type="button" onClick={() => setFoundNote((value) => !value)}>
-            <span>{lang === "pt" ? "NÃO TOQUE" : "DO NOT TOUCH"}</span>
-            <i>{foundNote ? (lang === "pt" ? "tarde demais." : "too late.") : "✳"}</i>
-          </button>
+          <p className="lede">{t.lede}</p>
         </section>
 
         <nav className="socialDock" aria-label={lang === "pt" ? "Links externos" : "External links"}>
@@ -115,7 +102,6 @@ export default function Home() {
           <a href="https://www.linkedin.com/in/vin%C3%ADcius-lacerda-405a72396" target="_blank" rel="noreferrer" aria-label="LinkedIn"><SiLinkedin aria-hidden="true" /></a>
           <a href="https://instagram.com/vllc.hub" target="_blank" rel="noreferrer" aria-label="Instagram"><SiInstagram aria-hidden="true" /></a>
         </nav>
-        <p className="socialMargin" aria-hidden="true">{lang === "pt" ? "os quadrados sabem para onde ir." : "the squares know where to go."}</p>
 
         <section className="section" aria-labelledby="projects-title">
           <div className="sectionHead"><h2 id="projects-title">{t.projects}</h2><span>{t.selected}</span></div>
@@ -123,7 +109,6 @@ export default function Home() {
             <a className="projectRow" href="https://vebram.com" target="_blank" rel="noreferrer"><span className="rowIndex">01</span><span className="rowMain"><strong>{t.project1}</strong><em>{t.note1}</em></span><span className="arrow">↗</span></a>
             <a className="projectRow" href="https://prossigo.com" target="_blank" rel="noreferrer"><span className="rowIndex">02</span><span className="rowMain"><strong>{t.project2}</strong><em>{t.note2}</em></span><span className="arrow">↗</span></a>
           </div>
-          <p className="projectMargin">{lang === "pt" ? "coisas que existem fora daqui também." : "things that also exist outside here."}</p>
         </section>
 
         <section className="section" aria-labelledby="things-title">
@@ -133,10 +118,6 @@ export default function Home() {
             <MusicSuggestion lang={lang} listen={t.listen} open={t.open} />
             <a className="thing mediaThing" href="https://www.youtube.com/watch?v=KxGRhd_iWuE" target="_blank" rel="noreferrer"><span className="thingCode">{t.watch}</span><img src="https://i.ytimg.com/vi/KxGRhd_iWuE/hqdefault.jpg" alt="Miniatura do vídeo Matsuoka Shuzo — NEVER GIVE UP!!" /><strong>{t.video}</strong><span>YouTube</span><span className="thingArrow">{t.open}</span></a>
           </div>
-          <div className="paperScrap" aria-label={lang === "pt" ? "Anotação" : "Note"}>
-            <span>{lang === "pt" ? "coisas que eu deixaria abertas numa aba" : "things I would leave open in a tab"}</span>
-            <b>×</b>
-          </div>
         </section>
 
         <section className="accessStrip" aria-label={lang === "pt" ? "Funcionalidades interativas" : "Interactive features"}>
@@ -144,11 +125,64 @@ export default function Home() {
           <button onClick={() => navigate("terminal")}><span>02</span><strong>{t.terminal}_</strong><em>{lang === "pt" ? "entre no VL/OS" : "enter VL/OS"}</em></button>
         </section>
 
-        <footer><span>VINÍCIUS LACERDA</span><span className="footerAside">{lang === "pt" ? "sem pressa." : "no rush."}</span><a href="#top">{t.back}</a></footer>
+        <footer><span>VINÍCIUS LACERDA</span><a href="#top">{t.back}</a></footer>
       </div>
         : <div className="pageShell">{page === "gallery" && <Gallery lang={lang} />}{page === "terminal" && <Terminal lang={lang} onNavigate={navigate} />}{page === "changelog" && <SystemLog lang={lang} />}</div>}
     </main>
   );
+}
+
+const backgroundNotes = [
+  { pt: "∫ e⁻ˣ² dx = √π", en: "∫ e⁻ˣ² dx = √π", x: 7, y: 22, rotate: -7, start: -.1, end: .24, speed: .55, kind: "formula" },
+  { pt: "ACESSE O TERMINAL_", en: "OPEN THE TERMINAL_", x: 68, y: 74, rotate: 3, start: .02, end: .38, speed: .9, kind: "prompt" },
+  { pt: "STAR TREK > STAR WARS", en: "STAR TREK > STAR WARS", x: 52, y: 29, rotate: -2, start: .15, end: .5, speed: .45, kind: "verdict" },
+  { pt: "lim curiosidade → ∞", en: "lim curiosity → ∞", x: 8, y: 66, rotate: 5, start: .27, end: .62, speed: .75, kind: "formula" },
+  { pt: "404 ≠ FIM", en: "404 ≠ END", x: 76, y: 18, rotate: 8, start: .4, end: .72, speed: .65, kind: "prompt" },
+  { pt: "1 PESSOA / 1 FOTO", en: "1 PERSON / 1 PHOTO", x: 17, y: 36, rotate: -3, start: .54, end: .86, speed: .5, kind: "verdict" },
+  { pt: "F = G m₁m₂ / r²", en: "F = G m₁m₂ / r²", x: 67, y: 61, rotate: -6, start: .62, end: 1.05, speed: .8, kind: "formula" },
+  { pt: "NÃO É UM PORTFÓLIO", en: "NOT A PORTFOLIO", x: 33, y: 82, rotate: 2, start: .73, end: 1.05, speed: .42, kind: "prompt" },
+];
+
+function BackgroundField({ lang }: { lang: Lang }) {
+  const [motion, setMotion] = useState({ scroll: 0, x: 0, y: 0 });
+  useEffect(() => {
+    let frame = 0;
+    const updateScroll = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        setMotion((current) => ({ ...current, scroll: Math.min(1, window.scrollY / max) }));
+      });
+    };
+    const updatePointer = (event: PointerEvent) => {
+      const x = (event.clientX / window.innerWidth - .5) * 18;
+      const y = (event.clientY / window.innerHeight - .5) * 18;
+      setMotion((current) => ({ ...current, x, y }));
+    };
+    updateScroll();
+    window.addEventListener("scroll", updateScroll, { passive: true });
+    window.addEventListener("pointermove", updatePointer, { passive: true });
+    return () => { window.cancelAnimationFrame(frame); window.removeEventListener("scroll", updateScroll); window.removeEventListener("pointermove", updatePointer); };
+  }, []);
+
+  return <div className="backgroundField" aria-hidden="true">
+    <div className="paperTexture" />
+    <div className="backgroundProgress"><span style={{ transform: `scaleX(${motion.scroll})` }} /></div>
+    {backgroundNotes.map((note, index) => {
+      const fadeIn = Math.max(0, Math.min(1, (motion.scroll - note.start) / .09));
+      const fadeOut = Math.max(0, Math.min(1, (note.end - motion.scroll) / .09));
+      const opacity = fadeOut * .46;
+      const drift = (motion.scroll - note.start) * note.speed * 95;
+      const style = {
+        left: `${note.x}%`, top: `${note.y}%`, opacity,
+        clipPath: `inset(-12px ${(1 - fadeIn) * 100}% -12px -12px)`,
+        transform: `translate3d(${motion.x * note.speed}px, ${motion.y * note.speed - drift}px, 0) rotate(${note.rotate}deg)`,
+        animationDelay: `${index * -0.37}s`,
+      } as CSSProperties;
+      return <span className={`backgroundNote ${note.kind}`} style={style} key={index}>{lang === "pt" ? note.pt : note.en}</span>;
+    })}
+    <span className="backgroundCross crossOne">+</span><span className="backgroundCross crossTwo">×</span>
+  </div>;
 }
 
 const musicSuggestion = { title: "doom", artist: "Steve Lacy", href: "https://open.spotify.com/track/3kKPZFQse4LtbnMRhnAlEO", image: "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e024ea9ba86cd9506a004bab042" };
