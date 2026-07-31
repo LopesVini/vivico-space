@@ -35,7 +35,7 @@ button { color: inherit; }
 .statusDot { width: 6px; height: 6px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 3px #ff4f1f22; }
 
 .shell { width: min(1180px, calc(100% - 44px)); margin: 0 auto; padding-top: 54px; }
-.intro { min-height: 720px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto 1fr; padding: 54px 0 46px; }
+.intro { position: relative; min-height: 720px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto 1fr; padding: 54px 0 46px; }
 .eyebrow { grid-column: 1 / -1; margin: 0; font: 600 11px/1 var(--font-geist-mono), monospace; letter-spacing: .12em; color: var(--muted); }
 h1 { grid-column: 1 / -1; margin: 52px 0 38px; font-size: clamp(62px, 10.2vw, 152px); line-height: .82; letter-spacing: -.085em; font-weight: 570; white-space: nowrap; text-align: left; }
 .facts { display: flex; flex-direction: column; gap: 15px; align-self: start; grid-column: 1; }
@@ -44,7 +44,15 @@ h1 { grid-column: 1 / -1; margin: 52px 0 38px; font-size: clamp(62px, 10.2vw, 15
 .value { font-size: clamp(15px, 1.8vw, 22px); letter-spacing: -.025em; }
 .age { font-family: var(--font-geist-mono), monospace; font-variant-numeric: tabular-nums; }
 .age small { font-size: 9px; color: var(--muted); letter-spacing: .08em; }
-.lede { grid-column: 2; grid-row: 3; align-self: start; justify-self: start; max-width: 430px; margin: 0; font-size: clamp(18px, 2vw, 26px); line-height: 1.2; letter-spacing: -.035em; }
+.introSide { grid-column: 2; grid-row: 3; align-self: start; justify-self: start; max-width: 430px; }
+.lede { max-width: 430px; margin: 0; font-size: clamp(18px, 2vw, 26px); line-height: 1.2; letter-spacing: -.035em; }
+.marginNote { display: block; margin: 34px 0 0 -20px; padding: 6px 8px; border: 0; color: var(--ink); background: #dedcd2; cursor: pointer; font: 500 13px/1.1 "Comic Sans MS", "Bradley Hand", cursive; letter-spacing: .01em; transform: rotate(-2.1deg); transition: transform .18s ease, background .18s ease; }
+.marginNote span { color: var(--signal); font-family: var(--font-geist-mono), monospace; }
+.marginNote:hover, .marginNote:focus-visible { background: #d6d3c8; transform: rotate(.5deg) translateX(5px); outline: 1px dashed var(--ink); outline-offset: 3px; }
+.heroScribble { align-self: end; justify-self: end; margin: 0 8vw 58px 0; color: var(--signal); font: 400 clamp(74px, 9vw, 130px)/.4 "Comic Sans MS", "Bradley Hand", cursive; transform: rotate(-28deg); opacity: .88; pointer-events: none; }
+.looseStamp { position: absolute; top: 57%; left: 8px; width: 105px; min-height: 72px; padding: 10px; border: 2px solid var(--signal); color: var(--signal); background: #f0efe9dd; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; font: 700 10px/1.15 var(--font-geist-mono), monospace; letter-spacing: .08em; transform: rotate(-6deg); transition: transform .2s ease, color .2s ease, background .2s ease; }
+.looseStamp i { font: 400 24px/1 "Comic Sans MS", cursive; }
+.looseStamp:hover, .looseStamp:focus-visible { color: var(--paper); background: var(--signal); transform: rotate(3deg) scale(1.04); outline: none; }
 
 .section { padding: 84px 0 106px; border-bottom: 1px solid var(--ink); }
 .sectionHead { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 40px; }
@@ -58,11 +66,13 @@ h1 { grid-column: 1 / -1; margin: 52px 0 38px; font-size: clamp(62px, 10.2vw, 15
 .rowMain strong { min-width: 240px; font-size: clamp(22px, 3vw, 39px); font-weight: 520; letter-spacing: -.045em; }
 .rowMain em { font-style: normal; color: var(--muted); font-size: 14px; }
 .arrow { font-size: 22px; text-align: right; }
+.projectMargin { width: fit-content; margin: 12px 0 -32px auto; color: var(--signal); font: 400 13px/1 "Comic Sans MS", "Bradley Hand", cursive; transform: rotate(-2.5deg); }
 .placeholderNote { max-width: 670px; margin: 18px 0 0 70px; font: 500 10px/1.5 var(--font-geist-mono), monospace; color: var(--signal); letter-spacing: .04em; }
 .socialDock { display: flex; align-items: center; justify-content: center; flex-wrap: nowrap; gap: clamp(48px, 8vw, 112px); padding: 52px 24px; }
 .socialDock a { flex: 0 0 auto; width: 88px; height: 88px; display: grid; place-items: center; border: 1px solid var(--ink); color: var(--ink); background: var(--paper); transition: color .18s ease, background .18s ease, transform .18s ease; }
 .socialDock a:hover, .socialDock a:focus-visible { color: var(--paper); background: var(--ink); transform: translateY(-3px); outline: none; }
 .socialDock svg { display: block; width: 39px; height: 39px; }
+.socialMargin { width: fit-content; margin: -33px auto 12px; color: var(--muted); font: 400 12px/1 "Comic Sans MS", "Bradley Hand", cursive; transform: translateX(128px) rotate(1.5deg); }
 
 .thingsGrid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
 .thing { min-height: 280px; padding: 20px; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); display: flex; flex-direction: column; transition: background .18s ease; }
@@ -76,6 +86,9 @@ h1 { grid-column: 1 / -1; margin: 52px 0 38px; font-size: clamp(62px, 10.2vw, 15
 .mediaThing img { width: 100%; aspect-ratio: 16 / 9; margin: 18px 0 auto; object-fit: cover; object-position: center; filter: saturate(.9); transition: transform .25s ease, filter .25s ease; }
 .mediaThing:hover img, .mediaThing:focus-visible img { transform: scale(1.025); filter: saturate(1); }
 .mediaThing strong { margin-top: 18px; }
+.paperScrap { position: relative; z-index: 1; width: fit-content; max-width: 240px; margin: -7px 7% -22px auto; padding: 11px 34px 10px 13px; color: #37362f; background: #d8d0a6; box-shadow: 3px 4px 0 #11110f1d; font: 400 13px/1.15 "Comic Sans MS", "Bradley Hand", cursive; transform: rotate(2deg); }
+.paperScrap::before { content: ""; position: absolute; top: -8px; left: 38%; width: 54px; height: 15px; background: #c6b97b99; transform: rotate(-4deg); }
+.paperScrap b { position: absolute; top: 7px; right: 10px; color: #817748; font: 400 16px/1 var(--font-geist-mono), monospace; }
 .musicCarousel { padding: 0; }
 .musicCarousel > a { min-height: 280px; padding: 20px 20px 14px; display: flex; flex-direction: column; }
 .musicSlide { animation: musicSlideIn .55s cubic-bezier(.22, .75, .25, 1); }
@@ -262,6 +275,14 @@ h1 { grid-column: 1 / -1; margin: 52px 0 38px; font-size: clamp(62px, 10.2vw, 15
 
 footer { min-height: 110px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font: 600 10px var(--font-geist-mono), monospace; letter-spacing: .08em; color: var(--muted); }
 footer a { color: var(--ink); }
+.footerAside { margin-left: auto; margin-right: 36px; color: var(--signal); font: 400 13px/1 "Comic Sans MS", "Bradley Hand", cursive; letter-spacing: 0; transform: rotate(-2deg); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .heroScribble { animation: scribbleBreathe 4s ease-in-out infinite; }
+  .projectRow:nth-child(1):hover .rowIndex { transform: rotate(-8deg); color: var(--signal); }
+  .projectRow:nth-child(2):hover .rowIndex { transform: rotate(8deg); color: var(--signal); }
+}
+@keyframes scribbleBreathe { 50% { transform: rotate(-24deg) translate(4px, -4px); } }
 
 @media (max-width: 760px) {
   .topbar { padding: 0 14px; }
@@ -275,6 +296,10 @@ footer a { color: var(--ink); }
   .facts { margin: 0; gap: 16px; }
   .fact { display: flex; flex-direction: column; gap: 7px; }
   .lede { align-self: auto; justify-self: auto; margin: 44px 0 0; }
+  .introSide { align-self: auto; justify-self: auto; max-width: none; }
+  .marginNote { margin: 28px 0 0 4px; }
+  .heroScribble { position: absolute; right: 26px; top: 305px; margin: 0; font-size: 86px; }
+  .looseStamp { position: static; grid-column: 1 / -1; justify-self: end; margin: 34px 7px 0 0; }
   .section { padding: 60px 0 74px; }
   .sectionHead { align-items: flex-end; margin-bottom: 28px; }
   .sectionHead span { max-width: 110px; text-align: right; line-height: 1.4; }
@@ -282,14 +307,18 @@ footer a { color: var(--ink); }
   .socialDock { gap: clamp(14px, 5vw, 24px); padding: 34px 0; }
   .socialDock a { width: clamp(58px, 20vw, 70px); height: clamp(58px, 20vw, 70px); }
   .socialDock svg { width: 31px; height: 31px; }
+  .socialMargin { margin: -19px auto 17px; transform: translateX(48px) rotate(1.5deg); font-size: 11px; }
   .rowMain { display: block; }
   .rowMain strong { display: block; min-width: 0; }
   .rowMain em { display: block; margin-top: 8px; line-height: 1.35; }
   .placeholderNote { margin-left: 40px; }
+  .projectMargin { margin: 12px 8px -23px auto; font-size: 12px; }
   .thingsGrid { grid-template-columns: 1fr; }
   .thing { min-height: 230px; }
+  .paperScrap { margin: -6px 7px -15px auto; }
   .accessStrip { grid-template-columns: 1fr; }
   .accessStrip button, .accessStrip button:nth-child(2), .accessStrip button:last-child { min-height: 100px; padding: 16px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .footerAside { margin-right: 2px; }
   .panelBar { padding: 0 14px; }
   .terminalBody { padding: 28px 14px 52px; }
   .museumMode { padding: 8px; }

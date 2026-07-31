@@ -44,7 +44,12 @@ export default function Home() {
   const [lang, setLang] = useState<Lang>("pt");
   const [page, setPage] = useState<Page>("about");
   const [entered, setEntered] = useState(false);
+  const [marginNote, setMarginNote] = useState(0);
+  const [foundNote, setFoundNote] = useState(false);
   const t = copy[lang];
+  const marginalia = lang === "pt"
+    ? ["feito à mão, mais ou menos.", "não é um portfólio.", "ainda está em construção.", "volte quando quiser."]
+    : ["made by hand, more or less.", "not a portfolio.", "still under construction.", "come back whenever."];
 
   useEffect(() => {
     const update = () => setAge((Date.now() - birthDate) / tropicalYearMs);
@@ -92,7 +97,17 @@ export default function Home() {
             <div className="fact"><span className="value">{t.location}</span></div>
             <div className="fact"><span className="label">{t.local}</span><span className="value age"><LocalTime /></span></div>
           </div>
-          <p className="lede">{t.lede}</p>
+          <div className="introSide">
+            <p className="lede">{t.lede}</p>
+            <button className="marginNote" type="button" onClick={() => setMarginNote((note) => (note + 1) % marginalia.length)} aria-label={lang === "pt" ? "Trocar anotação" : "Change note"}>
+              <span>↳</span> {marginalia[marginNote]}
+            </button>
+          </div>
+          <span className="heroScribble" aria-hidden="true">↝</span>
+          <button className="looseStamp" type="button" onClick={() => setFoundNote((value) => !value)}>
+            <span>{lang === "pt" ? "NÃO TOQUE" : "DO NOT TOUCH"}</span>
+            <i>{foundNote ? (lang === "pt" ? "tarde demais." : "too late.") : "✳"}</i>
+          </button>
         </section>
 
         <nav className="socialDock" aria-label={lang === "pt" ? "Links externos" : "External links"}>
@@ -100,6 +115,7 @@ export default function Home() {
           <a href="https://www.linkedin.com/in/vin%C3%ADcius-lacerda-405a72396" target="_blank" rel="noreferrer" aria-label="LinkedIn"><SiLinkedin aria-hidden="true" /></a>
           <a href="https://instagram.com/vllc.hub" target="_blank" rel="noreferrer" aria-label="Instagram"><SiInstagram aria-hidden="true" /></a>
         </nav>
+        <p className="socialMargin" aria-hidden="true">{lang === "pt" ? "os quadrados sabem para onde ir." : "the squares know where to go."}</p>
 
         <section className="section" aria-labelledby="projects-title">
           <div className="sectionHead"><h2 id="projects-title">{t.projects}</h2><span>{t.selected}</span></div>
@@ -107,6 +123,7 @@ export default function Home() {
             <a className="projectRow" href="https://vebram.com" target="_blank" rel="noreferrer"><span className="rowIndex">01</span><span className="rowMain"><strong>{t.project1}</strong><em>{t.note1}</em></span><span className="arrow">↗</span></a>
             <a className="projectRow" href="https://prossigo.com" target="_blank" rel="noreferrer"><span className="rowIndex">02</span><span className="rowMain"><strong>{t.project2}</strong><em>{t.note2}</em></span><span className="arrow">↗</span></a>
           </div>
+          <p className="projectMargin">{lang === "pt" ? "coisas que existem fora daqui também." : "things that also exist outside here."}</p>
         </section>
 
         <section className="section" aria-labelledby="things-title">
@@ -116,6 +133,10 @@ export default function Home() {
             <MusicSuggestion lang={lang} listen={t.listen} open={t.open} />
             <a className="thing mediaThing" href="https://www.youtube.com/watch?v=KxGRhd_iWuE" target="_blank" rel="noreferrer"><span className="thingCode">{t.watch}</span><img src="https://i.ytimg.com/vi/KxGRhd_iWuE/hqdefault.jpg" alt="Miniatura do vídeo Matsuoka Shuzo — NEVER GIVE UP!!" /><strong>{t.video}</strong><span>YouTube</span><span className="thingArrow">{t.open}</span></a>
           </div>
+          <div className="paperScrap" aria-label={lang === "pt" ? "Anotação" : "Note"}>
+            <span>{lang === "pt" ? "coisas que eu deixaria abertas numa aba" : "things I would leave open in a tab"}</span>
+            <b>×</b>
+          </div>
         </section>
 
         <section className="accessStrip" aria-label={lang === "pt" ? "Funcionalidades interativas" : "Interactive features"}>
@@ -123,7 +144,7 @@ export default function Home() {
           <button onClick={() => navigate("terminal")}><span>02</span><strong>{t.terminal}_</strong><em>{lang === "pt" ? "entre no VL/OS" : "enter VL/OS"}</em></button>
         </section>
 
-        <footer><span>VINÍCIUS LACERDA</span><a href="#top">{t.back}</a></footer>
+        <footer><span>VINÍCIUS LACERDA</span><span className="footerAside">{lang === "pt" ? "sem pressa." : "no rush."}</span><a href="#top">{t.back}</a></footer>
       </div>
         : <div className="pageShell">{page === "gallery" && <Gallery lang={lang} />}{page === "terminal" && <Terminal lang={lang} onNavigate={navigate} />}{page === "changelog" && <SystemLog lang={lang} />}</div>}
     </main>
