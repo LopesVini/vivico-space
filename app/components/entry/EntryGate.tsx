@@ -24,7 +24,7 @@ export default function EntryGate({ lang, setLang, onEnter }: { lang: Lang; setL
             punchlinePosition += 1;
             setTypedLine(`${terminalLead}\n${terminalPunchline.slice(0, punchlinePosition)}`);
             if (punchlinePosition >= terminalPunchline.length && punchlineTyping) window.clearInterval(punchlineTyping);
-          }, 70);
+          }, 42);
         }, 2000);
       }
     }, 52);
