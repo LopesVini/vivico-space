@@ -53,3 +53,16 @@ export const terminalPulse = sqliteTable("terminal_pulse", {
   id: integer("id").primaryKey(),
   lastAt: text("last_at").notNull(),
 });
+
+export const anonymousVisitors = sqliteTable("anonymous_visitors", {
+  visitorId: text("visitor_id").primaryKey(),
+  firstSeenAt: text("first_seen_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  lastSeenAt: text("last_seen_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+});
+
+export const anonymousEvents = sqliteTable("anonymous_events", {
+  visitorId: text("visitor_id").notNull().references(() => anonymousVisitors.visitorId, { onDelete: "cascade" }),
+  event: text("event").notNull(),
+  eventDate: text("event_date").notNull(),
+  createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+}, (table) => [primaryKey({ columns: [table.visitorId, table.event, table.eventDate] })]);

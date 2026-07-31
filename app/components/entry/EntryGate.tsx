@@ -1,6 +1,7 @@
 "use client";
 import { FormEvent, useEffect, useState } from "react";
 import type { Lang } from "../../lib/i18n";
+import { trackAnonymous } from "../../lib/telemetry";
 
 export default function EntryGate({ lang, setLang, onEnter }: { lang: Lang; setLang: (lang: Lang) => void; onEnter: () => void }) {
   const pt = lang === "pt"; const [instagram, setInstagram] = useState(""); const [status, setStatus] = useState(""); const [submitting, setSubmitting] = useState(false);
@@ -40,6 +41,7 @@ export default function EntryGate({ lang, setLang, onEnter }: { lang: Lang; setL
       if (!response.ok) throw new Error(pt ? data.error : response.status === 429 ? "Too many entries from this network. Try again later." : "Check your Instagram handle.");
       if (data.visitorToken) window.localStorage.setItem("vl-visitor", JSON.stringify({ instagram: instagram.toLowerCase(), token: data.visitorToken }));
       else window.localStorage.removeItem("vl-visitor");
+      trackAnonymous("entered_registered");
       setStatus(data.claimed ? (pt ? "ENTRADA LIVRE. ESTA ASSINATURA JÁ TEM FOTO." : "COME IN. THIS SIGNATURE ALREADY HAS A PHOTO.") : data.reclaimed ? (pt ? "ASSINATURA RECUPERADA." : "SIGNATURE RECOVERED.") : data.existing ? (pt ? "BEM-VINDO DE VOLTA." : "WELCOME BACK.") : (pt ? "PRIMEIRA VISITA REGISTRADA." : "FIRST VISIT RECORDED."));
       window.setTimeout(onEnter, 550);
     } catch (error) { setStatus(error instanceof Error && error.message ? error.message : (pt ? "Confira seu @ do Instagram." : "Check your Instagram handle.")); setSubmitting(false); }
@@ -54,7 +56,7 @@ export default function EntryGate({ lang, setLang, onEnter }: { lang: Lang; setL
         <form onSubmit={submit}>
           <label>INSTAGRAM<div className="handleInput"><span>@</span><input required minLength={1} maxLength={30} pattern="[A-Za-z0-9._]+" value={instagram} onChange={(e) => setInstagram(e.target.value.replace(/^@/, ""))} autoCapitalize="none" autoCorrect="off" autoComplete="username" placeholder="username" /></div></label>
           <button type="submit" disabled={submitting}>{pt ? "CONTINUAR →" : "CONTINUE →"}</button>
-          <button className="guestEnter" type="button" disabled={submitting} onClick={onEnter}>{pt ? "ENTRAR SEM @" : "ENTER WITHOUT @"}</button>
+          <button className="guestEnter" type="button" disabled={submitting} onClick={() => { trackAnonymous("entered_guest"); onEnter(); }}>{pt ? "ENTRAR SEM @" : "ENTER WITHOUT @"}</button>
         </form>
         {status && <strong className="gateStatus" role="status">{status}</strong>}
       </section>

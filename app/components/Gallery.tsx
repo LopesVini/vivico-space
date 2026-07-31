@@ -4,6 +4,7 @@
 
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import type { Lang } from "../lib/i18n";
+import { trackAnonymous } from "../lib/telemetry";
 
 type Photo = { id: string; instagram: string; createdAt: string; src: string; removalVotes: number };
 type Identity = { instagram: string; token: string };
@@ -102,6 +103,7 @@ export default function Gallery({ lang }: { lang: Lang }) {
       const response = await fetch("/api/gallery", { method: "POST", body: form });
       if (!response.ok) throw new Error(await responseMessage(response, pt ? "A FOTO NÃO COLOU." : response.status === 429 ? "TOO MANY ATTEMPTS. WAIT BEFORE POSTING AGAIN." : response.status === 403 ? "THIS SIGNATURE IS ALREADY IN USE." : "THE PHOTO DIDN'T STICK.", pt));
       await load();
+      trackAnonymous("posted_photo");
       setStatus(pt ? "FOTO NO MURO." : "PHOTO ON THE WALL.");
     } catch (error) {
       setStatus(error instanceof Error && error.message ? error.message.toUpperCase() : (pt ? "A FOTO NÃO COLOU." : "THE PHOTO DIDN'T STICK."));

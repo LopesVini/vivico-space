@@ -9,6 +9,7 @@ import Gallery from "./components/Gallery";
 import SystemLog from "./components/overlays/SystemLog";
 import Terminal from "./components/overlays/Terminal";
 import type { Lang } from "./lib/i18n";
+import { trackAnonymous } from "./lib/telemetry";
 
 type Page = "about" | "gallery" | "terminal" | "changelog";
 
@@ -57,7 +58,13 @@ export default function Home() {
     window.localStorage.setItem("vl-lang", lang);
   }, [lang]);
 
-  const navigate = (next: Page) => { setPage(next); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  useEffect(() => { trackAnonymous("arrival"); }, []);
+
+  const navigate = (next: Page) => {
+    if (next === "gallery") trackAnonymous("opened_gallery");
+    if (next === "terminal") trackAnonymous("opened_terminal");
+    setPage(next); window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   if (!entered) return <EntryGate lang={lang} setLang={setLang} onEnter={() => setEntered(true)} />;
 
