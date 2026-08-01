@@ -8,6 +8,8 @@ import EntryGate from "./components/entry/EntryGate";
 import Gallery from "./components/Gallery";
 import SystemLog from "./components/overlays/SystemLog";
 import Terminal from "./components/overlays/Terminal";
+import CommandPalette from "./components/CommandPalette";
+import ZenMode from "./components/ZenMode";
 import type { Lang } from "./lib/i18n";
 import { trackAnonymous } from "./lib/telemetry";
 
@@ -39,11 +41,16 @@ const copy = {
   },
 };
 
+const braindumps = [
+  { date: "2026-07-31", pt: "Pensando em usar isso aqui como uns tweet bobos", en: "Thinking of using this place as some silly tweets" },
+];
+
 export default function Home() {
   const [age, setAge] = useState<number | null>(null);
   const [lang, setLang] = useState<Lang>("pt");
   const [page, setPage] = useState<Page>("about");
   const [entered, setEntered] = useState(false);
+  const [zenMode, setZenMode] = useState(false);
   const t = copy[lang];
 
   useEffect(() => {
@@ -68,8 +75,16 @@ export default function Home() {
 
   if (!entered) return <EntryGate lang={lang} setLang={setLang} onEnter={() => setEntered(true)} />;
 
+  if (zenMode) return (
+    <>
+      <ZenMode lang={lang} onExit={() => setZenMode(false)} />
+      <CommandPalette lang={lang} onNavigate={navigate} onToggleZen={() => setZenMode(!zenMode)} />
+    </>
+  );
+
   return (
     <main className={page === "about" ? "siteMain homeMode" : "siteMain"}>
+      <CommandPalette lang={lang} onNavigate={navigate} onToggleZen={() => setZenMode(!zenMode)} />
       <header className="topbar" aria-label={lang === "pt" ? "Navegação do site" : "Site navigation"}>
         <button className="wordmark" onClick={() => navigate("about")}>VIVICO</button>
         <nav className="systemNav">
@@ -111,6 +126,18 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="section" aria-labelledby="braindump-title">
+          <div className="sectionHead"><h2 id="braindump-title">Brain Dump</h2><span>LATEST</span></div>
+          <div className="braindumpList">
+            {braindumps.map((bd, i) => (
+              <div className="braindumpItem" key={i}>
+                <span className="dumpDate">{bd.date}</span>
+                <p>{lang === "pt" ? bd.pt : bd.en}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section className="section" aria-labelledby="things-title">
           <div className="sectionHead"><h2 id="things-title">{t.things}</h2><span>{t.incomplete}</span></div>
           <div className="thingsGrid">
@@ -124,6 +151,8 @@ export default function Home() {
           <button onClick={() => navigate("changelog")}><span>01</span><strong>{t.changelog}</strong><em>{lang === "pt" ? "histórico de versões" : "version history"}</em></button>
           <button onClick={() => navigate("terminal")}><span>02</span><strong>{t.terminal}_</strong><em>{lang === "pt" ? "entre no VL/OS" : "enter VL/OS"}</em></button>
         </section>
+
+        <div className="cmdHint"><span>{lang === "pt" ? "Dica: pressione" : "Hint: press"}</span> <kbd>Cmd</kbd> + <kbd>K</kbd></div>
 
         <footer><span>VINÍCIUS LACERDA</span><a href="#top">{t.back}</a></footer>
       </div>

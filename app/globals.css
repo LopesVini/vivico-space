@@ -141,39 +141,102 @@ h1 { grid-column: 1 / -1; margin: 52px 0 38px; font-size: clamp(62px, 10.2vw, 15
 .matrixRain span { position: absolute; top: -260px; white-space: pre; font: 500 14px/1.55 var(--font-geist-mono), monospace; text-shadow: 0 0 6px currentColor, 0 0 12px #00ff6699; animation: matrixFall 1.05s linear infinite; }
 .matrixRain span:nth-child(3n) { animation-duration: 1.45s; opacity: .72; }
 .matrixRain span:nth-child(4n) { animation-duration: .8s; font-weight: 700; }
-.museumMode { position: fixed; inset: 0; z-index: 90; padding: 28px; color: #000; background: #008080; font-family: Tahoma, Arial, sans-serif; }
-.museumWindow { width: min(920px, 100%); height: calc(100dvh - 98px); margin: 0 auto; border: 2px outset #d4d0c8; background: #d4d0c8; box-shadow: 12px 12px 0 #0005; display: flex; flex-direction: column; }
-.museumTitlebar { min-height: 28px; padding: 3px 4px 3px 7px; color: white; background: linear-gradient(90deg, #000080, #1084d0); display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-weight: 700; }
-.museumTitlebar div { display: flex; gap: 2px; }
-.museumTitlebar i { width: 20px; height: 19px; border: 2px outset #d4d0c8; color: #000; background: #d4d0c8; display: grid; place-items: center; font-style: normal; line-height: 1; }
-.museumMenu { min-height: 24px; padding: 5px 8px; font-size: 11px; }
-.museumToolbar { min-height: 48px; padding: 4px 10px; border-top: 1px solid #fff; border-bottom: 1px solid #888; display: flex; gap: 26px; }
-.museumToolbar > span { min-width: 34px; display: grid; place-items: center; font: 700 21px/1 Times New Roman, serif; }
-.museumToolbar small { margin-top: 3px; font: 10px Tahoma, Arial, sans-serif; }
-.museumAddress { padding: 4px 6px; border-bottom: 2px groove #fff; display: flex; align-items: center; gap: 8px; font-size: 10px; }
-.museumAddress span { flex: 1; padding: 4px 6px; border: 2px inset #fff; background: white; font-family: Arial, sans-serif; }
-.museumPage { flex: 1; min-height: 0; overflow: auto; padding: 12px; background-color: white; background-image: linear-gradient(45deg, #ececec 25%, transparent 25%), linear-gradient(-45deg, #ececec 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ececec 75%), linear-gradient(-45deg, transparent 75%, #ececec 75%); background-size: 18px 18px; background-position: 0 0, 0 9px, 9px -9px, -9px 0; }
-.museumTicker { overflow: hidden; padding: 6px 0; border: 2px ridge #fff; color: #ff0; background: #000080; white-space: nowrap; font: 700 13px "Comic Sans MS", cursive; }
-.museumTicker span { display: inline-block; padding-left: 100%; animation: museumTicker 13s linear infinite; }
-.museumLayout { display: grid; grid-template-columns: 150px 1fr; gap: 12px; margin-top: 12px; }
-.museumLayout aside { align-self: start; padding: 8px; border: 3px ridge #d4d0c8; background: #c0c0c0; display: flex; flex-direction: column; gap: 7px; font-size: 11px; }
-.museumLayout aside strong { padding: 5px; color: white; background: #000080; text-align: center; }
-.museumLayout aside a { color: #0000ee; text-decoration: underline; }
-.museumNew { align-self: center; margin-top: 8px; padding: 3px 6px; color: #fff; background: #f00; font-weight: 700; animation: museumBlink .7s steps(1) infinite; }
-.museumLayout > section { padding: 18px; border: 4px ridge #fffe; background: #ffffe9; text-align: center; }
-.museumLayout h1 { margin: 0 0 18px; color: #000080; font: 700 clamp(44px, 8vw, 82px)/.78 "Comic Sans MS", cursive; letter-spacing: -.07em; text-align: center; text-shadow: 3px 3px 0 #0ff, 5px 5px 0 #f0f; white-space: normal; }
-.museumWelcome { color: #800080; font: 700 17px/1.3 "Comic Sans MS", cursive; }
-.museumConstruction { margin: 18px 0; padding: 7px; color: #ff0; background: repeating-linear-gradient(135deg, #000 0 12px, #f00 12px 24px); border: 3px outset #ddd; font-size: 11px; font-weight: 700; text-shadow: 1px 1px #000; }
-.museumCards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left; }
-.museumCards article { min-height: 112px; padding: 10px; border: 2px dashed #000080; background: #fff; font: 12px/1.45 "Times New Roman", serif; }
-.museumCards b { color: #f00; font-family: "Comic Sans MS", cursive; }
-.museumCounter { margin: 20px auto 8px; display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 10px; }
-.museumCounter strong { padding: 4px 8px; color: #0f0; background: #000; font: 700 22px/1 "Courier New", monospace; letter-spacing: .15em; }
-.museumBest { margin: 12px 0 0; color: #555; font-size: 9px; }
-.museumPage footer { min-height: 0; margin-top: 12px; padding: 8px; border: 2px groove #fff; color: white; background: #000080; justify-content: center; text-align: center; font: 10px Tahoma, Arial, sans-serif; letter-spacing: 0; }
-.museumStatus { min-height: 24px; padding: 4px 7px; border-top: 2px groove white; display: flex; justify-content: space-between; font-size: 10px; }
-.museumExit { position: fixed; right: 28px; bottom: 16px; padding: 9px 12px; border: 2px outset #d4d0c8; color: #000; background: #d4d0c8; cursor: pointer; font: 700 10px Tahoma, Arial, sans-serif; }
-.museumExit:active { border-style: inset; }
+.museumMode { position: fixed; inset: 0; z-index: 90; padding: 28px; color: #000; background: url('https://upload.wikimedia.org/wikipedia/commons/e/e5/Windows_7_default_wallpaper.jpg') center/cover; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; }
+.win7Window { width: min(1000px, 100%); height: calc(100dvh - 98px); margin: 0 auto; border: 1px solid rgba(255,255,255,0.4); border-radius: 8px; background: rgba(220, 230, 240, 0.6); box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; flex-direction: column; overflow: hidden; }
+.win7Titlebar { display: flex; justify-content: space-between; padding: 8px 8px 0; }
+.win7Tabs { display: flex; gap: 4px; align-items: flex-end; overflow: hidden; }
+.win7Tabs button { height: 28px; padding: 0 16px; border: 1px solid rgba(0,0,0,0.3); border-bottom: none; border-radius: 6px 6px 0 0; background: rgba(255,255,255,0.5); font: 12px 'Segoe UI', sans-serif; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+.win7Tabs button.active { background: #fff; font-weight: bold; }
+.win7Controls { display: flex; gap: 2px; }
+.win7Controls i { width: 26px; height: 20px; border: 1px solid rgba(0,0,0,0.2); border-radius: 3px; display: grid; place-items: center; background: rgba(255,255,255,0.3); font-style: normal; font-size: 10px; cursor: pointer; }
+.win7Controls .win7Close { background: rgba(200, 50, 50, 0.7); color: white; font-weight: bold; }
+.win7Toolbar { display: flex; gap: 12px; padding: 8px; background: #fff; border-bottom: 1px solid #ccc; align-items: center; }
+.win7Nav button { border: 1px solid #bbb; border-radius: 50%; width: 24px; height: 24px; background: #f0f0f0; cursor: pointer; font-size: 12px; }
+.win7AddressBar { flex: 1; border: 1px solid #999; border-radius: 12px; padding: 3px 12px; background: #fff; font-size: 13px; color: #333; }
+.win7Page { flex: 1; background: #fff; overflow: auto; display: flex; flex-direction: column; }
+
+/* Facebook 2012 */
+.fb2012 { flex: 1; background: #e9eaed; font-family: "lucida grande", tahoma, verdana, arial, sans-serif; color: #333; }
+.fbTopbar { background: #3b5998; border-bottom: 1px solid #133783; padding: 0 20px; height: 42px; display: flex; align-items: center; justify-content: center; color: white; }
+.fbTopInner { width: 100%; max-width: 980px; display: flex; align-items: center; justify-content: space-between; }
+.fbLogo { font: bold 24px tahoma; margin: 0; letter-spacing: -1px; }
+.fbSearch input { border: none; padding: 4px 6px; width: 300px; font-size: 12px; }
+.fbTopIcons { display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: bold; }
+.fbBody { max-width: 980px; margin: 15px auto; display: grid; grid-template-columns: 180px 1fr 200px; gap: 15px; }
+.fbSidebar ul { list-style: none; padding: 0; margin: 0; font-size: 12px; }
+.fbSidebar li { padding: 4px 6px; margin-bottom: 2px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+.fbSidebar li:hover { background: #d8dfea; }
+.fbFeed { display: flex; flex-direction: column; gap: 15px; }
+.fbComposer { background: #fff; border: 1px solid #ccc; border-radius: 3px; }
+.fbComposerTop { background: #f6f7f8; border-bottom: 1px solid #e5e5e5; padding: 8px; font-size: 12px; font-weight: bold; display: flex; gap: 15px; }
+.fbComposerInput textarea { width: 100%; border: none; padding: 10px; font-family: inherit; font-size: 13px; resize: none; outline: none; }
+.fbComposerBottom { background: #f6f7f8; border-top: 1px solid #e5e5e5; padding: 8px; text-align: right; }
+.fbComposerBottom button { background: #5b74a8; color: white; border: 1px solid #29447e; padding: 4px 12px; font-weight: bold; cursor: pointer; }
+.fbPost { background: #fff; border: 1px solid #ccc; border-radius: 3px; padding: 12px; }
+.fbPostHeader { display: flex; gap: 10px; margin-bottom: 10px; }
+.fbProfilePic { background: #ccc; width: 32px; height: 32px; display: grid; place-items: center; font-size: 16px; border-radius: 2px; }
+.fbPostInfo a { color: #3b5998; font-weight: bold; text-decoration: none; font-size: 13px; }
+.fbPostInfo span { display: block; color: #999; font-size: 11px; margin-top: 2px; }
+.fbPostContent { font-size: 13px; margin-bottom: 12px; }
+.fbPostActions { border-top: 1px solid #eee; padding-top: 8px; color: #3b5998; font-size: 12px; }
+.fbTicker { border-left: 1px solid #ccc; padding-left: 10px; font-size: 11px; }
+.fbTickerItem { display: flex; gap: 8px; margin-bottom: 10px; align-items: center; }
+
+/* Click Jogos 2012 */
+.cj2012 { flex: 1; background: #fff; font-family: Arial, sans-serif; }
+.cjHeader { background: #ff6600; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+.cjLogo { color: #fff; font: bold 28px/1 Arial; text-shadow: 2px 2px 0 #cc3300; letter-spacing: -1px; }
+.cjSearch { display: flex; }
+.cjSearch input { padding: 5px; width: 200px; border: 1px solid #ccc; }
+.cjSearch button { background: #0066cc; color: white; border: none; padding: 5px 10px; cursor: pointer; font-weight: bold; }
+.cjNav { background: #0066cc; color: white; display: flex; padding: 8px 20px; gap: 20px; font-size: 13px; font-weight: bold; }
+.cjBody { display: grid; grid-template-columns: 200px 1fr; gap: 20px; padding: 20px; max-width: 1000px; margin: 0 auto; }
+.cjSidebar h3, .cjGrid h3 { color: #ff6600; margin-top: 0; font-size: 16px; border-bottom: 2px solid #ccc; padding-bottom: 5px; margin-bottom: 15px; }
+.cjSidebar ol { padding-left: 20px; font-size: 13px; }
+.cjSidebar li { margin-bottom: 8px; color: #0066cc; text-decoration: underline; cursor: pointer; }
+.cjGames { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 15px; }
+.cjGame { text-align: center; font-size: 12px; font-weight: bold; color: #333; cursor: pointer; }
+.cjThumb { height: 90px; background: #eee; border: 2px solid #ccc; border-radius: 4px; margin-bottom: 5px; display: grid; place-items: center; font-size: 32px; }
+.cjThumb:hover { border-color: #ff6600; }
+.cjThumb1 { background: #ffeb3b; }
+.cjThumb2 { background: #ff9800; }
+.cjThumb3 { background: #4caf50; }
+.cjThumb4 { background: #607d8b; }
+.cjThumb5 { background: #8bc34a; }
+.cjThumb6 { background: #9e9e9e; }
+
+/* Club Penguin 2012 */
+.cp2012 { flex: 1; background: #0099cc; display: flex; flex-direction: column; align-items: center; font-family: 'Trebuchet MS', Arial, sans-serif; color: white; }
+.cpHeader { padding: 40px 0; text-align: center; }
+.cpHeader h1 { font-size: 48px; text-shadow: 3px 3px 0 #005580; margin: 0; letter-spacing: 2px; }
+.cpLoginBox { background: #fff; color: #333; border-radius: 12px; padding: 30px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.3); width: 400px; border: 4px solid #ffcc00; }
+.cpPenguin { font-size: 64px; margin-bottom: 10px; }
+.cpLoginBox h2 { font-size: 18px; margin-top: 0; color: #0099cc; }
+.cpPlayBtn { background: #ffcc00; color: #d32f2f; border: 3px solid #ff9900; border-radius: 20px; font-size: 24px; font-weight: bold; padding: 10px 30px; cursor: pointer; margin: 20px 0; text-shadow: 1px 1px 0 #ffe066; width: 100%; transition: transform 0.1s; }
+.cpPlayBtn:hover { transform: scale(1.05); }
+.cpLinks { font-size: 13px; color: #666; }
+.cpLinks button { background: none; border: none; color: #0099cc; text-decoration: underline; cursor: pointer; font: inherit; }
+.cpFooter { margin-top: auto; padding: 20px; font-size: 12px; opacity: 0.8; }
+
+/* Habbo 2012 */
+.habbo2012 { flex: 1; background: url('https://images.habbo.com/c_images/reception/background_left.png') no-repeat left bottom, url('https://images.habbo.com/c_images/reception/background_right.png') no-repeat right bottom, #e4e3d5; font-family: Ubuntu, "Trebuchet MS", sans-serif; color: #000; }
+.habboTop { background: #262626; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #5a5a5a; }
+.habboLogo { font: bold 24px Arial; letter-spacing: -1px; }
+.habboOnline { font-size: 13px; }
+.habboBody { max-width: 900px; margin: 40px auto; display: flex; justify-content: space-between; gap: 40px; }
+.habboLeft { flex: 1; }
+.habboLeft h2 { font-size: 28px; color: #1a1a1a; margin-top: 0; }
+.habboLeft ul { list-style: none; padding: 0; font-size: 16px; font-weight: bold; color: #444; line-height: 1.8; }
+.habboAvatars { font-size: 48px; margin-top: 30px; }
+.habboRight { width: 320px; }
+.habboLoginBox { background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-top: 5px solid #1a1a1a; }
+.habboLoginBox h3 { margin-top: 0; color: #333; }
+.habboLoginBox input { display: block; width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 3px; font-size: 14px; box-sizing: border-box; }
+.habboLoginBtn { width: 100%; background: #4ba818; color: white; border: none; padding: 12px; font-size: 16px; font-weight: bold; border-radius: 3px; cursor: pointer; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2); }
+.habboRegisterBtn { margin-top: 20px; width: 100%; background: #eb8f00; color: white; border: none; padding: 15px; font-size: 18px; font-weight: bold; border-radius: 5px; cursor: pointer; box-shadow: inset 0 -3px 0 rgba(0,0,0,0.2); text-transform: uppercase; }
+
+.museumExit { position: fixed; right: 28px; bottom: 16px; padding: 9px 12px; border: 1px solid #666; border-radius: 4px; color: #333; background: #e0e0e0; cursor: pointer; font: 700 10px 'Segoe UI', sans-serif; box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 100; }
+
 .terminalHint { position: fixed; z-index: 20; inset: auto 0 0; min-height: calc(32px + env(safe-area-inset-bottom)); padding: 9px 22px calc(9px + env(safe-area-inset-bottom)); color: var(--muted); background: #e5e3da; border-top: 1px solid var(--line); font: 500 9px var(--font-geist-mono), monospace; letter-spacing: .07em; }
 
 .logShell, .visitorShell { width: min(1050px, calc(100% - 44px)); margin: 0 auto; padding-bottom: 100px; }
@@ -372,3 +435,113 @@ footer a { color: var(--ink); }
 @keyframes museumBlink { 50% { visibility: hidden; } }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } .musicSlide { animation: none; } }
+
+/* CMD+K Command Palette */
+.commandPaletteOverlay { position: fixed; inset: 0; z-index: 1000; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px); display: flex; align-items: flex-start; justify-content: center; padding-top: 15vh; }
+.commandPaletteDialog { width: 100%; max-width: 500px; background: var(--paper); border: 1px solid var(--ink); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+.commandPaletteDialog input { width: 100%; padding: 16px 20px; border: none; border-bottom: 1px solid var(--line); background: transparent; color: var(--ink); font: 400 16px var(--font-geist-sans), sans-serif; outline: none; }
+.commandPaletteDialog input::placeholder { color: var(--muted); }
+.commandPaletteList { list-style: none; margin: 0; padding: 0; max-height: 300px; overflow-y: auto; }
+.commandPaletteList li { padding: 12px 20px; display: flex; align-items: center; gap: 12px; cursor: pointer; color: var(--ink); font: 500 13px var(--font-geist-mono), monospace; border-bottom: 1px solid var(--line); }
+.commandPaletteList li:last-child { border-bottom: none; }
+.commandPaletteList li.selected, .commandPaletteList li:hover { background: var(--line); color: var(--ink); }
+.commandPaletteList li .icon { font-size: 16px; }
+.commandPaletteList li.empty { color: var(--muted); padding: 20px; text-align: center; cursor: default; }
+
+/* Zen Mode (Readme Style) */
+.zenModeContainer { min-height: 100vh; padding: 60px 40px; background: #fff; color: #000; font-family: monospace; max-width: 800px; margin: 0 auto; }
+.zenHeader { margin-bottom: 40px; }
+.zenExitBtn { background: transparent; border: none; color: #666; cursor: pointer; font-family: inherit; font-size: 14px; text-decoration: underline; padding: 0; }
+.zenExitBtn:hover { color: #000; }
+.zenTitle { font-size: 24px; font-weight: bold; margin: 0 0 5px 0; }
+.zenSubtitle { font-size: 14px; color: #666; margin: 0 0 40px 0; }
+.zenSection { margin-bottom: 30px; }
+.zenSection h2 { font-size: 16px; font-weight: bold; text-transform: uppercase; margin: 0 0 10px 0; border-bottom: 1px dashed #ccc; padding-bottom: 5px; }
+.zenSection p { font-size: 14px; line-height: 1.5; margin: 0; }
+.zenList { list-style: none; padding: 0; margin: 0; }
+.zenList li { font-size: 14px; line-height: 1.6; display: flex; gap: 8px; }
+.zenList li::before { content: "-"; color: #999; }
+.zenList a { color: #000; text-decoration: underline; }
+
+/* Brain Dump */
+.braindumpList { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+.braindumpItem { display: grid; grid-template-columns: 90px 1fr; gap: 16px; font: 500 12px var(--font-geist-mono), monospace; color: var(--ink); }
+.braindumpItem .dumpDate { color: var(--muted); }
+.braindumpItem p { margin: 0; line-height: 1.4; }
+
+/* CMD+K Hint */
+.cmdHint { margin: 60px 0 0; text-align: center; color: var(--muted); font: 500 10px var(--font-geist-mono), monospace; letter-spacing: .05em; }
+.cmdHint kbd { background: var(--line); padding: 2px 6px; border-radius: 3px; font-family: inherit; }
+
+@media (max-width: 768px) {
+  .commandPaletteDialog { margin: 0 16px; }
+  .zenModeContainer { padding: 40px 20px; }
+  .braindumpItem { grid-template-columns: 1fr; gap: 4px; }
+}
+
+/* Museum Web 1.0 Features */
+.sparkleParticle { position: fixed; pointer-events: none; z-index: 1000; font-size: 14px; animation: sparkleFade 0.8s ease-out forwards; user-select: none; }
+@keyframes sparkleFade { 0% { opacity: 1; transform: scale(1.2) translateY(0); } 100% { opacity: 0; transform: scale(0.4) translateY(-24px); } }
+
+.museumNudgeShake { animation: nudgeShake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+@keyframes nudgeShake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  15% { transform: translate(-12px, 8px) rotate(-1.5deg); }
+  30% { transform: translate(10px, -10px) rotate(1.5deg); }
+  45% { transform: translate(-8px, 6px) rotate(-1deg); }
+  60% { transform: translate(6px, -4px) rotate(1deg); }
+  75% { transform: translate(-3px, 2px) rotate(-0.5deg); }
+}
+
+.museumMenu button { background: transparent; border: none; font: inherit; cursor: pointer; padding: 2px 6px; }
+.museumMenu button.activeMenu { background: #000080; color: #fff; font-weight: bold; }
+
+.winampWidget { margin-left: auto; display: flex; align-items: center; gap: 8px; background: #000; padding: 3px 6px; border: 2px inset #d4d0c8; font-family: 'Courier New', monospace; }
+.winampPlayBtn { background: #00ff00; color: #000; border: none; font-size: 9px; font-weight: bold; cursor: pointer; padding: 2px 6px; }
+.winampDisplay { color: #00ff00; font-size: 9px; display: flex; align-items: center; gap: 6px; }
+.winampBars { display: flex; gap: 2px; height: 10px; align-items: flex-end; }
+.winampBars i { width: 3px; background: #00ff00; animation: winampEqualizer 0.4s infinite alternate; }
+.winampBars i:nth-child(2) { animation-delay: 0.1s; }
+.winampBars i:nth-child(3) { animation-delay: 0.25s; }
+.winampBars i:nth-child(4) { animation-delay: 0.35s; }
+@keyframes winampEqualizer { 0% { height: 20%; } 100% { height: 100%; } }
+
+.nudgeSidebarBtn { margin-top: 10px; padding: 6px; background: #ff0055; color: #fff; border: 2px outset #ff4488; font-weight: bold; cursor: pointer; font-size: 9px; }
+.nudgeSidebarBtn:active { border-style: inset; }
+
+/* MSN Tab */
+.msnTabSection { padding: 16px; background: #eef3fb; border: 2px solid #6b94ce; font-family: Tahoma, Arial, sans-serif; }
+.msnHeader { display: flex; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid #b4c9e8; }
+.msnAvatar { width: 36px; height: 36px; background: #0080ff; color: white; display: grid; place-items: center; font-size: 20px; border-radius: 4px; border: 2px solid #0055b3; }
+.msnHeader strong { color: #003399; font-size: 13px; }
+.msnHeader p { margin: 2px 0 0; color: #555; font-size: 10px; font-style: italic; }
+.nudgeActionBtn { margin-left: auto; padding: 6px 10px; background: linear-gradient(#fff, #d0e0f8); border: 1px solid #7090c0; border-radius: 3px; cursor: pointer; font-weight: bold; font-size: 10px; color: #003399; }
+.msnChatBox { margin-top: 12px; height: 220px; overflow-y: auto; background: white; border: 1px solid #90b0e0; padding: 10px; display: flex; flex-direction: column; gap: 8px; font-size: 11px; }
+.msnMsg.sysMsg { color: #888; font-style: italic; font-size: 10px; }
+.msnMsg.myMsg strong { color: #0000ff; }
+.msnMsg.friendMsg strong { color: #ff0066; }
+
+/* Guestbook Section */
+.guestbookSection { padding: 16px; background: #ffffe0; border: 3px ridge #e6e600; text-align: left; }
+.guestbookSection h2 { color: #800000; font-family: 'Comic Sans MS', cursive; font-size: 16px; margin: 0 0 12px; }
+.gbForm { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.gbForm input, .gbForm textarea { padding: 6px; border: 2px inset #ccc; font-family: 'Comic Sans MS', cursive; font-size: 11px; }
+.gbForm textarea { min-height: 50px; resize: vertical; }
+.gbForm button { padding: 6px; background: #ff0066; color: white; border: 2px outset #ff66a3; font-weight: bold; cursor: pointer; font-family: 'Comic Sans MS', cursive; }
+.gbPostsList { display: flex; flex-direction: column; gap: 10px; }
+.gbPost { background: white; border: 2px dashed #ff99bb; padding: 8px; font-size: 11px; }
+.gbPost header { display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 4px; margin-bottom: 4px; color: #800080; }
+
+/* Win98 Error Simulator */
+.win98Section { padding: 24px; background: #c0c0c0; border: 2px outset #fff; text-align: center; }
+.win98SpawnBtn { padding: 10px 16px; background: #c0c0c0; border: 2px outset #fff; font-weight: bold; cursor: pointer; font-size: 12px; margin-top: 12px; }
+.win98SpawnBtn:active { border-style: inset; }
+.win98ErrorWindow { position: fixed; z-index: 2000; width: 300px; background: #c0c0c0; border: 2px outset #fff; box-shadow: 4px 4px 10px rgba(0,0,0,0.5); font-family: Tahoma, Arial, sans-serif; }
+.win98ErrorTitlebar { background: linear-gradient(90deg, #000080, #1084d0); color: white; padding: 3px 6px; font-weight: bold; font-size: 11px; display: flex; justify-content: space-between; align-items: center; }
+.win98ErrorTitlebar button { background: #c0c0c0; border: 1px outset #fff; width: 16px; height: 14px; font-size: 10px; line-height: 1; cursor: pointer; }
+.win98ErrorBody { padding: 16px; display: flex; gap: 12px; align-items: center; font-size: 11px; color: #000; }
+.win98ErrorIcon { font-size: 24px; }
+.win98ErrorFooter { padding: 8px; text-align: center; background: #c0c0c0; }
+.win98ErrorFooter button { min-width: 60px; padding: 4px; background: #c0c0c0; border: 2px outset #fff; font-size: 11px; cursor: pointer; }
+.win98ErrorFooter button:active { border-style: inset; }
+
