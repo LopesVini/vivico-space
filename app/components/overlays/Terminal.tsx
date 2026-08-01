@@ -191,7 +191,7 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
 
         <main className="museumPage win7Page">
           {museumTab === "facebook" && (
-            <img src="/museum/facebook.jpg" alt="Facebook 2012" style={{ width: "100%", display: "block" }} />
+            <img src="/museum/facebook.png" alt="Facebook 2012" style={{ width: "100%", display: "block" }} />
           )}
 
           {museumTab === "clubpenguin" && (

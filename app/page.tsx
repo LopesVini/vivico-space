@@ -94,6 +94,9 @@ export default function Home() {
           <button className="langSwitch" onClick={() => setLang(lang === "pt" ? "en" : "pt")} aria-label={lang === "pt" ? "Switch to English" : "Mudar para português"}>
             <span className={lang === "pt" ? "active" : ""}>PT</span>/<span className={lang === "en" ? "active" : ""}>EN</span>
           </button>
+          <button className="langSwitch" onClick={() => setZenMode(true)} aria-label="Zen Mode">
+            <span className="active">CSS ON</span>/<span>OFF</span>
+          </button>
         </nav>
         <div className="status"><span className="statusDot" /> {t.status}</div>
       </header>
