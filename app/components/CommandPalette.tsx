@@ -44,6 +44,7 @@ export default function CommandPalette({ lang, onNavigate, onToggleZen }: { lang
     { id: "zen", name: { pt: "Alternar Modo Zen", en: "Toggle Zen Mode" }, icon: "👁️", onSelect: () => { onToggleZen(); setOpen(false); } },
     { id: "terminal", name: { pt: "Abrir Terminal", en: "Open Terminal" }, icon: "💻", onSelect: () => { onNavigate("terminal"); setOpen(false); } },
     { id: "gallery", name: { pt: "Ver Galeria", en: "View Gallery" }, icon: "📸", onSelect: () => { onNavigate("gallery"); setOpen(false); } },
+    { id: "museum", name: { pt: "Museu (Internet Antiga)", en: "Museum (Old Internet)" }, icon: "🏛️", onSelect: () => { onNavigate("terminal"); setTimeout(() => window.dispatchEvent(new CustomEvent("triggerMuseum")), 100); setOpen(false); } },
     { id: "changelog", name: { pt: "Histórico (System Log)", en: "System Log" }, icon: "📝", onSelect: () => { onNavigate("changelog"); setOpen(false); } },
     { id: "github", name: { pt: "GitHub", en: "GitHub" }, icon: "↗️", onSelect: () => { window.open("https://github.com/LopesVini", "_blank"); setOpen(false); } },
   ];

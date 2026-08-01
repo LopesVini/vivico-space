@@ -32,9 +32,20 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
 
   const [museumTab, setMuseumTab] = useState<"facebook" | "clickjogos" | "clubpenguin" | "habbo">("facebook");
 
+
+
   useEffect(() => { if (!museum) return; const close = (event: KeyboardEvent) => { if (event.key === "Escape") setMuseum(false); }; window.addEventListener("keydown", close); return () => window.removeEventListener("keydown", close); }, [museum]);
 
   const output = (text: string, kind: Line["kind"] = "output") => setLines((old) => [...old, { kind, text }]);
+
+  useEffect(() => {
+    const handleTrigger = () => {
+      output(pt ? "Abrindo uma versão da internet que se recusou a morrer…" : "Opening a version of the internet that refused to die…", "accent");
+      setMuseum(true);
+    };
+    window.addEventListener("triggerMuseum", handleTrigger);
+    return () => window.removeEventListener("triggerMuseum", handleTrigger);
+  }, [pt, output]);
   const showRegistry = async () => {
     try {
       const response = await fetch("/api/visitors"); const data = await response.json() as { entries?: Visitor[] };
