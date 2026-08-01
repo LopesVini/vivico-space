@@ -40,7 +40,7 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
 
   useEffect(() => {
     const handleTrigger = () => {
-      output(pt ? "Abrindo uma versão da internet que se recusou a morrer…" : "Opening a version of the internet that refused to die…", "accent");
+      output(pt ? "Sites das antiga" : "Opening a version of the internet that refused to die…", "accent");
       setMuseum(true);
     };
     window.addEventListener("triggerMuseum", handleTrigger);
@@ -109,7 +109,7 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
     else if (cmd === "camaco" || cmd.startsWith("camaco ")) {
       const msg = raw.substring(6).trim();
       if (!msg) {
-        output(pt ? "Guinlagem de Camaco: Dialeto itabirano que inverte consoantes.\nDigite: camaco <mensagem> para traduzir." : "Guinlagem de Camaco: Itabira dialect that swaps consonants.\nType: camaco <message> to translate.", "accent");
+        output(pt ? "Guinlagem de Camaco: Dialeto itabirano\nDigite: camaco <mensagem> para traduzir." : "Guinlagem de Camaco: Itabira dialect that swaps consonants.\nType: camaco <message> to translate.", "accent");
       } else {
         const vowels = "aeiouyáéíóúãõâêôAEIOUYÁÉÍÓÚÃÕÂÊÔ";
         const regex = new RegExp(`([^${vowels}\\W\\d_]+)`, 'gi');
@@ -132,13 +132,13 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
       }
     }
     else if (cmd === "stack" || cmd === "uses") output(`HARDWARE STACK\n\n- MacBook M4 Air\n- Desktop: RTX 5060, Ryzen 7, 32GB RAM`, "accent");
-    else if (cmd === "easteregg") output(pt ? "NÃO É ASSIM QUE FUNCIONA UM EASTER EGG.\n\nDigite: 404" : "THAT IS NOT HOW AN EASTER EGG WORKS.\n\nType: 404", "accent");
-    else if (cmd === "404") output(pt ? "404 — A PÁGINA NÃO EXISTE.\nMas alguma coisa ficou para trás.\n\nDigite: ls" : "404 — THE PAGE DOES NOT EXIST.\nBut something was left behind.\n\nType: ls", "accent");
-    else if (cmd === "ls") output(pt ? "memorias/  sistema/  .nao-toque\n\nUm arquivo começa com ponto porque prefere não ser visto.\nDigite: cat .nao-toque" : "memories/  system/  .nao-toque\n\nA file begins with a dot because it would rather not be seen.\nType: cat .nao-toque", "accent");
-    else if (cmd === "cat .nao-toque") output(pt ? "Você ignorou o nome do arquivo. Bom sinal.\nA próxima pista desceu um andar.\n\nDigite: cd porao" : "You ignored the file name. Good sign.\nThe next clue went down one floor.\n\nType: cd porao", "accent");
-    else if (cmd === "cd porao") output(pt ? "Você entrou no porão.\nHá uma porta sem maçaneta.\n\nDigite: sudo abrir porta" : "You entered the basement.\nThere is a door without a handle.\n\nType: sudo abrir porta", "accent");
-    else if (cmd === "sudo abrir porta") output(pt ? "[sudo] permissão emocional concedida.\nA porta abriu um centímetro.\n\nDigite: abra" : "[sudo] emotional permission granted.\nThe door opened one centimetre.\n\nType: abra", "accent");
-    else if (cmd === "abra") { output(pt ? "EASTER EGG ENCONTRADO." : "EASTER EGG FOUND.", "accent"); setEasterEggOpen(true); }
+    else if (cmd === "easteregg") output(pt ? "NÃO É ASSIM QUE FUNCIONA UM EASTER EGG.\n\nNão digite: 404" : "THAT IS NOT HOW AN EASTER EGG WORKS.\n\nDon't type: 404", "accent");
+    else if (cmd === "404") output(pt ? "404 — A PÁGINA NÃO EXISTE.\ntalvez essa fosse a ideia\n\nNão digite: ls" : "404 — THE PAGE DOES NOT EXIST.\nmaybe that was the ideia\n\nDon't type: ls", "accent");
+    else if (cmd === "ls") output(pt ? "documentos/  downloads/  .nao-entre\n\nNão digite: cat .nao-entre" : "documentos/  downloads/  .nao-entre\n\nA file begins with a dot because it would rather not be seen.\nType: cat .nao-entre", "accent");
+    else if (cmd === "cat .nao-entre") output(pt ? "Pq vc ainda isiste?\nNão Digite: cd pare aqui" : "You ignored the file name. Good sign.\nThe next clue went down one floor.\n\nType: cd porao", "accent");
+    else if (cmd === "cd pare aqui") output(pt ? "Obedece retardado\nNão digite: sudo abrir" : "You entered the basement.\nThere is a door without a handle.\n\nType: sudo abrir", "accent");
+    else if (cmd === "sudo abrir") output(pt ? "Não aguento mais, vc ganhou\npode ficar com o prêmio\n\nDigite: premio" : "[sudo] emotional permission granted.\nThe door opened one centimetre.\n\nType: open", "accent");
+    else if (cmd === "premio") { output(pt ? "Parabens otáriokkkk!!" : "Congratulations!! You won a cupcake!", "accent"); setEasterEggOpen(true); }
     else if (cmd === "whoami" || cmd === "quem-sou") output(pt ? "Esse comando normalmente retorna um usuário. Você provavelmente esperava pouco demais dele." : "That command usually returns a username. You probably expected too little from it.");
     else if (cmd === "sudo") output(pt ? "Permissão negada. Você já tem controle suficiente." : "Permission denied. You already have enough control.");
     else if (cmd.includes("rm -rf")) output(pt ? "dúvida: não pode ser removida\ndúvida é necessária por 14 processos criativos" : "doubt: cannot be removed\ndoubt is required by 14 creative processes");
@@ -158,16 +158,16 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
       <div className="museumWindow win7Window">
         <header className="museumTitlebar win7Titlebar">
           <div className="win7Tabs">
-             <button className={museumTab === "facebook" ? "active" : ""} onClick={() => setMuseumTab("facebook")}>
-               F
-               Facebook
-             </button>
-             <button className={museumTab === "clubpenguin" ? "active" : ""} onClick={() => setMuseumTab("clubpenguin")}>
-               🐧 Club Penguin
-             </button>
-             <button className={museumTab === "habbo" ? "active" : ""} onClick={() => setMuseumTab("habbo")}>
-               🏨 Habbo
-             </button>
+            <button className={museumTab === "facebook" ? "active" : ""} onClick={() => setMuseumTab("facebook")}>
+              F
+              Facebook
+            </button>
+            <button className={museumTab === "clubpenguin" ? "active" : ""} onClick={() => setMuseumTab("clubpenguin")}>
+              🐧 Club Penguin
+            </button>
+            <button className={museumTab === "habbo" ? "active" : ""} onClick={() => setMuseumTab("habbo")}>
+              🏨 Habbo
+            </button>
           </div>
           <div className="win7Controls" aria-hidden="true">
             <i>_</i><i>□</i><i className="win7Close" onClick={() => setMuseum(false)}>×</i>
