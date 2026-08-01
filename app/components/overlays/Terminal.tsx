@@ -30,7 +30,7 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
   useEffect(() => () => { if (coinTimer.current) window.clearTimeout(coinTimer.current); if (coinHideTimer.current) window.clearTimeout(coinHideTimer.current); if (matrixTimer.current) window.clearTimeout(matrixTimer.current); }, []);
   useEffect(() => body.current?.scrollTo({ top: body.current.scrollHeight, behavior: "smooth" }), [lines, coin, easterEggOpen]);
 
-  const [museumTab, setMuseumTab] = useState<"facebook" | "clickjogos" | "clubpenguin" | "habbo">("facebook");
+  const [museumTab, setMuseumTab] = useState<"facebook" | "clubpenguin" | "habbo">("facebook");
 
 
 
@@ -162,9 +162,6 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
                F
                Facebook
              </button>
-             <button className={museumTab === "clickjogos" ? "active" : ""} onClick={() => setMuseumTab("clickjogos")}>
-               🎮 Click Jogos
-             </button>
              <button className={museumTab === "clubpenguin" ? "active" : ""} onClick={() => setMuseumTab("clubpenguin")}>
                🐧 Club Penguin
              </button>
@@ -186,7 +183,6 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
           <div className="win7AddressBar">
             <span className="win7Url">
               {museumTab === "facebook" && "https://www.facebook.com/"}
-              {museumTab === "clickjogos" && "http://www.clickjogos.com.br/"}
               {museumTab === "clubpenguin" && "http://play.clubpenguin.com/"}
               {museumTab === "habbo" && "http://www.habbo.com.br/"}
             </span>
@@ -195,146 +191,15 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
 
         <main className="museumPage win7Page">
           {museumTab === "facebook" && (
-            <div className="fb2012">
-               <div className="fbTopbar">
-                 <div className="fbTopInner">
-                   <h1 className="fbLogo">facebook</h1>
-                   <div className="fbSearch"><input type="text" placeholder="Search for people, places and things" /></div>
-                   <div className="fbTopIcons">
-                      <span className="fbProfilePic">👤</span>
-                      <span className="fbName">Vivico</span>
-                      <span className="fbNav">Home</span>
-                   </div>
-                 </div>
-               </div>
-               <div className="fbBody">
-                 <aside className="fbSidebar">
-                   <ul>
-                     <li><span className="fbProfilePic">👤</span> Vivico</li>
-                     <li>📝 News Feed</li>
-                     <li>✉️ Messages</li>
-                     <li>📅 Events</li>
-                     <li>📸 Photos</li>
-                     <li>🎮 Games</li>
-                   </ul>
-                 </aside>
-                 <section className="fbFeed">
-                   <div className="fbComposer">
-                     <div className="fbComposerTop"><span>Update Status</span> <span>Add Photo/Video</span></div>
-                     <div className="fbComposerInput">
-                       <textarea placeholder="What's on your mind?"></textarea>
-                     </div>
-                     <div className="fbComposerBottom">
-                       <button>Post</button>
-                     </div>
-                   </div>
-                   <div className="fbPost">
-                     <div className="fbPostHeader">
-                       <div className="fbProfilePic">👤</div>
-                       <div className="fbPostInfo">
-                         <a href="#">Vivico</a>
-                         <span>July 30, 2012</span>
-                       </div>
-                     </div>
-                     <div className="fbPostContent">
-                       Alguém quer jogar Habbo ou ler meu blog? rsrs
-                     </div>
-                     <div className="fbPostActions">
-                       <span>Like</span> · <span>Comment</span> · <span>Share</span>
-                     </div>
-                   </div>
-                 </section>
-                 <aside className="fbTicker">
-                   <div className="fbTickerItem">
-                     <span className="fbProfilePic">👤</span> <b>Gabriel</b> is now friends with <b>Amanda</b>.
-                   </div>
-                   <div className="fbTickerItem">
-                     <span className="fbProfilePic">👤</span> <b>João</b> liked a photo.
-                   </div>
-                 </aside>
-               </div>
-            </div>
-          )}
-
-          {museumTab === "clickjogos" && (
-            <div className="cj2012">
-               <header className="cjHeader">
-                 <div className="cjLogo">CLICK JOGOS</div>
-                 <div className="cjSearch"><input type="text" placeholder="Buscar jogos..."/><button>OK</button></div>
-               </header>
-               <nav className="cjNav">
-                 <span>AÇÃO</span><span>AVENTURA</span><span>CORRIDA</span><span>ESPORTES</span><span>MENINAS</span><span>MULTIPLAYER</span>
-               </nav>
-               <div className="cjBody">
-                 <aside className="cjSidebar">
-                   <h3>TOP JOGOS</h3>
-                   <ol>
-                     <li>Fireboy &amp; Watergirl</li>
-                     <li>Bomberman 4</li>
-                     <li>Papa&apos;s Pizzeria</li>
-                     <li>Super Smash Flash</li>
-                     <li>Age of War</li>
-                   </ol>
-                 </aside>
-                 <section className="cjGrid">
-                   <h3>JOGOS EM DESTAQUE</h3>
-                   <div className="cjGames">
-                     <div className="cjGame"><div className="cjThumb cjThumb1">🔥💧</div><span>Fireboy &amp; Watergirl</span></div>
-                     <div className="cjGame"><div className="cjThumb cjThumb2">🍔</div><span>Papa&apos;s Burgeria</span></div>
-                     <div className="cjGame"><div className="cjThumb cjThumb3">🏍️</div><span>Moto X3M</span></div>
-                     <div className="cjGame"><div className="cjThumb cjThumb4">🔫</div><span>Strike Force Heroes</span></div>
-                     <div className="cjGame"><div className="cjThumb cjThumb5">🏰</div><span>Kingdom Rush</span></div>
-                     <div className="cjGame"><div className="cjThumb cjThumb6">⚔️</div><span>Swords & Sandals 2</span></div>
-                   </div>
-                 </section>
-               </div>
-            </div>
+            <img src="/museum/facebook.jpg" alt="Facebook 2012" style={{ width: "100%", display: "block" }} />
           )}
 
           {museumTab === "clubpenguin" && (
-            <div className="cp2012">
-               <div className="cpHeader">
-                 <h1>CLUB PENGUIN</h1>
-               </div>
-               <div className="cpLoginBox">
-                 <div className="cpPenguin">🐧</div>
-                 <h2>Waddle around and meet new friends!</h2>
-                 <button className="cpPlayBtn">PLAY NOW</button>
-                 <div className="cpLinks">
-                   <button>Create a Penguin</button> | <button>Login</button>
-                 </div>
-               </div>
-               <div className="cpFooter">© 2012 Disney. All rights reserved.</div>
-            </div>
+            <img src="/museum/clubpenguin.jpg" alt="Club Penguin" style={{ width: "100%", display: "block" }} />
           )}
 
           {museumTab === "habbo" && (
-            <div className="habbo2012">
-              <div className="habboTop">
-                <div className="habboLogo">Habbo Hotel</div>
-                <div className="habboOnline"><b>12.432</b> Habbos online agora!</div>
-              </div>
-              <div className="habboBody">
-                <div className="habboLeft">
-                  <h2>O maior hotel virtual do mundo!</h2>
-                  <ul>
-                    <li>✔ Faça novos amigos</li>
-                    <li>✔ Decore seu quarto</li>
-                    <li>✔ Jogue com outros Habbos</li>
-                  </ul>
-                  <div className="habboAvatars">🧍 🧍‍♀️ 🧍‍♂️</div>
-                </div>
-                <div className="habboRight">
-                  <div className="habboLoginBox">
-                    <h3>Entrar no Habbo</h3>
-                    <input type="text" placeholder="Email" />
-                    <input type="password" placeholder="Senha" />
-                    <button className="habboLoginBtn">Entrar</button>
-                  </div>
-                  <button className="habboRegisterBtn">Criar seu Habbo Grátis</button>
-                </div>
-              </div>
-            </div>
+            <img src="/museum/habbo.png" alt="Habbo Hotel" style={{ width: "100%", display: "block" }} />
           )}
         </main>
       </div>

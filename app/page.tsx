@@ -98,8 +98,6 @@ export default function Home() {
         <div className="status"><span className="statusDot" /> {t.status}</div>
       </header>
 
-      {page === "about" && <BackgroundField lang={lang} />}
-
       {page === "about" ? <div id="top" className="shell homeSurface">
         <section className="intro" aria-labelledby="name">
           <p className="eyebrow">{t.system}</p>
