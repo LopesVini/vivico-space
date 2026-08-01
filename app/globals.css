@@ -159,6 +159,15 @@ h1 { grid-column: 1 / -1; margin: 52px 0 38px; font-size: clamp(62px, 10.2vw, 15
 
 .museumExit { position: fixed; right: 28px; bottom: 16px; padding: 9px 12px; border: 1px solid #666; border-radius: 4px; color: #333; background: #e0e0e0; cursor: pointer; font: 700 10px 'Segoe UI', sans-serif; box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 100; }
 
+@media (max-width: 640px) {
+  .museumMode { padding: 8px; }
+  .win7Window { height: calc(100dvh - 16px); border-radius: 4px; }
+  .win7Titlebar { padding: 4px 4px 0; }
+  .win7Tabs button { padding: 0 8px; font-size: 11px; height: 26px; }
+  .win7AddressBar { font-size: 11px; padding: 2px 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .museumExit { right: 12px; bottom: 12px; padding: 6px 10px; font-size: 9px; }
+}
+
 .terminalHint { position: fixed; z-index: 20; inset: auto 0 0; min-height: calc(32px + env(safe-area-inset-bottom)); padding: 9px 22px calc(9px + env(safe-area-inset-bottom)); color: var(--muted); background: #e5e3da; border-top: 1px solid var(--line); font: 500 9px var(--font-geist-mono), monospace; letter-spacing: .07em; }
 
 .logShell, .visitorShell { width: min(1050px, calc(100% - 44px)); margin: 0 auto; padding-bottom: 100px; }

@@ -95,7 +95,7 @@ export default function Home() {
             <span className={lang === "pt" ? "active" : ""}>PT</span>/<span className={lang === "en" ? "active" : ""}>EN</span>
           </button>
           <button className="langSwitch" onClick={() => setZenMode(true)} aria-label="Zen Mode">
-            <span className="active">CSS ON</span>/<span>OFF</span>
+            CSS OFF
           </button>
         </nav>
         <div className="status"><span className="statusDot" /> {t.status}</div>
