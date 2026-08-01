@@ -15,7 +15,7 @@ export default function ZenMode({ lang, onExit }: { lang: Lang, onExit: () => vo
 
         <section className="zenSection">
           <h2>{isPt ? "Sobre" : "About"}</h2>
-          <p>{isPt ? "Estudante de Engenahria Elétrica na UFMG, interesse em matemática, desenvolvimento, linux, machine learning e musica" : "I'm Electrical Engineer Student at UFMG, interest in mathematics, software development, linux, machine learning and music."}</p>
+          <p>{isPt ? "Estudante de Engenahria Elétrica na UFMG, interesse em matemática, desenvolvimento, linux, machine learning e música" : "I'm Electrical Engineer Student at UFMG, interest in mathematics, software development, linux, machine learning and music."}</p>
         </section>
 
         <section className="zenSection">

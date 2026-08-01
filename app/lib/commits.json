@@ -1,0 +1,266 @@
+[
+  {
+    "hash": "9ed3548",
+    "fullHash": "9ed35489e836c6cc931ba548ae3a08af51a12493",
+    "date": "2026-08-01",
+    "message": "atualizações no comando easteregg"
+  },
+  {
+    "hash": "0af7311",
+    "fullHash": "0af731116efb4ce7ccb1f0ec74ecb7f67727da0e",
+    "date": "2026-08-01",
+    "message": "Update CSS OFF button text and optimize museum for mobile"
+  },
+  {
+    "hash": "22d15d6",
+    "fullHash": "22d15d63d10b36f0b945288c23ef919182b6636f",
+    "date": "2026-08-01",
+    "message": "Fix museum images and add zen mode toggle in header"
+  },
+  {
+    "hash": "2c62270",
+    "fullHash": "2c6227005618f5277933a5f78b0e6d5c5d534b6c",
+    "date": "2026-08-01",
+    "message": "Remove BackgroundField and simplify museum with static images"
+  },
+  {
+    "hash": "8371d43",
+    "fullHash": "8371d434c5efb1d6d464e8d305e50f67471c86a2",
+    "date": "2026-08-01",
+    "message": "Fix output usage before declaration and add museu to command palette"
+  },
+  {
+    "hash": "f8ef3b7",
+    "fullHash": "f8ef3b75ac00f08c2adf00b6fd0d90a077fc7859",
+    "date": "2026-08-01",
+    "message": "Fix museum sparkles bug, integrate CommandPalette and ZenMode, and update to 2012 aesthetic"
+  },
+  {
+    "hash": "0b52756",
+    "fullHash": "0b52756d7c57e67c6a89758119bff2dbc6db395b",
+    "date": "2026-07-31",
+    "message": "feat: replace homepage marginalia with interactive backdrop"
+  },
+  {
+    "hash": "d9bc008",
+    "fullHash": "d9bc008f4211433062d84ac628fe414adafbb421",
+    "date": "2026-07-31",
+    "message": "feat: add handmade chaos to homepage"
+  },
+  {
+    "hash": "9443ab7",
+    "fullHash": "9443ab7c936431dbef07a78fc8f625d049edf564",
+    "date": "2026-07-31",
+    "message": "tune: shorten entry punchline pause"
+  },
+  {
+    "hash": "a00bc4a",
+    "fullHash": "a00bc4a597d2ccc2295dd1fbffebafcae669bad4",
+    "date": "2026-07-31",
+    "message": "tweak: quicken entry gate punchline"
+  },
+  {
+    "hash": "45a3c18",
+    "fullHash": "45a3c183549b4bb327bf2a37590c5b70ddc34620",
+    "date": "2026-07-31",
+    "message": "feat: add privacy-preserving anonymous visit analytics"
+  },
+  {
+    "hash": "391b57d",
+    "fullHash": "391b57dd39d1e721c6420187b376755fa4316cb9",
+    "date": "2026-07-30",
+    "message": "refactor: simplify terminal cv"
+  },
+  {
+    "hash": "729fdfd",
+    "fullHash": "729fdfd9268ff2f76a5fe2a32d573da6e3424412",
+    "date": "2026-07-30",
+    "message": "feat: expand terminal with live system commands"
+  },
+  {
+    "hash": "b2cc42f",
+    "fullHash": "b2cc42fd9bbf1615b6d7d84cccd80f5f0660fc38",
+    "date": "2026-07-30",
+    "message": "chore: remove signal and rabbit-hole commands"
+  },
+  {
+    "hash": "7dd83f8",
+    "fullHash": "7dd83f8cafa5e32bcd8b5c64fac67650bee6686a",
+    "date": "2026-07-30",
+    "message": "feat: link mural signatures to Instagram"
+  },
+  {
+    "hash": "6407847",
+    "fullHash": "6407847761bf38b8334bc1caa1824b7ce08cad5e",
+    "date": "2026-07-30",
+    "message": "ui: remove social strip dividers"
+  },
+  {
+    "hash": "927de6e",
+    "fullHash": "927de6e2d8175957ef3cffaa490cfd0e46b48418",
+    "date": "2026-07-30",
+    "message": "ui: rebuild social logo strip"
+  },
+  {
+    "hash": "a6c653f",
+    "fullHash": "a6c653fc264ecaf0133eec8107d150c8f98e54ad",
+    "date": "2026-07-30",
+    "message": "ui: simplify social profile links"
+  },
+  {
+    "hash": "d9534b2",
+    "fullHash": "d9534b20959cce6eda1d4d56a3fb38f09132fb17",
+    "date": "2026-07-30",
+    "message": "feat: add professional profile links"
+  },
+  {
+    "hash": "d6bc630",
+    "fullHash": "d6bc63014960a4e04bf6f43ff00d15e228a391ef",
+    "date": "2026-07-30",
+    "message": "content: feature Steve Lacy music suggestion"
+  },
+  {
+    "hash": "3680288",
+    "fullHash": "3680288b3b989654b59087dc23b49134dfc6b9fd",
+    "date": "2026-07-30",
+    "message": "feat: add camaco terminal command"
+  },
+  {
+    "hash": "cfa91a9",
+    "fullHash": "cfa91a9a9d0dd11fb84b4187a3c5146ac52bce20",
+    "date": "2026-07-30",
+    "message": "feat: add oçarao ao pento terminal command"
+  },
+  {
+    "hash": "9c5a427",
+    "fullHash": "9c5a427f84ebf904763a100dea6a2d81eb6b73c3",
+    "date": "2026-07-30",
+    "message": "fix: allow one or two digit joke numbers"
+  },
+  {
+    "hash": "1dc6c57",
+    "fullHash": "1dc6c57d8f039e97cee43b983fced20d62b9bb5b",
+    "date": "2026-07-30",
+    "message": "fix: use two-digit joke numbers"
+  },
+  {
+    "hash": "9026bb4",
+    "fullHash": "9026bb41661a227b911ae538ed138292dc713d21",
+    "date": "2026-07-30",
+    "message": "feat: add random joke command"
+  },
+  {
+    "hash": "bd6e3c0",
+    "fullHash": "bd6e3c03330ee042ece8a3f30b1c0666a5667833",
+    "date": "2026-07-30",
+    "message": "ui: link terminal registry profiles"
+  },
+  {
+    "hash": "709bb74",
+    "fullHash": "709bb740088f68329cc5eb364e8bac13e857b8c0",
+    "date": "2026-07-30",
+    "message": "feat: add guided terminal easter egg"
+  },
+  {
+    "hash": "4ffd657",
+    "fullHash": "4ffd6573ce2a55ba84b910aa01730da853fb0cf2",
+    "date": "2026-07-30",
+    "message": "ui: allow anonymous site entry"
+  },
+  {
+    "hash": "a5ef56e",
+    "fullHash": "a5ef56ea33c2051120adba41da4796b907562016",
+    "date": "2026-07-30",
+    "message": "ui: tease explicit easter egg command"
+  },
+  {
+    "hash": "e9c08a6",
+    "fullHash": "e9c08a6956f0f277ebe20f4c1763915b867eb4d6",
+    "date": "2026-07-30",
+    "message": "fix: bypass cached favicon asset"
+  },
+  {
+    "hash": "3b4bf42",
+    "fullHash": "3b4bf420b4b96a409e701c45ff0b56482ce5568a",
+    "date": "2026-07-30",
+    "message": "ui: replace favicon with simple V"
+  },
+  {
+    "hash": "6c805fb",
+    "fullHash": "6c805fb0dd150fd9779a654e89d0ee8a9b23ffac",
+    "date": "2026-07-30",
+    "message": "deploy: connect vivico.space"
+  },
+  {
+    "hash": "5cedc3b",
+    "fullHash": "5cedc3bb4f13342f25d58940afdad1033bc1f08c",
+    "date": "2026-07-30",
+    "message": "ui: simplify entry greeting"
+  },
+  {
+    "hash": "2d56698",
+    "fullHash": "2d56698ff1a9b96de349fb66fd3f7ad0bb03d994",
+    "date": "2026-07-30",
+    "message": "fix: allow full-size photo uploads"
+  },
+  {
+    "hash": "7301c5e",
+    "fullHash": "7301c5e29caf440e3e09d6357795b38bd7d3a72a",
+    "date": "2026-07-30",
+    "message": "deploy: prepare Cloudflare production"
+  },
+  {
+    "hash": "99af67a",
+    "fullHash": "99af67adf19a575aa48bd1d1731c747f5081a1e0",
+    "date": "2026-07-30",
+    "message": "chore: close reset window"
+  },
+  {
+    "hash": "33cc078",
+    "fullHash": "33cc0781d35436da2c5fbb41c926aedf8cccaf90",
+    "date": "2026-07-30",
+    "message": "content: refresh terminal copy"
+  },
+  {
+    "hash": "2bf01a4",
+    "fullHash": "2bf01a4de66004e82ac8d386db1e433db21b73a9",
+    "date": "2026-07-30",
+    "message": "chore: prepare public mural reset"
+  },
+  {
+    "hash": "121b90a",
+    "fullHash": "121b90ac53b34e07ec6f9e3e5675573aa9aa2dd3",
+    "date": "2026-07-30",
+    "message": "Harden mural for public launch"
+  },
+  {
+    "hash": "d82c04e",
+    "fullHash": "d82c04e57e2c94b69d64f4cc0b20964f156c5ac4",
+    "date": "2026-07-30",
+    "message": "Slow carousel and add slide transition"
+  },
+  {
+    "hash": "80ba154",
+    "fullHash": "80ba154277ce7337e7e853c4c5b00b97cb469e25",
+    "date": "2026-07-30",
+    "message": "Autoplay music carousel every three seconds"
+  },
+  {
+    "hash": "a6e2159",
+    "fullHash": "a6e2159f60c76a0b8e8e4003a933790254773380",
+    "date": "2026-07-30",
+    "message": "Add music carousel and hide empty vote counts"
+  },
+  {
+    "hash": "51fbecc",
+    "fullHash": "51fbecc899ef199cac6ddcbc2366149f0827b4e6",
+    "date": "2026-07-30",
+    "message": "Show public mural removal vote counts"
+  },
+  {
+    "hash": "caaabb2",
+    "fullHash": "caaabb2229519c6603d85f774781af42c3cefb4f",
+    "date": "2026-07-30",
+    "message": "Build public mural and fix photo uploads"
+  }
+]

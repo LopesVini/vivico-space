@@ -135,10 +135,10 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
     else if (cmd === "easteregg") output(pt ? "NÃO É ASSIM QUE FUNCIONA UM EASTER EGG.\n\nNão digite: 404" : "THAT IS NOT HOW AN EASTER EGG WORKS.\n\nDon't type: 404", "accent");
     else if (cmd === "404") output(pt ? "404 — A PÁGINA NÃO EXISTE.\ntalvez essa fosse a ideia\n\nNão digite: ls" : "404 — THE PAGE DOES NOT EXIST.\nmaybe that was the ideia\n\nDon't type: ls", "accent");
     else if (cmd === "ls") output(pt ? "documentos/  downloads/  .nao-entre\n\nNão digite: cat .nao-entre" : "documentos/  downloads/  .nao-entre\n\nA file begins with a dot because it would rather not be seen.\nType: cat .nao-entre", "accent");
-    else if (cmd === "cat .nao-entre") output(pt ? "Pq vc ainda isiste?\nNão Digite: cd pare aqui" : "You ignored the file name. Good sign.\nThe next clue went down one floor.\n\nType: cd porao", "accent");
-    else if (cmd === "cd pare aqui") output(pt ? "Obedece retardado\nNão digite: sudo abrir" : "You entered the basement.\nThere is a door without a handle.\n\nType: sudo abrir", "accent");
+    else if (cmd === "cat .nao-entre") output(pt ? "Pq vc ainda insiste?\nNão Digite: cd pare" : "You ignored the file name. Good sign.\nThe next clue went down one floor.\n\nType: cd porao", "accent");
+    else if (cmd === "cd pare") output(pt ? "Obedece retardado\nNão digite: sudo abrir" : "You entered the basement.\nThere is a door without a handle.\n\nType: sudo abrir", "accent");
     else if (cmd === "sudo abrir") output(pt ? "Não aguento mais, vc ganhou\npode ficar com o prêmio\n\nDigite: premio" : "[sudo] emotional permission granted.\nThe door opened one centimetre.\n\nType: open", "accent");
-    else if (cmd === "premio") { output(pt ? "Parabens otáriokkkk!!" : "Congratulations!! You won a cupcake!", "accent"); setEasterEggOpen(true); }
+    else if (cmd === "premio") { output(pt ? "Parabéns" : "Congratulations!! You won a cupcake!", "accent"); setEasterEggOpen(true); }
     else if (cmd === "whoami" || cmd === "quem-sou") output(pt ? "Esse comando normalmente retorna um usuário. Você provavelmente esperava pouco demais dele." : "That command usually returns a username. You probably expected too little from it.");
     else if (cmd === "sudo") output(pt ? "Permissão negada. Você já tem controle suficiente." : "Permission denied. You already have enough control.");
     else if (cmd.includes("rm -rf")) output(pt ? "dúvida: não pode ser removida\ndúvida é necessária por 14 processos criativos" : "doubt: cannot be removed\ndoubt is required by 14 creative processes");
