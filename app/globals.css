@@ -394,11 +394,6 @@ footer a { color: var(--ink); }
 .zenList li::before { content: "-"; color: #999; }
 .zenList a { color: #000; text-decoration: underline; }
 
-/* Brain Dump */
-.braindumpList { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
-.braindumpItem { display: grid; grid-template-columns: 90px 1fr; gap: 16px; font: 500 12px var(--font-geist-mono), monospace; color: var(--ink); }
-.braindumpItem .dumpDate { color: var(--muted); }
-.braindumpItem p { margin: 0; line-height: 1.4; }
 
 /* CMD+K Hint */
 .cmdHint { margin: 60px 0 0; text-align: center; color: var(--muted); font: 500 10px var(--font-geist-mono), monospace; letter-spacing: .05em; }
@@ -407,7 +402,6 @@ footer a { color: var(--ink); }
 @media (max-width: 768px) {
   .commandPaletteDialog { margin: 0 16px; }
   .zenModeContainer { padding: 40px 20px; }
-  .braindumpItem { grid-template-columns: 1fr; gap: 4px; }
 }
 
 /* Museum Web 1.0 Features */

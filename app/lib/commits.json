@@ -1,5 +1,17 @@
 [
   {
+    "hash": "1b938b9",
+    "fullHash": "1b938b9a5d48feecc6d33d8938df89ddfde23a79",
+    "date": "2026-08-16",
+    "message": "feat: add Letterboxd icon, remove braindump and setup hardware mentions"
+  },
+  {
+    "hash": "6af1100",
+    "fullHash": "6af11001d0eed2558787b6541a2e202a1363af07",
+    "date": "2026-08-01",
+    "message": "format SystemLog into clean release versions"
+  },
+  {
     "hash": "a19ce6e",
     "fullHash": "a19ce6ea14388b3d533920fdc7000b55e6f37fde",
     "date": "2026-08-01",

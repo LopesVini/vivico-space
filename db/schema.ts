@@ -56,6 +56,9 @@ export const terminalPulse = sqliteTable("terminal_pulse", {
 
 export const anonymousVisitors = sqliteTable("anonymous_visitors", {
   visitorId: text("visitor_id").primaryKey(),
+  country: text("country"),
+  region: text("region"),
+  city: text("city"),
   firstSeenAt: text("first_seen_at").notNull().default(sql`CURRENT_TIMESTAMP`),
   lastSeenAt: text("last_seen_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });

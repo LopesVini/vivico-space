@@ -74,6 +74,7 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
     { kind: "link", text: "GitHub ↗", href: "https://github.com/LopesVini" },
     { kind: "link", text: "LinkedIn ↗", href: "https://www.linkedin.com/in/vin%C3%ADcius-lacerda-405a72396" },
     { kind: "link", text: "Instagram ↗", href: "https://instagram.com/vllc.hub" },
+    { kind: "link", text: "Letterboxd ↗", href: "https://letterboxd.com/lacerdavinicius/" },
     ]);
   };
   const showUptime = () => {
@@ -131,7 +132,7 @@ export default function Terminal({ lang, onNavigate }: { lang: Lang; onNavigate:
         output(translated, "accent");
       }
     }
-    else if (cmd === "stack" || cmd === "uses") output(`HARDWARE STACK\n\n- MacBook M4 Air\n- Desktop: RTX 5060, Ryzen 7, 32GB RAM`, "accent");
+    else if (cmd === "stack" || cmd === "uses") output(`STACK\n\n- React, Node, TypeScript`, "accent");
     else if (cmd === "easteregg") output(pt ? "NÃO É ASSIM QUE FUNCIONA UM EASTER EGG.\n\nNão digite: 404" : "THAT IS NOT HOW AN EASTER EGG WORKS.\n\nDon't type: 404", "accent");
     else if (cmd === "404") output(pt ? "404 — A PÁGINA NÃO EXISTE.\ntalvez essa fosse a ideia\n\nNão digite: ls" : "404 — THE PAGE DOES NOT EXIST.\nmaybe that was the ideia\n\nDon't type: ls", "accent");
     else if (cmd === "ls") output(pt ? "documentos/  downloads/  .nao-entre\n\nNão digite: cat .nao-entre" : "documentos/  downloads/  .nao-entre\n\nA file begins with a dot because it would rather not be seen.\nType: cat .nao-entre", "accent");

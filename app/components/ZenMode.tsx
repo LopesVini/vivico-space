@@ -1,5 +1,5 @@
 "use client";
-import type { Lang } from "../../lib/i18n";
+import type { Lang } from "../lib/i18n";
 
 export default function ZenMode({ lang, onExit }: { lang: Lang, onExit: () => void }) {
   const isPt = lang === "pt";
@@ -29,8 +29,6 @@ export default function ZenMode({ lang, onExit }: { lang: Lang, onExit: () => vo
         <section className="zenSection">
           <h2>{isPt ? "Stack" : "Stack"}</h2>
           <ul className="zenList">
-            <li>MacBook M4 Air</li>
-            <li>Desktop RTX 5060, Ryzen 7, 32GB RAM</li>
             <li>React, Node, Typescript</li>
           </ul>
         </section>
@@ -40,6 +38,8 @@ export default function ZenMode({ lang, onExit }: { lang: Lang, onExit: () => vo
           <ul className="zenList">
             <li><a href="https://github.com/LopesVini" target="_blank" rel="noreferrer">GitHub</a></li>
             <li><a href="https://www.linkedin.com/in/vin%C3%ADcius-lacerda-405a72396" target="_blank" rel="noreferrer">LinkedIn</a></li>
+            <li><a href="https://instagram.com/vllc.hub" target="_blank" rel="noreferrer">Instagram</a></li>
+            <li><a href="https://letterboxd.com/lacerdavinicius/" target="_blank" rel="noreferrer">Letterboxd</a></li>
             <li><a href="mailto:contato@exemplo.com">Email</a></li>
           </ul>
         </section>

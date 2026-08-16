@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { type CSSProperties, useEffect, useState } from "react";
-import { SiGithub, SiInstagram, SiLinkedin } from "react-icons/si";
+import { SiGithub, SiInstagram, SiLetterboxd, SiLinkedin } from "react-icons/si";
 import EntryGate from "./components/entry/EntryGate";
 import Gallery from "./components/Gallery";
 import SystemLog from "./components/overlays/SystemLog";
@@ -41,9 +41,7 @@ const copy = {
   },
 };
 
-const braindumps = [
-  { date: "2026-07-31", pt: "Pensando em usar isso aqui como uns tweet bobos", en: "Thinking of using this place as some silly tweets" },
-];
+
 
 export default function Home() {
   const [age, setAge] = useState<number | null>(null);
@@ -117,6 +115,7 @@ export default function Home() {
           <a href="https://github.com/LopesVini" target="_blank" rel="noreferrer" aria-label="GitHub"><SiGithub aria-hidden="true" /></a>
           <a href="https://www.linkedin.com/in/vin%C3%ADcius-lacerda-405a72396" target="_blank" rel="noreferrer" aria-label="LinkedIn"><SiLinkedin aria-hidden="true" /></a>
           <a href="https://instagram.com/vllc.hub" target="_blank" rel="noreferrer" aria-label="Instagram"><SiInstagram aria-hidden="true" /></a>
+          <a href="https://letterboxd.com/lacerdavinicius/" target="_blank" rel="noreferrer" aria-label="Letterboxd"><SiLetterboxd aria-hidden="true" /></a>
         </nav>
 
         <section className="section" aria-labelledby="projects-title">
@@ -124,18 +123,6 @@ export default function Home() {
           <div className="rows">
             <a className="projectRow" href="https://vebram.com" target="_blank" rel="noreferrer"><span className="rowIndex">01</span><span className="rowMain"><strong>{t.project1}</strong><em>{t.note1}</em></span><span className="arrow">↗</span></a>
             <a className="projectRow" href="https://prossigo.com" target="_blank" rel="noreferrer"><span className="rowIndex">02</span><span className="rowMain"><strong>{t.project2}</strong><em>{t.note2}</em></span><span className="arrow">↗</span></a>
-          </div>
-        </section>
-
-        <section className="section" aria-labelledby="braindump-title">
-          <div className="sectionHead"><h2 id="braindump-title">Brain Dump</h2><span>LATEST</span></div>
-          <div className="braindumpList">
-            {braindumps.map((bd, i) => (
-              <div className="braindumpItem" key={i}>
-                <span className="dumpDate">{bd.date}</span>
-                <p>{lang === "pt" ? bd.pt : bd.en}</p>
-              </div>
-            ))}
           </div>
         </section>
 

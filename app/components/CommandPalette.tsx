@@ -1,12 +1,12 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import type { Lang } from "../../lib/i18n";
+import type { Lang } from "../lib/i18n";
 
 type Page = "about" | "gallery" | "terminal" | "changelog";
 
 type Action = {
   id: string;
-  name: { pt: string; en: string };
+  name: Record<Lang, string>;
   icon: string;
   onSelect: () => void;
 };
@@ -47,6 +47,7 @@ export default function CommandPalette({ lang, onNavigate, onToggleZen }: { lang
     { id: "museum", name: { pt: "Museu (Internet Antiga)", en: "Museum (Old Internet)" }, icon: "🏛️", onSelect: () => { onNavigate("terminal"); setTimeout(() => window.dispatchEvent(new CustomEvent("triggerMuseum")), 100); setOpen(false); } },
     { id: "changelog", name: { pt: "Histórico (System Log)", en: "System Log" }, icon: "📝", onSelect: () => { onNavigate("changelog"); setOpen(false); } },
     { id: "github", name: { pt: "GitHub", en: "GitHub" }, icon: "↗️", onSelect: () => { window.open("https://github.com/LopesVini", "_blank"); setOpen(false); } },
+    { id: "letterboxd", name: { pt: "Letterboxd", en: "Letterboxd" }, icon: "↗️", onSelect: () => { window.open("https://letterboxd.com/lacerdavinicius/", "_blank"); setOpen(false); } },
   ];
 
   const filtered = actions.filter((a) => a.name[lang].toLowerCase().includes(query.toLowerCase()));
